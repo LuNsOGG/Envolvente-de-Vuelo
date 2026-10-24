@@ -41,6 +41,8 @@ La captura incluida en `docs/imagenes/ejemplo_2.png` procede de esa comprobació
 
 ## Comprobación de esta publicación
 
-La suite se vuelve a ejecutar sobre el código preparado para GitHub. El resumen actualizado se registra en `validacion_publicacion.json`. Los registros completos permanecen en `outputs/qa/`; los flujos de Actions tendrán sus propios resultados, que no se presuponen aprobados por la validación local.
+La suite sobre el código preparado para GitHub aprobó las 97 pruebas en 53.28 s. Una copia separada, sin los documentos originales, aprobó también las 97 pruebas en 54.92 s. El resumen se registra en `validacion_publicacion.json`; los registros completos permanecen en `outputs/qa/`.
+
+La ejecución remota de [Pruebas Windows](https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40109034103), correspondiente al commit `32e6a69d15921560a19274150305e1cacd10df14`, terminó correctamente: instalación de dependencias, suite de pruebas y comprobación de ejemplos. La compilación manual de Windows está disponible, pero no se ejecutó como parte de esta publicación documental.
 
 La validación de ecuaciones y software no demuestra la validez aerodinámica de una aeronave distinta ni la resistencia de su estructura. Las fuentes escaneadas y sus ambigüedades están descritas en [FUENTES.md](FUENTES.md).
