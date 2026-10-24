@@ -1,0 +1,1670 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "title": "Tarea 04 segundo parcial Envolvente de Vuelo Cessna Centurión",
+    "student": "",
+    "subject": "",
+    "teacher": "",
+    "date": "2026-10-23"
+  },
+  "active_case": "revisado_ilustrativo",
+  "cases": [
+    {
+      "id": "original_fotos",
+      "name": "Original de las fotos con datos pendientes",
+      "method": "apendice_a",
+      "category": "normal",
+      "aircraft": "Cessna Centurión, variante pendiente de tesis",
+      "parameters": {
+        "W": {
+          "value": 4631,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4631,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "S": {
+          "value": 181,
+          "unit": "ft²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 181,
+            "unit": "ft²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "n_pos": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "n_neg": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "CN_pos": {
+          "value": 1.46,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 1.46,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "CN_neg": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "rho": {
+          "value": 0.0023,
+          "unit": "lb/ft³ sin tipo",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "La foto rotula lb/ft³; debe aclararse si corresponde a slug/ft³ o lbm/ft³.",
+          "original": {
+            "value": 0.0023,
+            "unit": "lb/ft³ sin tipo",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "rho0": {
+          "value": null,
+          "unit": "slug/ft³",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "chord": {
+          "value": 4.26,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "Unidad no legible.",
+          "original": {
+            "value": 4.26,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "a": {
+          "value": 0.105,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "No se ve unidad por grado o por radián.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Vc": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "Vd": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "Va": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "U_c": {
+          "value": null,
+          "unit": "ft/s",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "U_d": {
+          "value": null,
+          "unit": "ft/s",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "altitude": {
+          "value": null,
+          "unit": "ft",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "W_other": {
+          "value": null,
+          "unit": "lbf",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "W_S_photo": {
+          "value": 25.58,
+          "unit": "lbf/ft²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 25.58,
+            "unit": "lbf/ft²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "nu_photo": {
+          "value": 4.4,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4.4,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "nn_photo": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Wn_photo": {
+          "value": 4631.5,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4631.5,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Wu_photo": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3454.54,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "a_photo": {
+          "value": 0.105,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "Pendiente a distinta de CLalpha; no se intercambian.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "CLalpha_photo": {
+          "value": 0.11,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "No se confirma unidad ni si es del ala o de la aeronave.",
+          "original": {
+            "value": 0.11,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        }
+      },
+      "applicability": [
+        {
+          "criterion": "01 motor",
+          "state": "PENDIENTE",
+          "detail": "Un motor, excluidas turbinas. Falta documentación de la variante."
+        },
+        {
+          "criterion": "02 posición alar",
+          "state": "PENDIENTE",
+          "detail": "Ala más cerca del CG que del empenaje posterior. Falta documentación de la variante."
+        },
+        {
+          "criterion": "03 flecha",
+          "state": "PENDIENTE",
+          "detail": "Flecha al cuarto de cuerda <=15 grados. Falta documentación de la variante."
+        },
+        {
+          "criterion": "04 mandos",
+          "state": "PENDIENTE",
+          "detail": "Mandos de borde de salida. Falta documentación de la variante."
+        },
+        {
+          "criterion": "05 AR ala",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento alar <=7. Falta documentación de la variante."
+        },
+        {
+          "criterion": "06 AR horizontal",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento horizontal <=4. Falta documentación de la variante."
+        },
+        {
+          "criterion": "07 volumen horizontal",
+          "state": "PENDIENTE",
+          "detail": "Volumen horizontal >=0.34. Falta documentación de la variante."
+        },
+        {
+          "criterion": "08 AR vertical",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento vertical <=2. Falta documentación de la variante."
+        },
+        {
+          "criterion": "09 área vertical",
+          "state": "PENDIENTE",
+          "detail": "Área vertical <=0.1 S. Falta documentación de la variante."
+        },
+        {
+          "criterion": "10 perfiles cola",
+          "state": "PENDIENTE",
+          "detail": "Perfiles de cola simétricos. Falta documentación de la variante."
+        },
+        {
+          "criterion": "11 exclusiones",
+          "state": "PENDIENTE",
+          "detail": "Sin canard, biplano, colas T/V/cruciforme, slats, winglets ni dispositivos excluidos por A23.1(b). Falta documentación de la variante."
+        }
+      ],
+      "assumptions": [
+        "No se infieren velocidades seleccionadas a partir de los dígitos borrosos.",
+        "No se identifica el significado físico de Wn y Wu sin la tesis.",
+        "Se calcula W/S interpretando el peso rotulado lb como lbf."
+      ],
+      "changes": []
+    },
+    {
+      "id": "revisado_ilustrativo",
+      "name": "Ejemplo revisado con hipótesis explícitas",
+      "method": "subparte_c",
+      "category": "normal",
+      "aircraft": "Cessna Centurión, variante pendiente de tesis",
+      "parameters": {
+        "W": {
+          "value": 4631,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4631,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "S": {
+          "value": 181,
+          "unit": "ft²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 181,
+            "unit": "ft²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "n_pos": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "n_neg": {
+          "value": -1.52,
+          "unit": "1",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección -0.4 n+ de §23.337 para subparte C normal; no es -0.5 n1 del Ap. A.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "CN_pos": {
+          "value": 1.46,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 1.46,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "CN_neg": {
+          "value": -1.35,
+          "unit": "1",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Aproximación explícita del Ap. A; validar con polar de la aeronave.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "rho": {
+          "value": 0.0023,
+          "unit": "slug/ft³",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Interpretación física explícita; la unidad de la foto permanece en original.",
+          "original": {
+            "value": 0.0023,
+            "unit": "lb/ft³ sin tipo",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "rho0": {
+          "value": 0.002376892406675,
+          "unit": "slug/ft³",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Referencia EAS de atmósfera estándar al nivel del mar, independiente de rho local.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "chord": {
+          "value": 4.26,
+          "unit": "ft",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Se supone que la cuerda de la foto está en ft.",
+          "original": {
+            "value": 4.26,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "a": {
+          "value": 0.105,
+          "unit": "1/deg",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Se supone por grado; conversión interna a por radián.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Vc": {
+          "value": 180,
+          "unit": "kt EAS",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección ilustrativa de velocidad de crucero de diseño.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "Vd": {
+          "value": 250,
+          "unit": "kt EAS",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección ilustrativa de picada, satisface mínimos básicos de subparte C sin reducciones.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "Va": {
+          "value": 150,
+          "unit": "kt EAS",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección ilustrativa; distinta de intersección A y del mínimo de Fig. A3.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "U_c": {
+          "value": 50,
+          "unit": "ft/s",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "§23.333(c), intervalo 0 a 20000 ft.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "U_d": {
+          "value": 25,
+          "unit": "ft/s",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "§23.333(c), intervalo 0 a 20000 ft.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "altitude": {
+          "value": 0,
+          "unit": "ft",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Nivel del mar, supuesto para demostración.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "W_other": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Peso Wu de fotografía solo para sensibilidad; no prueba categoría utilidad.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "W_S_photo": {
+          "value": 25.58,
+          "unit": "lbf/ft²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 25.58,
+            "unit": "lbf/ft²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "nu_photo": {
+          "value": 4.4,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4.4,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "nn_photo": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Wn_photo": {
+          "value": 4631.5,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4631.5,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Wu_photo": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3454.54,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "a_photo": {
+          "value": 0.105,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "Pendiente a distinta de CLalpha; no se intercambian.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "CLalpha_photo": {
+          "value": 0.11,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "No se confirma unidad ni si es del ala o de la aeronave.",
+          "original": {
+            "value": 0.11,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        }
+      },
+      "applicability": [
+        {
+          "criterion": "01 motor",
+          "state": "PENDIENTE",
+          "detail": "Un motor, excluidas turbinas. Falta documentación de la variante."
+        },
+        {
+          "criterion": "02 posición alar",
+          "state": "PENDIENTE",
+          "detail": "Ala más cerca del CG que del empenaje posterior. Falta documentación de la variante."
+        },
+        {
+          "criterion": "03 flecha",
+          "state": "PENDIENTE",
+          "detail": "Flecha al cuarto de cuerda <=15 grados. Falta documentación de la variante."
+        },
+        {
+          "criterion": "04 mandos",
+          "state": "PENDIENTE",
+          "detail": "Mandos de borde de salida. Falta documentación de la variante."
+        },
+        {
+          "criterion": "05 AR ala",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento alar <=7. Falta documentación de la variante."
+        },
+        {
+          "criterion": "06 AR horizontal",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento horizontal <=4. Falta documentación de la variante."
+        },
+        {
+          "criterion": "07 volumen horizontal",
+          "state": "PENDIENTE",
+          "detail": "Volumen horizontal >=0.34. Falta documentación de la variante."
+        },
+        {
+          "criterion": "08 AR vertical",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento vertical <=2. Falta documentación de la variante."
+        },
+        {
+          "criterion": "09 área vertical",
+          "state": "PENDIENTE",
+          "detail": "Área vertical <=0.1 S. Falta documentación de la variante."
+        },
+        {
+          "criterion": "10 perfiles cola",
+          "state": "PENDIENTE",
+          "detail": "Perfiles de cola simétricos. Falta documentación de la variante."
+        },
+        {
+          "criterion": "11 exclusiones",
+          "state": "PENDIENTE",
+          "detail": "Sin canard, biplano, colas T/V/cruciforme, slats, winglets ni dispositivos excluidos por A23.1(b). Falta documentación de la variante."
+        }
+      ],
+      "assumptions": [
+        "Caso ilustrativo normal con flaps retraídos, nivel del mar y pesos de las fotografías. No es la envolvente validada de un Cessna.",
+        "Se utiliza CN positivo de la foto; no se convierte a CL. La pendiente elegida se trata como pendiente normal de la aeronave para esta demostración.",
+        "rho=0.0023 se interpreta como slug/ft³. rho0 es atmósfera estándar para usar velocidades EAS; no se confunden ambas densidades.",
+        "Se usa a=0.105 por grado de la foto como hipótesis pendiente; se convierte explícitamente a por radián. CLalpha=0.11 se conserva sin sustituir a.",
+        "CN negativo=-1.35 es aproximación académica explícita tomada de A23.9(b)(1)(ii), no un dato de Cessna ni una verificación de esa aerodinámica.",
+        "Vc=180, Vd=250 y Va=150 kt EAS son selecciones de demostración; no son lecturas de la foto ni velocidades operativas del avión.",
+        "El ejemplo usa subparte C 2016 como referencia independiente. La edición y el criterio exacto de la tesis siguen pendientes."
+      ],
+      "changes": [
+        {
+          "parameter": "rho",
+          "before": 0.0023,
+          "before_unit": "lb/ft³ sin tipo",
+          "after": 0.0023,
+          "after_unit": "slug/ft³",
+          "reason": "Interpretación física explícita; la unidad de la foto permanece en original."
+        },
+        {
+          "parameter": "rho0",
+          "before": null,
+          "before_unit": "slug/ft³",
+          "after": 0.002376892406675,
+          "after_unit": "slug/ft³",
+          "reason": "Referencia EAS de atmósfera estándar al nivel del mar, independiente de rho local."
+        },
+        {
+          "parameter": "chord",
+          "before": 4.26,
+          "before_unit": "sin confirmar",
+          "after": 4.26,
+          "after_unit": "ft",
+          "reason": "Se supone que la cuerda de la foto está en ft."
+        },
+        {
+          "parameter": "a",
+          "before": 0.105,
+          "before_unit": "sin confirmar",
+          "after": 0.105,
+          "after_unit": "1/deg",
+          "reason": "Se supone por grado; conversión interna a por radián."
+        },
+        {
+          "parameter": "CN_neg",
+          "before": null,
+          "before_unit": "1",
+          "after": -1.35,
+          "after_unit": "1",
+          "reason": "Aproximación explícita del Ap. A; validar con polar de la aeronave."
+        },
+        {
+          "parameter": "n_neg",
+          "before": null,
+          "before_unit": "1",
+          "after": -1.52,
+          "after_unit": "1",
+          "reason": "Selección -0.4 n+ de §23.337 para subparte C normal; no es -0.5 n1 del Ap. A."
+        },
+        {
+          "parameter": "Vc",
+          "before": null,
+          "before_unit": "kt EAS",
+          "after": 180,
+          "after_unit": "kt EAS",
+          "reason": "Selección ilustrativa de velocidad de crucero de diseño."
+        },
+        {
+          "parameter": "Vd",
+          "before": null,
+          "before_unit": "kt EAS",
+          "after": 250,
+          "after_unit": "kt EAS",
+          "reason": "Selección ilustrativa de picada, satisface mínimos básicos de subparte C sin reducciones."
+        },
+        {
+          "parameter": "Va",
+          "before": null,
+          "before_unit": "kt EAS",
+          "after": 150,
+          "after_unit": "kt EAS",
+          "reason": "Selección ilustrativa; distinta de intersección A y del mínimo de Fig. A3."
+        },
+        {
+          "parameter": "U_c",
+          "before": null,
+          "before_unit": "ft/s",
+          "after": 50,
+          "after_unit": "ft/s",
+          "reason": "§23.333(c), intervalo 0 a 20000 ft."
+        },
+        {
+          "parameter": "U_d",
+          "before": null,
+          "before_unit": "ft/s",
+          "after": 25,
+          "after_unit": "ft/s",
+          "reason": "§23.333(c), intervalo 0 a 20000 ft."
+        },
+        {
+          "parameter": "altitude",
+          "before": null,
+          "before_unit": "ft",
+          "after": 0,
+          "after_unit": "ft",
+          "reason": "Nivel del mar, supuesto para demostración."
+        },
+        {
+          "parameter": "W_other",
+          "before": null,
+          "before_unit": "lbf",
+          "after": 3454.54,
+          "after_unit": "lbf",
+          "reason": "Peso Wu de fotografía solo para sensibilidad; no prueba categoría utilidad."
+        }
+      ]
+    },
+    {
+      "id": "peso_menor",
+      "name": "Sensibilidad al peso menor de la foto",
+      "method": "subparte_c",
+      "category": "normal",
+      "aircraft": "Cessna Centurión, variante pendiente de tesis",
+      "parameters": {
+        "W": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Se compara el peso Wu, sin asignar categoría utilidad.",
+          "original": {
+            "value": 4631,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "S": {
+          "value": 181,
+          "unit": "ft²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 181,
+            "unit": "ft²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "n_pos": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "n_neg": {
+          "value": -1.52,
+          "unit": "1",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección -0.4 n+ de §23.337 para subparte C normal; no es -0.5 n1 del Ap. A.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "CN_pos": {
+          "value": 1.46,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 1.46,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "CN_neg": {
+          "value": -1.35,
+          "unit": "1",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Aproximación explícita del Ap. A; validar con polar de la aeronave.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "rho": {
+          "value": 0.0023,
+          "unit": "slug/ft³",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Interpretación física explícita; la unidad de la foto permanece en original.",
+          "original": {
+            "value": 0.0023,
+            "unit": "lb/ft³ sin tipo",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "rho0": {
+          "value": 0.002376892406675,
+          "unit": "slug/ft³",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Referencia EAS de atmósfera estándar al nivel del mar, independiente de rho local.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "chord": {
+          "value": 4.26,
+          "unit": "ft",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Se supone que la cuerda de la foto está en ft.",
+          "original": {
+            "value": 4.26,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "a": {
+          "value": 0.105,
+          "unit": "1/deg",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "supuesto",
+          "notes": "Se supone por grado; conversión interna a por radián.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Vc": {
+          "value": 180,
+          "unit": "kt EAS",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección ilustrativa de velocidad de crucero de diseño.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "Vd": {
+          "value": 250,
+          "unit": "kt EAS",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección ilustrativa de picada, satisface mínimos básicos de subparte C sin reducciones.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "Va": {
+          "value": 150,
+          "unit": "kt EAS",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Selección ilustrativa; distinta de intersección A y del mínimo de Fig. A3.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "U_c": {
+          "value": 50,
+          "unit": "ft/s",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "§23.333(c), intervalo 0 a 20000 ft.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "U_d": {
+          "value": 25,
+          "unit": "ft/s",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "§23.333(c), intervalo 0 a 20000 ft.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "altitude": {
+          "value": 0,
+          "unit": "ft",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Nivel del mar, supuesto para demostración.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "Dato sin confirmar",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "W_other": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "Selección explícita del caso ilustrativo",
+          "page": "",
+          "status": "supuesto",
+          "notes": "Peso Wu de fotografía solo para sensibilidad; no prueba categoría utilidad.",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente"
+          }
+        },
+        "W_S_photo": {
+          "value": 25.58,
+          "unit": "lbf/ft²",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 25.58,
+            "unit": "lbf/ft²",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "nu_photo": {
+          "value": 4.4,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4.4,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "nn_photo": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Wn_photo": {
+          "value": 4631.5,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 4631.5,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "Wu_photo": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "documentado",
+          "notes": "Lectura visual de la hoja; no prueba el dato de una variante Cessna. lb se interpreta explícitamente como peso en lbf.",
+          "original": {
+            "value": 3454.54,
+            "unit": "lbf",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "documentado"
+          }
+        },
+        "a_photo": {
+          "value": 0.105,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "Pendiente a distinta de CLalpha; no se intercambian.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        },
+        "CLalpha_photo": {
+          "value": 0.11,
+          "unit": "sin confirmar",
+          "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+          "page": "fotografías",
+          "status": "pendiente",
+          "notes": "No se confirma unidad ni si es del ala o de la aeronave.",
+          "original": {
+            "value": 0.11,
+            "unit": "sin confirmar",
+            "source": "308aa1a8-3551-4e50-a2fb-7b7e27fd85c9.jpg y cd1a2819-dc32-4a24-b668-615ca1cc63e5.jpg",
+            "page": "fotografías",
+            "status": "pendiente"
+          }
+        }
+      },
+      "applicability": [
+        {
+          "criterion": "01 motor",
+          "state": "PENDIENTE",
+          "detail": "Un motor, excluidas turbinas. Falta documentación de la variante."
+        },
+        {
+          "criterion": "02 posición alar",
+          "state": "PENDIENTE",
+          "detail": "Ala más cerca del CG que del empenaje posterior. Falta documentación de la variante."
+        },
+        {
+          "criterion": "03 flecha",
+          "state": "PENDIENTE",
+          "detail": "Flecha al cuarto de cuerda <=15 grados. Falta documentación de la variante."
+        },
+        {
+          "criterion": "04 mandos",
+          "state": "PENDIENTE",
+          "detail": "Mandos de borde de salida. Falta documentación de la variante."
+        },
+        {
+          "criterion": "05 AR ala",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento alar <=7. Falta documentación de la variante."
+        },
+        {
+          "criterion": "06 AR horizontal",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento horizontal <=4. Falta documentación de la variante."
+        },
+        {
+          "criterion": "07 volumen horizontal",
+          "state": "PENDIENTE",
+          "detail": "Volumen horizontal >=0.34. Falta documentación de la variante."
+        },
+        {
+          "criterion": "08 AR vertical",
+          "state": "PENDIENTE",
+          "detail": "Alargamiento vertical <=2. Falta documentación de la variante."
+        },
+        {
+          "criterion": "09 área vertical",
+          "state": "PENDIENTE",
+          "detail": "Área vertical <=0.1 S. Falta documentación de la variante."
+        },
+        {
+          "criterion": "10 perfiles cola",
+          "state": "PENDIENTE",
+          "detail": "Perfiles de cola simétricos. Falta documentación de la variante."
+        },
+        {
+          "criterion": "11 exclusiones",
+          "state": "PENDIENTE",
+          "detail": "Sin canard, biplano, colas T/V/cruciforme, slats, winglets ni dispositivos excluidos por A23.1(b). Falta documentación de la variante."
+        }
+      ],
+      "assumptions": [
+        "Caso ilustrativo normal con flaps retraídos, nivel del mar y pesos de las fotografías. No es la envolvente validada de un Cessna.",
+        "Se utiliza CN positivo de la foto; no se convierte a CL. La pendiente elegida se trata como pendiente normal de la aeronave para esta demostración.",
+        "rho=0.0023 se interpreta como slug/ft³. rho0 es atmósfera estándar para usar velocidades EAS; no se confunden ambas densidades.",
+        "Se usa a=0.105 por grado de la foto como hipótesis pendiente; se convierte explícitamente a por radián. CLalpha=0.11 se conserva sin sustituir a.",
+        "CN negativo=-1.35 es aproximación académica explícita tomada de A23.9(b)(1)(ii), no un dato de Cessna ni una verificación de esa aerodinámica.",
+        "Vc=180, Vd=250 y Va=150 kt EAS son selecciones de demostración; no son lecturas de la foto ni velocidades operativas del avión.",
+        "El ejemplo usa subparte C 2016 como referencia independiente. La edición y el criterio exacto de la tesis siguen pendientes."
+      ],
+      "changes": [
+        {
+          "parameter": "rho",
+          "before": 0.0023,
+          "before_unit": "lb/ft³ sin tipo",
+          "after": 0.0023,
+          "after_unit": "slug/ft³",
+          "reason": "Interpretación física explícita; la unidad de la foto permanece en original."
+        },
+        {
+          "parameter": "rho0",
+          "before": null,
+          "before_unit": "slug/ft³",
+          "after": 0.002376892406675,
+          "after_unit": "slug/ft³",
+          "reason": "Referencia EAS de atmósfera estándar al nivel del mar, independiente de rho local."
+        },
+        {
+          "parameter": "chord",
+          "before": 4.26,
+          "before_unit": "sin confirmar",
+          "after": 4.26,
+          "after_unit": "ft",
+          "reason": "Se supone que la cuerda de la foto está en ft."
+        },
+        {
+          "parameter": "a",
+          "before": 0.105,
+          "before_unit": "sin confirmar",
+          "after": 0.105,
+          "after_unit": "1/deg",
+          "reason": "Se supone por grado; conversión interna a por radián."
+        },
+        {
+          "parameter": "CN_neg",
+          "before": null,
+          "before_unit": "1",
+          "after": -1.35,
+          "after_unit": "1",
+          "reason": "Aproximación explícita del Ap. A; validar con polar de la aeronave."
+        },
+        {
+          "parameter": "n_neg",
+          "before": null,
+          "before_unit": "1",
+          "after": -1.52,
+          "after_unit": "1",
+          "reason": "Selección -0.4 n+ de §23.337 para subparte C normal; no es -0.5 n1 del Ap. A."
+        },
+        {
+          "parameter": "Vc",
+          "before": null,
+          "before_unit": "kt EAS",
+          "after": 180,
+          "after_unit": "kt EAS",
+          "reason": "Selección ilustrativa de velocidad de crucero de diseño."
+        },
+        {
+          "parameter": "Vd",
+          "before": null,
+          "before_unit": "kt EAS",
+          "after": 250,
+          "after_unit": "kt EAS",
+          "reason": "Selección ilustrativa de picada, satisface mínimos básicos de subparte C sin reducciones."
+        },
+        {
+          "parameter": "Va",
+          "before": null,
+          "before_unit": "kt EAS",
+          "after": 150,
+          "after_unit": "kt EAS",
+          "reason": "Selección ilustrativa; distinta de intersección A y del mínimo de Fig. A3."
+        },
+        {
+          "parameter": "U_c",
+          "before": null,
+          "before_unit": "ft/s",
+          "after": 50,
+          "after_unit": "ft/s",
+          "reason": "§23.333(c), intervalo 0 a 20000 ft."
+        },
+        {
+          "parameter": "U_d",
+          "before": null,
+          "before_unit": "ft/s",
+          "after": 25,
+          "after_unit": "ft/s",
+          "reason": "§23.333(c), intervalo 0 a 20000 ft."
+        },
+        {
+          "parameter": "altitude",
+          "before": null,
+          "before_unit": "ft",
+          "after": 0,
+          "after_unit": "ft",
+          "reason": "Nivel del mar, supuesto para demostración."
+        },
+        {
+          "parameter": "W_other",
+          "before": null,
+          "before_unit": "lbf",
+          "after": 3454.54,
+          "after_unit": "lbf",
+          "reason": "Peso Wu de fotografía solo para sensibilidad; no prueba categoría utilidad."
+        },
+        {
+          "parameter": "W",
+          "before": 4631,
+          "before_unit": "lbf",
+          "after": 3454.54,
+          "after_unit": "lbf",
+          "reason": "Sensibilidad manteniendo velocidades y configuración; no acredita una condición real."
+        }
+      ]
+    }
+  ]
+}

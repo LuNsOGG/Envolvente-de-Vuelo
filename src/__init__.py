@@ -1,0 +1,1 @@
+"""Envolvente de vuelo académica."""

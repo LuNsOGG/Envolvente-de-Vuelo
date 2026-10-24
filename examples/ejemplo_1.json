@@ -1,0 +1,472 @@
+{
+  "schema_version": 1,
+  "kind": "worksheet",
+  "metadata": {
+    "title": "Ejemplo 1",
+    "student": "",
+    "subject": "",
+    "teacher": "",
+    "date": "2026-10-24"
+  },
+  "active_case": "caso_d529c457fdf8",
+  "cases": [
+    {
+      "id": "caso_d529c457fdf8",
+      "name": "Ejemplo 1",
+      "aircraft": "Ejemplo 1",
+      "method": "niu",
+      "category": "normal",
+      "requires_thesis": false,
+      "parameters": {
+        "W": {
+          "value": 4631,
+          "unit": "lbf",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 4631,
+            "unit": "lbf",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "S": {
+          "value": 181,
+          "unit": "ft²",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 181,
+            "unit": "ft²",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "n_pos": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "n_neg": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CN_pos": {
+          "value": 1.46,
+          "unit": "1",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 1.46,
+            "unit": "1",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "CN_neg": {
+          "value": -1.35,
+          "unit": "1",
+          "source": "Hipótesis del ejercicio Excel",
+          "page": "",
+          "status": "aproximación",
+          "notes": "CN negativo autorizado por el usuario.",
+          "original": {
+            "value": -1.35,
+            "unit": "1",
+            "source": "Hipótesis del ejercicio Excel",
+            "page": "",
+            "status": "aproximación",
+            "notes": "CN negativo autorizado por el usuario."
+          }
+        },
+        "Vc": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "Vd": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "chord": {
+          "value": 4.26,
+          "unit": "ft",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "unidad interpretada",
+          "notes": "Unidad interpretada con autorización del usuario; el número procede de la foto.",
+          "original": {
+            "value": 4.26,
+            "unit": "sin confirmar",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "a": {
+          "value": 0.105,
+          "unit": "1/deg",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "unidad interpretada",
+          "notes": "Unidad interpretada con autorización del usuario; el número procede de la foto.",
+          "original": {
+            "value": 0.105,
+            "unit": "sin confirmar",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "rho": {
+          "value": 0.0023,
+          "unit": "slug/ft³",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "unidad interpretada",
+          "notes": "Unidad interpretada con autorización del usuario; el número procede de la foto.",
+          "original": {
+            "value": 0.0023,
+            "unit": "lb/ft³ sin tipo",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "rho0": {
+          "value": 0.002376892406675,
+          "unit": "slug/ft³",
+          "source": "Densidad estándar de referencia EAS",
+          "page": "",
+          "status": "constante",
+          "notes": "",
+          "original": {
+            "value": 0.002376892406675,
+            "unit": "slug/ft³",
+            "source": "Densidad estándar de referencia EAS",
+            "page": "",
+            "status": "constante",
+            "notes": ""
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "Va": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "U_c": {
+          "value": 50,
+          "unit": "ft/s",
+          "source": "Hipótesis del ejercicio Excel",
+          "page": "",
+          "status": "aproximación",
+          "notes": "Intensidades de diseño seleccionadas para el ejercicio; editables en Datos de cálculo.",
+          "original": {
+            "value": 50,
+            "unit": "ft/s",
+            "source": "Hipótesis del ejercicio Excel",
+            "page": "",
+            "status": "aproximación",
+            "notes": "Intensidades de diseño seleccionadas para el ejercicio; editables en Datos de cálculo."
+          }
+        },
+        "U_d": {
+          "value": 25,
+          "unit": "ft/s",
+          "source": "Hipótesis del ejercicio Excel",
+          "page": "",
+          "status": "aproximación",
+          "notes": "Intensidades de diseño seleccionadas para el ejercicio; editables en Datos de cálculo.",
+          "original": {
+            "value": 25,
+            "unit": "ft/s",
+            "source": "Hipótesis del ejercicio Excel",
+            "page": "",
+            "status": "aproximación",
+            "notes": "Intensidades de diseño seleccionadas para el ejercicio; editables en Datos de cálculo."
+          }
+        },
+        "altitude": {
+          "value": null,
+          "unit": "ft",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "ft",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "nu_photo": {
+          "value": 4.4,
+          "unit": "1",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 4.4,
+            "unit": "1",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "nn_photo": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "Wn_photo": {
+          "value": 4631.5,
+          "unit": "lbf",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "unidad interpretada",
+          "notes": "Unidad interpretada con autorización del usuario; el número procede de la foto.",
+          "original": {
+            "value": 4631.5,
+            "unit": "sin confirmar",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "Wu_photo": {
+          "value": 3454.54,
+          "unit": "lbf",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "unidad interpretada",
+          "notes": "Unidad interpretada con autorización del usuario; el número procede de la foto.",
+          "original": {
+            "value": 3454.54,
+            "unit": "sin confirmar",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "W_S_photo": {
+          "value": 25.58,
+          "unit": "lbf/ft²",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "transcrito",
+          "notes": "",
+          "original": {
+            "value": 25.58,
+            "unit": "lbf/ft²",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "CLalpha_photo": {
+          "value": 0.11,
+          "unit": "1/deg",
+          "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+          "page": "",
+          "status": "unidad interpretada",
+          "notes": "Unidad interpretada con autorización del usuario; el número procede de la foto.",
+          "original": {
+            "value": 0.11,
+            "unit": "sin confirmar",
+            "source": "Fotografías originales de la hoja Excel, filas 2 a 15",
+            "page": "",
+            "status": "transcrito",
+            "notes": ""
+          }
+        },
+        "U_b": {
+          "value": 0,
+          "unit": "ft/s",
+          "source": "Hipótesis del ejercicio Excel",
+          "page": "",
+          "status": "aproximación",
+          "notes": "Intensidades de diseño seleccionadas para el ejercicio; editables en Datos de cálculo.",
+          "original": {
+            "value": 0,
+            "unit": "ft/s",
+            "source": "Hipótesis del ejercicio Excel",
+            "page": "",
+            "status": "aproximación",
+            "notes": "Intensidades de diseño seleccionadas para el ejercicio; editables en Datos de cálculo."
+          }
+        },
+        "Cse": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        }
+      },
+      "assumptions": [
+        "Ejercicio Excel: coeficientes de fuerza normal CN; unidades interpretadas como lbf, slug/ft³, ft y pendientes por grado.",
+        "CN negativo = -1.35 como aproximación autorizada. Pendiente a = 0.105/grado; CLα = 0.11/grado se conserva como referencia independiente.",
+        "Vc y Vd: mínimos base de Fig. A3; límite negativo de maniobra -0.5N. Se conservan como elecciones del ejercicio, sin afirmar aplicabilidad del apéndice A.",
+        "Ráfagas de Niu con Uc=50 y Ud=25 ft/s, hipótesis de diseño para este ejercicio; no son datos medidos ni derivados de la foto. ρ local permanece en 0.0023 slug/ft³.",
+        "n3 y n4 se calculan como 1±Δn en Vc. No se igualan a N y -0.5N."
+      ],
+      "changes": [],
+      "applicability": [],
+      "worksheet": true,
+      "speed_mode": "excel",
+      "negative_rule": "excel",
+      "negative_end": "constant",
+      "aero_model": "constant",
+      "coefficient_basis": "CN",
+      "example": 1
+    }
+  ]
+}

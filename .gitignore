@@ -1,0 +1,56 @@
+# Entornos, dependencias, compilaciones y copias conservadas localmente
+.venv/
+.runtime/
+_internal/
+aplicacion/
+archivo_desarrollo/
+*.exe
+*.dll
+*.pyd
+*.pyc
+__pycache__/
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+
+# Resultados generados, sesiones y pruebas; no se borran
+outputs/
+tests/artifacts/
+data/recuperaciones/
+.vscode/
+
+# Fuentes bibliográficas y fotografías locales
+/*.pdf
+/*.jpg
+/sources/*.pdf
+/sources/*.png
+/sources/niu_pages/
+/sources/indice_ocr.json
+/sources/huellas_originales.json
+
+# Registros de instalaciones históricas y rutas de la estación de trabajo
+/docs/compilacion/
+/docs/organizacion_20261023/
+/docs/hoja_excel_20261023/*.json
+/docs/rafagas_niu_20261024/instalacion.json
+/docs/rafagas_niu_20261024/validacion.json
+
+# Registros históricos de la estación original, conservados localmente
+/docs/historico/
+/docs/ENTREGA_CALCULADORA_V2.txt
+/docs/MANUAL_CALCULADORA.md
+/docs/MANUAL_HOJA_EXCEL.md
+/docs/VALIDACION_CALCULADORA_V2.md
+/docs/hoja_excel_20261023/
+/docs/rafagas_niu_20261024/ejemplo_1.json
+/docs/rafagas_niu_20261024/ejemplo_2.json
+/sources/registro_fuentes.md
+/tools/try_render_docx.py
+
+# Credenciales y configuración privada
+.env
+.env.*
+!.env.example
+*.pem
+*.key

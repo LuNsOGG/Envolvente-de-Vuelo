@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "kind": "worksheet",
+  "metadata": {
+    "title": "Ejemplo 2",
+    "student": "",
+    "subject": "",
+    "teacher": "",
+    "date": "2026-10-24"
+  },
+  "active_case": "caso_a1e86a7beaac",
+  "cases": [
+    {
+      "id": "caso_a1e86a7beaac",
+      "name": "Ejemplo 2",
+      "aircraft": "Ejemplo 2",
+      "method": "niu",
+      "category": "transporte",
+      "requires_thesis": false,
+      "parameters": {
+        "W": {
+          "value": 88000,
+          "unit": "lbf",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 88000,
+            "unit": "lbf",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "S": {
+          "value": 1200,
+          "unit": "ft²",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 1200,
+            "unit": "ft²",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "n_pos": {
+          "value": 2.5,
+          "unit": "1",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 2.5,
+            "unit": "1",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "n_neg": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CN_pos": {
+          "value": 1.3,
+          "unit": "1",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 1.3,
+            "unit": "1",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "CN_neg": {
+          "value": -1.3,
+          "unit": "1",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": -1.3,
+            "unit": "1",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "Vc": {
+          "value": 325,
+          "unit": "kt EAS",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 325,
+            "unit": "kt EAS",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "Vd": {
+          "value": 400,
+          "unit": "kt EAS",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 400,
+            "unit": "kt EAS",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "chord": {
+          "value": 13,
+          "unit": "ft",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 13,
+            "unit": "ft",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "a": {
+          "value": 5.22,
+          "unit": "1/rad",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 5.22,
+            "unit": "1/rad",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "rho": {
+          "value": 0.00176,
+          "unit": "slug/ft³",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 0.00176,
+            "unit": "slug/ft³",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "rho0": {
+          "value": 0.002376892406675,
+          "unit": "slug/ft³",
+          "source": "Densidad estándar de referencia EAS",
+          "page": "",
+          "status": "constante",
+          "notes": "",
+          "original": {
+            "value": 0.002376892406675,
+            "unit": "slug/ft³",
+            "source": "Densidad estándar de referencia EAS",
+            "page": "",
+            "status": "constante",
+            "notes": ""
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "Va": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "U_c": {
+          "value": 50,
+          "unit": "ft/s",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 50,
+            "unit": "ft/s",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "U_d": {
+          "value": 25,
+          "unit": "ft/s",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 25,
+            "unit": "ft/s",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "altitude": {
+          "value": 10000,
+          "unit": "ft",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 10000,
+            "unit": "ft",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "nu_photo": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "nn_photo": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "Wn_photo": {
+          "value": null,
+          "unit": "lbf",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "lbf",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "Wu_photo": {
+          "value": null,
+          "unit": "lbf",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "lbf",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "W_S_photo": {
+          "value": null,
+          "unit": "lbf/ft²",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "lbf/ft²",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CLalpha_photo": {
+          "value": 4.75,
+          "unit": "1/rad",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 4.75,
+            "unit": "1/rad",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "U_b": {
+          "value": 66,
+          "unit": "ft/s",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 66,
+            "unit": "ft/s",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        },
+        "Cse": {
+          "value": 548.6,
+          "unit": "kt EAS",
+          "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+          "page": "",
+          "status": "documentado",
+          "notes": "",
+          "original": {
+            "value": 548.6,
+            "unit": "kt EAS",
+            "source": "Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77",
+            "page": "",
+            "status": "documentado",
+            "notes": ""
+          }
+        }
+      },
+      "assumptions": [
+        "Avión comercial genérico del ejemplo 2, sección 3.11 de Niu: W=88000 lbf, S=1200 ft², altitud 10000 ft, Vc=325 y Vd=400 kt EAS.",
+        "Se usa CL, no CN. CLmax(0)=1.3 y CLmin(0)=-1.3, simetría supuesta explícitamente en el libro. a(0)=5.22/rad es de la aeronave; CLα=4.75/rad es del ala.",
+        "Pendiente a(M) interpolada de Fig.3.11.6. En V=400 kt se usa 6.78/rad: 5.22×1.300≈6.786 y μ≈29.3; el dígito de la columna a es ambiguo.",
+        "CLmax tabulado hasta 300 kt. Para 325,350,400 kt, lectura aproximada de Fig.3.11.4: 1.17,1.13,1.02. Interpolación lineal entre puntos; no extrapolación fuera de M=0…400/548.6.",
+        "q=V²/296, como en el libro. W/S se calcula exactamente: 73.333333 lbf/ft²; el valor impreso 73.2 es redondeado/inconsistente.",
+        "Ub/Uc/Ud=66/50/25 ft/s. VB se construye con la intersección pérdida-ráfaga de máxima intensidad de Fig.3.11.7; no es una velocidad operativa certificada.",
+        "Límites de maniobra +2.5/-1; la rama negativa llega a cero en Vd. Los campos de categorías normal/utilidad no corresponden a este avión y quedan vacíos.",
+        "Al editar este caso se conservan sus tablas aerodinámicas. Para otra aeronave seleccione coeficientes constantes o introduzca su propia condición."
+      ],
+      "changes": [],
+      "applicability": [],
+      "worksheet": true,
+      "speed_mode": "manual",
+      "negative_rule": "transport",
+      "negative_end": "zero",
+      "aero_model": "niu_table",
+      "coefficient_basis": "CL",
+      "example": 2,
+      "q_convention": "niu_296"
+    }
+  ]
+}
