@@ -151,7 +151,8 @@ def test_niu_dialog_edits_gust_and_preserves_other_data(sheet):
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication,QDialog,QLineEdit,QDialogButtonBox
     def fill_dialog():
-        dialog=next(w for w in QApplication.topLevelWidgets() if isinstance(w,QDialog) and w.windowTitle()=='Datos de cálculo')
+        dialog=QApplication.activeModalWidget()
+        assert dialog.windowTitle()=='Datos de cálculo'
         fields=dialog.findChildren(QLineEdit)
         fields[4].setText('40')
         dialog.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok).click()

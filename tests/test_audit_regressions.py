@@ -74,3 +74,19 @@ def test_06_report_context_describes_edited_values_and_keeps_reference():
     assert 'a=0.105' not in actual and 'W=4000' not in actual
     assert '3600' in r['name'] and r['reference_assumptions']==before and c['assumptions']==before
 
+
+def test_07_open_and_accept_do_not_invent_user_changes(qt_lifetime):
+    from PySide6.QtCore import QTimer
+    from PySide6.QtWidgets import QApplication,QDialogButtonBox
+    from src.ui.worksheet import WorksheetWindow
+    p=example_project(1);w=WorksheetWindow(p)
+    try:
+        assert w.case()['parameters']['Wu_photo']==p['cases'][0]['parameters']['Wu_photo']
+        before=deepcopy(w.case()['parameters']);history=deepcopy(w.case().get('changes',[]))
+        def accept():QApplication.activeModalWidget().findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok).click()
+        QTimer.singleShot(30,accept);w.niu_data()
+        assert w.case()['parameters']['span']==before['span']
+        assert w.case().get('changes',[])==history
+        assert w.case()['parameters']['span']['unit']=='m'
+    finally:w.timer.stop();w.changed=False;w.close()
+

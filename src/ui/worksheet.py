@@ -94,6 +94,7 @@ class WorksheetWindow(QMainWindow):
             if key=='CN_pos' and self.case().get('coefficient_basis')=='CL':self.table.item(i,0).setText('Cʟ máx.')
             if key=='a' and self.case().get('aero_model')=='niu_table':self.table.item(i,0).setText('a₀')
             value=cell('' if p.get('value') is None else f'{p["value"]:.10g}',key!='W_S_photo' and not(key=='chord' and self.case().get('chord_mode')=='geometric')); self.table.setItem(i,1,value)
+            value.setData(Qt.ItemDataRole.UserRole,dict(value=p.get('value'),unit=p['unit'],display=value.text()))
             value.setToolTip(p.get('notes','')+'\nFuente: '+p.get('source',''))
             if key=='W_S_photo':
                 self.table.setItem(i,2,cell('lbf/ft²')); value.setBackground(QColor('#dddddd')); continue
@@ -121,6 +122,8 @@ class WorksheetWindow(QMainWindow):
                 if value is not None and not math.isfinite(value):raise ValueError()
             except ValueError:raise ValueError(EXCEL_FIELDS[i][1]+': escriba un número o deje el campo vacío.')
             q=p[key]
+            original=self.table.item(i,1).data(Qt.ItemDataRole.UserRole)
+            if original and raw==original['display'] and unit==original['unit']:value=original['value']
             if (value,unit)!=(q.get('value'),q['unit']):
                 changes.append(dict(parameter=key,before=q.get('value'),before_unit=q['unit'],after=value,after_unit=unit,reason='Edición en la hoja Excel',time=datetime.now().isoformat()))
                 q.update(value=value,unit=unit,status='usuario' if value is not None else 'pendiente',source='Introducido por el usuario')
@@ -227,7 +230,7 @@ class WorksheetWindow(QMainWindow):
         for key,label,unit in rows:
             q=c['parameters'].get(key,{}); value=q.get('value'); edit=QLineEdit()
             if value is not None:value=convert(value,q['unit'],SPECS[key][1])
-            edit.setText('' if value is None else f'{value:.12g}');edits[key]=edit;labels[key]=QLabel(label);form.addRow(labels[key],edit)
+            edit.setText('' if value is None else f'{value:.12g}');edit.setProperty('initial_text',edit.text());edits[key]=edit;labels[key]=QLabel(label);form.addRow(labels[key],edit)
         def visibility():
             for key,visible in [('Vc',speed.currentData()=='manual'),('Vd',speed.currentData()=='manual'),('n_neg',negative.currentData()=='manual'),('Cse',aero.currentData()=='niu_table')]:
                 labels[key].setVisible(visible);edits[key].setVisible(visible)
@@ -240,7 +243,7 @@ class WorksheetWindow(QMainWindow):
                 trial.update(speed_mode=speed.currentData(),negative_rule=negative.currentData(),negative_end=end.currentData(),
                              aero_model=aero.currentData(),coefficient_basis=basis.currentData(),chord_mode=chord_choice.currentData())
                 for key,_,unit in rows:
-                    if edits[key].isHidden():continue
+                    if edits[key].isHidden() or edits[key].text()==edits[key].property('initial_text'):continue
                     raw=edits[key].text().strip();value=float(raw.replace(',','.')) if raw else None
                     if value is not None and (not math.isfinite(value) or (key in ['CN_neg','n_neg'] and value>=0) or (key not in ['CN_neg','n_neg'] and value<0)):
                         raise ValueError('Revise signos y valores finitos; los coeficientes y límites negativos deben ser menores que cero.')
