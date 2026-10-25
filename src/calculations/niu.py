@@ -74,7 +74,7 @@ def calculate_niu(case, samples=601):
                                   resultado=value,unidad=unit,fuente=SOURCE))
     for key in ['W','S','n_pos','n_neg','CN_pos','CN_neg','Vc','Vd','rho','chord','a','g','U_c','U_d']:
         get(key)
-    get('U_b',False); get('altitude',False)
+    get('U_b',False); get('altitude',False); get('Va_selected',False)
     if r['blocked']:return r
     W,S,N,nn,cp,cn,vc,vd,rho,chord,a,g,uc,ud=(values[k] for k in
         ['W','S','n_pos','n_neg','CN_pos','CN_neg','Vc','Vd','rho','chord','a','g','U_c','U_d'])
@@ -140,6 +140,9 @@ def calculate_niu(case, samples=601):
     if not va_roots or not vg_roots or not vs_roots or va_roots[0]>vc or vg_roots[0]>vc:
         r['blocked'].append('Las intersecciones de pérdida y límites de maniobra deben quedar antes de Vc. Revise velocidades, peso y coeficientes.');return r
     values['Va']=values['V_A_stall']
+    if 'Va_selected' in values:
+        va=values['Va_selected'];lower=values['V_A_stall']
+        check('CONGRUENCIA Va','OK' if lower<=va<=vc else 'ADVERTENCIA',f'A={lower:.6g}, Va seleccionada={va:.6g}, Vc={vc:g}, Vd={vd:g} kt EAS. Revisar la selección si queda fuera de A…Vc o del intervalo del diagrama.')
     dc,dd=delta(vc,uc),delta(vd,ud)
     ub=values.get('U_b',0)
     if ub<0:

@@ -52,7 +52,7 @@ def envelope_figure(result,kind,compact=False,show_reference=False):
     speed_labels=[('Vs','Vs'),('V_A_stall','A'),('Vc','Vc'),('Vd','Vd')] if compact else [('Vs','Vs'),('V_A_stall','A'),('Va','Va sel.'),('Vc','Vc'),('Vd','Vd')]
     if result.get('method')=='niu':
         speed_labels=[('Vs','Vs'),('Vb','VB') if kind!='man' and 'Vb' in result['values'] else ('V_A_stall','A'),('Vc','Vc'),('Vd','Vd')]
-    if result.get('reference_dataset')=='ipn_2007' or result.get('speed_rows'):
+    if 'Va_selected' in result.get('values',{}):
         if not compact:speed_labels.insert(2,('Va_selected','Va sel.'))
     for i,(key2,label) in enumerate(speed_labels):
         x=result['values'].get(key2)

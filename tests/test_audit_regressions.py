@@ -90,3 +90,14 @@ def test_07_open_and_accept_do_not_invent_user_changes(qt_lifetime):
         assert w.case()['parameters']['span']['unit']=='m'
     finally:w.timer.stop();w.changed=False;w.close()
 
+
+def test_08_selected_va_is_checked_and_visible_in_both_examples():
+    from src.plotting.envelopes import envelope_figure
+    for n in [1,2]:
+        c=example_project(n)['cases'][0];c['parameters']['Va_selected']['value']=500
+        r=calculate(c)
+        assert r['values']['Va_selected']==500
+        assert any(x['código']=='CONGRUENCIA Va' and x['estado']=='ADVERTENCIA' for x in r['checks'])
+        fig=envelope_figure(r,'man');assert any('Va sel.' in t.get_text() for t in fig.axes[0].texts)
+
+
