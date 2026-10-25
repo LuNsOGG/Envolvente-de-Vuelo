@@ -80,9 +80,34 @@ def calculate_niu(case, samples=601):
         ['W','S','n_pos','n_neg','CN_pos','CN_neg','Vc','Vd','rho','chord','a','g','U_c','U_d'])
     if min(W,S,N,cp,vc,vd,rho,chord,a,g)<=0 or nn>=0 or cn>=0 or min(uc,ud)<0:
         r['blocked'].append('W, S, N, coeficiente positivo, velocidades, ρ, c, a y g deben ser positivos; límite y coeficiente negativos menores que cero; ráfagas no negativas.');return r
+    if N<1:
+        r['blocked'].append('El límite positivo N debe permitir al menos vuelo a 1 g (N ≥ 1).');return r
     if not vc<vd:
         r['blocked'].append('Se requiere Vc < Vd.');return r
     ws=W/S;values['W_S']=ws
+    category=case.get('category','normal')
+    if category not in ['normal','utilidad','acrobática'] and (case.get('speed_mode') in ['subparte_c','excel'] or case.get('negative_rule') in ['normal','excel']):
+        r['blocked'].append('Categoría desconocida.');return r
+    subpart=case.get('speed_mode')=='subparte_c' or case.get('negative_rule')=='normal'
+    appendix=case.get('speed_mode')=='excel' or case.get('negative_rule')=='excel'
+    if subpart:
+        required=min(3.8,2.1+24000/(W+10000)) if category=='normal' else (4.4 if category=='utilidad' else 6)
+        negative=-(.5 if category=='acrobática' else .4)*N
+        values['n_required']=required
+        check('23.337','OK' if N>=required and nn<=negative else 'ADVERTENCIA',f'Categoría {category}: n+ ≥ {required:.6g}, n− ≤ {negative:.6g}. Factores efectivos: {N:g}, {nn:g}.')
+    if appendix:
+        required={'normal':3.8,'utilidad':4.4,'acrobática':6}[category]
+        check('TABLA A1','OK' if N>=required and nn<=-.5*N else 'ADVERTENCIA',f'Referencia del apéndice: n1 ≥ {required:g}, n2 ≤ {-0.5*N:g}. No acredita aplicabilidad.')
+    if case.get('speed_mode')=='subparte_c':
+        vcmin=(36 if category=='acrobática' else 33)*sqrt(ws)
+        vdmin=max(1.25*vc,{'normal':1.4,'utilidad':1.5,'acrobática':1.55}[category]*vcmin)
+        check('23.335','OK' if vc>=vcmin and vd>=vdmin else 'ADVERTENCIA',f'Mínimos base sin reducciones opcionales: Vc ≥ {vcmin:.6g}, Vd ≥ {vdmin:.6g} kt EAS.')
+        h=values.get('altitude')
+        if h is None or not 0<=h<=50000:
+            check('23.333 Ude','PENDIENTE','Introduzca altitud entre 0 y 50000 ft para contrastar Uc/Ud históricos.')
+        else:
+            reduction=1 if h<=20000 else 1-.5*(h-20000)/30000
+            check('23.333 Ude','OK' if abs(uc-50*reduction)<1e-6 and abs(ud-25*reduction)<1e-6 else 'ADVERTENCIA',f'Para h={h:g} ft: Uc={50*reduction:g}, Ud={25*reduction:g} ft/s; valores efectivos {uc:g}/{ud:g}.')
     equation('Carga alar','W/S',ws,'lbf/ft²',f'{W:g} / {S:g}')
     book=case.get('aero_model')=='niu_table'
     cse=get('Cse') if book else None

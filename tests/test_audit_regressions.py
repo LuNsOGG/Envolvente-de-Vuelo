@@ -52,3 +52,16 @@ def test_04_invalid_draft_keeps_units_and_survives_condition_switch(qt_lifetime,
         assert w.table.cellWidget(FIELD_KEYS.index('S'),2).currentText()=='m²'
     finally:w.timer.stop();w.changed=False;w.close()
 
+
+def test_05_rejects_maneuver_limit_below_one_g():
+    c=example_project(1)['cases'][0];c['parameters']['n_pos']['value']=.5
+    r=calculate(c);assert r['blocked'] and not r['curves'] and '1 g' in r['blocked'][0]
+
+def test_05_active_subpart_checks_category_and_gust_requirements():
+    c=example_project(1)['cases'][0];c.update(speed_mode='subparte_c',negative_rule='normal')
+    for k,v in [('n_pos',2),('U_c',0),('U_d',0),('altitude',0)]:c['parameters'][k]['value']=v
+    r=calculate(c);checks={x['código']:x for x in r['checks']}
+    assert not r['blocked'] and checks['23.337']['estado']=='ADVERTENCIA'
+    assert checks['23.333 Ude']['estado']=='ADVERTENCIA'
+    assert r['values']['n_required']==3.8
+
