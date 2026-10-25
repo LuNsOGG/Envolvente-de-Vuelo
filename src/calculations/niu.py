@@ -109,7 +109,11 @@ def calculate_niu(case, samples=601):
             reduction=1 if h<=20000 else 1-.5*(h-20000)/30000
             check('23.333 Ude','OK' if abs(uc-50*reduction)<1e-6 and abs(ud-25*reduction)<1e-6 else 'ADVERTENCIA',f'Para h={h:g} ft: Uc={50*reduction:g}, Ud={25*reduction:g} ft/s; valores efectivos {uc:g}/{ud:g}.')
     equation('Carga alar','W/S',ws,'lbf/ft²',f'{W:g} / {S:g}')
+    if case.get('coefficient_basis','CN') not in ['CN','CL'] or case.get('aero_model','constant') not in ['constant','niu_table']:
+        r['blocked'].append('Modelo aerodinámico o base de coeficiente desconocidos.');return r
     book=case.get('aero_model')=='niu_table'
+    if book and case.get('coefficient_basis','CN')!='CL':
+        r['blocked'].append('La tabla del libro requiere coeficientes CL; CN no es compatible.');return r
     cse=get('Cse') if book else None
     if book and (cse is None or cse<=0 or vd/cse>400/548.6+1e-9):
         r['blocked'].append('La tabla del Ejemplo 2 cubre 0 ≤ Mach ≤ 400/548.6. Ajuste Cse/Vd o seleccione coeficientes constantes.');return r

@@ -101,3 +101,10 @@ def test_08_selected_va_is_checked_and_visible_in_both_examples():
         fig=envelope_figure(r,'man');assert any('Va sel.' in t.get_text() for t in fig.axes[0].texts)
 
 
+
+def test_09_engine_rejects_book_table_with_cn_from_json():
+    from src.project import validate_project
+    p=example_project(2);p['cases'][0]['coefficient_basis']='CN';validate_project(p)
+    r=calculate(p['cases'][0]);assert r['blocked'] and not r['curves']
+    assert 'CL' in r['blocked'][0]
+
