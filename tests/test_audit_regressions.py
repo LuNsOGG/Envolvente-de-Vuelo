@@ -20,3 +20,15 @@ def test_02_invalid_optional_gust_is_not_silently_omitted():
     c['parameters']['U_b']['value']=None
     assert not calculate(c)['blocked']
 
+
+@pytest.mark.parametrize('damage',[lambda p:p['cases'][0].pop('name'),lambda p:p['cases'][0]['parameters'].update(W=None),lambda p:p['cases'][0]['parameters']['W'].pop('unit'),lambda p:p['cases'].__setitem__(0,None),lambda p:p['cases'][0].update(assumptions=[1])])
+def test_03_malformed_project_has_controlled_validation_error(damage):
+    from src.project import validate_project
+    p=example_project(1);damage(p)
+    with pytest.raises(ValueError):validate_project(p)
+
+@pytest.mark.parametrize('value',[[],None,4,'texto'])
+def test_03_non_object_project_is_rejected(value):
+    from src.project import validate_project
+    with pytest.raises(ValueError):validate_project(value)
+
