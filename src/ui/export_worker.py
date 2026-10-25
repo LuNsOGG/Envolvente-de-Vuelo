@@ -15,6 +15,7 @@ class ExportWorker(QThread):
         from src.reporting.exporter import export_project,ExportCancelled
         try:
             path=export_project(self.project,self.current,all_cases=True,include_niu=self.project.get('export_options',{}).get('include_niu',True),
+                include_appendix=self.project.get('export_options',{}).get('include_appendix',False),
                 progress=self.progress.emit,cancel=self.isInterruptionRequested)
             self.completed.emit(str(path))
         except ExportCancelled as exc:self.cancelled.emit(str(exc.path) if exc.path else '')

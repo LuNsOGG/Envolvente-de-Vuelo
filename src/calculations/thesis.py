@@ -101,6 +101,7 @@ def cessna_project():
     comparison['assumptions'][0]='Comparación con W=4631 lbf de §1.9. Se mantienen las correcciones de unidades, polar, cuerda y velocidades seleccionadas; no reproduce errores aritméticos ni acredita un peso máximo real.'
     project.update(cases=[base,comparison],active_case=base['id'])
     project['metadata']['title']='Ejemplo Cessna · tesis IPN y recálculo'
+    project['export_options']=dict(include_niu=True,include_appendix=True,include_matlab=True)
     return project
 
 def augment_review(case,result):

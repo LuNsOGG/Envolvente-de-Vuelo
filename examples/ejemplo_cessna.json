@@ -1014,5 +1014,10 @@
       "reference_dataset": "ipn_2007",
       "chord_mode": "geometric"
     }
-  ]
+  ],
+  "export_options": {
+    "include_niu": true,
+    "include_appendix": true,
+    "include_matlab": true
+  }
 }

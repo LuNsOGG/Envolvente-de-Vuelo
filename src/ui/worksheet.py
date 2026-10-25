@@ -71,6 +71,8 @@ class WorksheetWindow(QMainWindow):
         actions=QHBoxLayout(); self.complete_button=QPushButton('Completar cálculo…'); self.complete_button.clicked.connect(self.complete_data); actions.addWidget(self.complete_button)
         b=QPushButton('Resultados'); b.clicked.connect(self.show_results); actions.addWidget(b); left.addLayout(actions)
         self.variables_button=QPushButton('Resumen de variables'); self.variables_button.clicked.connect(self.show_variables); left.addWidget(self.variables_button)
+        self.appendix_button=QPushButton('Procedimiento del Apéndice A…');self.appendix_button.clicked.connect(self.show_appendix);left.addWidget(self.appendix_button)
+        self.include_appendix=QCheckBox('Incluir comparación del Apéndice A');self.include_appendix.toggled.connect(self.set_appendix_export);left.addWidget(self.include_appendix)
         self.include_niu=QCheckBox('Incluir reporte de figuras de Niu');self.include_niu.setChecked(True)
         self.include_niu.toggled.connect(self.set_niu_export);left.addWidget(self.include_niu)
         self.calc_state=QLabel('Actualizando cálculo…');left.addWidget(self.calc_state)
@@ -92,12 +94,24 @@ class WorksheetWindow(QMainWindow):
 
     def case(self):return next(c for c in self.project['cases'] if c['id']==self.current)
 
+    def show_appendix(self):
+        if not self.try_commit():return
+        from src.ui.appendix_dialog import AppendixDialog
+        dialog=AppendixDialog(self.case(),self)
+        if dialog.exec()==QDialog.DialogCode.Accepted:self.changed=True
+
+    def set_appendix_export(self,checked):
+        if not self.loading:self.project.setdefault('export_options',{})['include_appendix']=checked;self.changed=True
+
     def set_niu_export(self,checked):
         if not self.loading:self.project.setdefault('export_options',{})['include_niu']=checked;self.changed=True
 
     def fill(self):
         self.loading=True
         self.include_niu.setChecked(self.project.get('export_options',{}).get('include_niu',True))
+        eligible=self.case().get('coefficient_basis','CN')=='CN' and self.case().get('category','normal') in ['normal','utilidad','acrobática']
+        self.appendix_button.setEnabled(eligible);self.include_appendix.setEnabled(eligible)
+        self.include_appendix.setChecked(eligible and self.project.get('export_options',{}).get('include_appendix',self.case().get('reference_dataset')=='ipn_2007'))
         self.condition_selector.blockSignals(True);self.condition_selector.clear()
         for candidate in self.project['cases']:self.condition_selector.addItem(case_label(candidate),candidate['id'])
         self.condition_selector.setCurrentIndex(self.condition_selector.findData(self.current));self.condition_selector.blockSignals(False)
@@ -387,6 +401,7 @@ class WorksheetWindow(QMainWindow):
             QMessageBox.warning(self,'Exportación incompleta','Corrija los datos pendientes antes de exportar una entrega. Puede guardar el proyecto para completarlo después.');return
         from src.ui.export_worker import ExportWorker
         from pathlib import Path
+        self.project.setdefault('export_options',{})['include_appendix']=self.include_appendix.isChecked()
         worker=ExportWorker(deepcopy(self.project),self.current,self);self.export_worker=worker
         dialog=QProgressDialog('Preparando exportación','Cancelar exportación',0,100,self)
         dialog.setWindowTitle('Exportando resultados');dialog.setWindowModality(Qt.WindowModality.WindowModal)

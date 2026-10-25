@@ -23,7 +23,7 @@ class ExportCancelled(RuntimeError):
         self.path=path
         super().__init__('Exportación cancelada'+(': '+str(path) if path else ''))
 
-def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=None,allow_partial=False,progress=None,cancel=None):
+def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=None,allow_partial=False,progress=None,cancel=None,include_appendix=None):
     out=None
     def checkpoint(value,message):
         if cancel and cancel():
@@ -82,6 +82,9 @@ def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=No
             checkpoint(88,'Escribiendo DOCX');render_docx(pages,out/(stem+'.docx'))
             write_csv(out/'comparacion_resultados.csv',compare(project['cases']))
             write_csv(out/'cambios.csv',chosen.get('changes',[]))
+        if not niu_only and (include_appendix if include_appendix is not None else project.get('export_options',{}).get('include_appendix',False)):
+            from .appendix_report import export_appendix
+            export_appendix(project,cases,out,checkpoint,write_csv,allow_partial=allow_partial)
         if include_niu or niu_only:
             checkpoint(92,'Generando figuras de Niu')
             niudir=out/'figuras_niu';niudir.mkdir();images=export_niu(niudir,progress=lambda number:checkpoint(92,'Figura Niu '+number))
