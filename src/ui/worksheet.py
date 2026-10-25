@@ -17,6 +17,7 @@ from src.calculations.units import UNITS, convert
 from src.calculations.worksheet import EXCEL_FIELDS, FIELD_KEYS, adapt_case, prepare_case, worksheet_project
 from src.plotting.envelopes import envelope_figure
 from src.calculations.examples import example_project, VARIABLES
+from src.calculations.context import case_label
 from src.calculations.cases import parameter
 
 
@@ -81,7 +82,7 @@ class WorksheetWindow(QMainWindow):
     def fill(self):
         self.loading=True
         self.condition_selector.blockSignals(True);self.condition_selector.clear()
-        for candidate in self.project['cases']:self.condition_selector.addItem(candidate['name'],candidate['id'])
+        for candidate in self.project['cases']:self.condition_selector.addItem(case_label(candidate),candidate['id'])
         self.condition_selector.setCurrentIndex(self.condition_selector.findData(self.current));self.condition_selector.blockSignals(False)
         thesis=self.case().get('reference_dataset')=='ipn_2007'
         self.conditions_row.setVisible(thesis or len(self.project['cases'])>1)
@@ -141,6 +142,8 @@ class WorksheetWindow(QMainWindow):
 
     def render(self,r):
         self.result=r; self.loading=True
+        index=self.condition_selector.findData(self.current)
+        if index>=0:self.condition_selector.setItemText(index,case_label(self.case()))
         ws=r['values'].get('W_S'); self.table.item(6,1).setText('' if ws is None else f'{ws:.6f}')
         if self.case().get('chord_mode')=='geometric':
             q=self.case()['parameters']['chord'];self.table.item(FIELD_KEYS.index('chord'),1).setText('' if q.get('value') is None else f'{q["value"]:.10g}')
@@ -291,7 +294,7 @@ class WorksheetWindow(QMainWindow):
         self.recalculate(); dialog=QDialog(self); dialog.setWindowTitle('Resultados'); dialog.resize(850,650); layout=QVBoxLayout(dialog); view=QTextBrowser(); layout.addWidget(view)
         r=self.result; text='<h2>Resultados</h2><p>Modelo: '+escape(self.case()['method'])+' · '+escape(self.case().get('category','normal'))+'</p>'
         text+='<p>Velocidades en kt EAS. Modelo cuasiestático: maniobra y ráfagas se calculan por separado.</p>'
-        for assumption in self.case().get('assumptions',[]):text+='<p>'+escape(assumption)+'</p>'
+        for assumption in r.get('assumptions',[]):text+='<p>'+escape(assumption)+'</p>'
         text+='<table border="1" cellspacing="0" cellpadding="6"><tr><th>Resultado</th><th>Valor</th><th>Fórmula / fuente</th></tr>'
         for d in r.get('derived',[]):text+='<tr><td>'+escape(d['variable'])+'</td><td>'+('Pendiente' if d['value'] is None else f'{d["value"]:.7g}')+' '+escape(d['unit'])+'</td><td>'+escape(d['formula'])+'<br>'+escape(d['source'])+'</td></tr>'
         text+='</table>'+self.reference_html(r)+'<h3>Datos y unidades</h3>'

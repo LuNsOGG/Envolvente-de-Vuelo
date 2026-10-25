@@ -64,7 +64,10 @@ def calculate(case, samples=601):
         return calculate_worksheet(case, samples)
     if case.get('method') == 'niu':
         from .niu import calculate_niu
-        return calculate_niu(case, samples)
+        result=calculate_niu(case, samples)
+        from .context import update_context
+        update_context(case,result)
+        return result
     if samples<3:
         raise ValueError('Se necesitan al menos tres muestras')
     params=case.get('parameters',{})

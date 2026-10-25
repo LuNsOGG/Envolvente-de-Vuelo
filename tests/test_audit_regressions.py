@@ -65,3 +65,12 @@ def test_05_active_subpart_checks_category_and_gust_requirements():
     assert checks['23.333 Ude']['estado']=='ADVERTENCIA'
     assert r['values']['n_required']==3.8
 
+
+def test_06_report_context_describes_edited_values_and_keeps_reference():
+    c=example_project(1)['cases'][0];before=deepcopy(c['assumptions'])
+    c['parameters']['W']['value']=3600;c['parameters']['a']['value']=.08
+    r=calculate(c);actual=' '.join(r['assumptions'])
+    assert 'W=3600' in actual and 'a=0.08' in actual
+    assert 'a=0.105' not in actual and 'W=4000' not in actual
+    assert '3600' in r['name'] and r['reference_assumptions']==before and c['assumptions']==before
+

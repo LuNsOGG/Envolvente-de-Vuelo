@@ -3,15 +3,15 @@ from .reports import number,chunks,equation_art
 from src.calculations import calculate
 
 def general_analysis_pages(project,case,result,plots,directory):
-    meta=project['metadata'];aircraft=case.get('aircraft','Aeronave');v=result['values']
-    pages=[dict(title='Envolventes de vuelo para '+aircraft,subtitle=case['name'],cover=True,footer='Calculadora de envolventes de vuelo',paragraphs=[
+    meta=project['metadata'];aircraft=case.get('aircraft','Aeronave');v=result['values'];label=result['name']
+    pages=[dict(title='Envolventes de vuelo para '+aircraft,subtitle=label,cover=True,footer='Calculadora de envolventes de vuelo',paragraphs=[
         'Proyecto: '+meta.get('title','Proyecto de envolventes'),
         'Nombre: '+(meta.get('student') or '[Nombre editable]'),'Materia: '+(meta.get('subject') or '[Materia editable]'),
         'Docente: '+(meta.get('teacher') or '[Docente editable]'),'Fecha: '+meta.get('date',''),
         'Criterio: '+case['method']+' · Categoría: '+case.get('category','normal'),
         'Este reporte documenta los datos, ecuaciones y resultados de la condición activa de la calculadora. Cada aeronave y cada condición conserva sus propios parámetros y referencias.'])]
     pages.append(dict(title='Aeronave y condiciones de cálculo',paragraphs=[
-        'Aeronave: '+aircraft+'. Condición: '+case['name']+'. La configuración, pesos y condiciones deben documentarse en las hipótesis y fuentes de los parámetros.',
+        'Aeronave: '+aircraft+'. Condición: '+label+'. La configuración, pesos y condiciones deben documentarse en las hipótesis y fuentes de los parámetros.',
         'El cálculo utiliza los criterios históricos de FAR 23 seleccionados en la aplicación. La subparte C y el apéndice A se mantienen separados y sus verificaciones aparecen en este reporte. El resultado es un cálculo académico y no constituye certificación ni información operativa del avión.',
         'Las velocidades de las gráficas están expresadas en kt EAS. Peso como fuerza en lbf, densidad en slug/ft³ y pendiente aerodinámica por radián se obtienen mediante conversiones explícitas desde las unidades de entrada.',
         'Los datos marcados como supuestos no son mediciones ni especificaciones verificadas del avión. Un dato ausente bloquea el cálculo correspondiente.']+result['assumptions']+['Pendiente: '+s for s in result['blocked']]))
@@ -33,7 +33,7 @@ def general_analysis_pages(project,case,result,plots,directory):
         table=[['Punto','V kt EAS','n']]+[[p['punto'],number(p['V']),number(p['n'])] for p in result['points']],widths=[3.4,1.7,1.7],
         second_table=[['Intersección','V kt EAS','n']]+[[p['tipo'],number(p['V']),number(p['n'])] for p in result['intersections']]))
     for kind,title in [('man','Envolvente de maniobras'),('gust','Envolvente de ráfagas'),('combined','Envolvente combinada')]:
-        pages.append(dict(title=title,image=plots[kind+'_png'],paragraphs=[aircraft+' · '+case['name']+'.',
+        pages.append(dict(title=title,image=plots[kind+'_png'],paragraphs=[aircraft+' · '+label+'.',
             'La figura usa los mismos datos numéricos que curvas.csv y la pantalla de la calculadora. Las ráfagas que superan un límite de maniobra se muestran y se señalan; no se corrigen cambiando los datos.']))
     for i,checks in enumerate(chunks(result['checks'],8),1):
         pages.append(dict(title=f'Verificaciones de la condición {i}',paragraphs=[ck['estado']+' | '+ck['código']+'. '+ck['detalle'] for ck in checks]))
