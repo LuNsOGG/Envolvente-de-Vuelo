@@ -131,3 +131,14 @@ def test_11_combined_axes_include_uncut_gust_and_published_reference():
     assert high>max(r['curves']['gust_pos'])
     assert ax.get_xlim()[1]>=max(r['reference_curves']['V'])
 
+
+def test_12_figure_vb_matches_both_stall_and_gust_before_vc():
+    import numpy as np
+    from src.plotting.niu import niu_figure
+    ax=niu_figure('3.4.16').axes[0]
+    marker=next(x for x in ax.lines if x.get_label()=='VB: pérdida / ráfaga')
+    vb=float(marker.get_xdata()[0]);n=float(marker.get_ydata()[0])
+    gust=next(x for x in ax.lines if x.get_label()=='Ráfaga')
+    assert 0<vb<.8 and n==pytest.approx(8*vb**2)
+    assert n==pytest.approx(np.interp(vb,gust.get_xdata(),gust.get_ydata()))
+

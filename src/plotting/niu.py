@@ -131,7 +131,10 @@ def niu_figure(number):
         ax.add_patch(Arc((.5,.65),.2,.25,theta1=30,theta2=160,color='#226e91'));ax.text(.59,.77,'ṗ')
         ax.text(.18,.94,'Par de alerones: 2 ΔFail y = Ixx ṗ',fontsize=12);ax.text(.33,.01,'Incremento local: Δn(y1) = ṗ y1 / g',fontsize=11)
     elif number in ['3.4.8','3.4.9','3.4.16']:
-        ax=fig.add_subplot();v=np.linspace(0,1,501);sp=8*v*v;sm=-5*v*v
+        ax=fig.add_subplot();v=np.linspace(0,1,501)
+        vb=(1+np.sqrt(3))/4  # 8 VB² = 1 + 4 VB, antes de VC=0.8
+        if number=='3.4.16':v=np.sort(np.append(v,vb))
+        sp=8*v*v;sm=-5*v*v
         top=np.minimum(sp,3);bot=np.maximum(sm,np.where(v<.8,-1.5,-1.5+(v-.8)*7.5))
         ax.axhline(0,color='#597482',lw=.8);ax.set(xlim=(0,1.12),ylim=(-3.6,5.8),xlabel='Velocidad normalizada',ylabel='Factor de carga esquemático')
         if number=='3.4.8':
@@ -150,12 +153,12 @@ def niu_figure(number):
                 vf=np.linspace(0,.54,80);ax.plot(vf,np.minimum(12*vf*vf,2),'--',color='#b17936',label='Flaps extendidos')
                 ax.text(.62,5.05,r'$V_e=V_{\mathrm{TAS}}\sqrt{\rho/\rho_0}$',fontsize=11,ha='center')
             else:
-                upper=np.interp(v,[0,.5,.8,1],[1,3.8,4.2,2.8]);lower=2-upper
+                upper=np.interp(v,[0,vb,.8,1],[1,8*vb*vb,4.2,2.8]);lower=2-upper
                 ax.plot(v,upper,'--',color='#bd7e31',label='Ráfaga');ax.plot(v,lower,'--',color='#bd7e31')
                 cp=np.minimum(sp,np.maximum(top,upper));cm=np.maximum(sm,np.minimum(bot,lower))
                 ax.fill_between(v,cm,cp,color='#158578',alpha=.15,label='Extremos combinados')
                 ax.plot([0,.8],[1,4.2],':',color='#bd7e31');ax.plot([0,1],[1,2.8],':',color='#bd7e31')
-                ax.text(.48,4.7,'VB · +α, −M');ax.text(.75,-3,'−α, +M');ax.text(1.01,1.5,'CL = 0\n−M',fontsize=8)
+                ax.plot([vb],[8*vb*vb],'o',color='#bd7e31',label='VB: pérdida / ráfaga');ax.annotate('VB · +α, −M',(vb,8*vb*vb),xytext=(.43,4.8),arrowprops=dict(arrowstyle='->',color='#bd7e31'));ax.text(.75,-3,'−α, +M');ax.text(1.01,1.5,'CL = 0\n−M',fontsize=8)
             ax.legend(loc='upper left',fontsize=8)
         ax.grid(alpha=.18)
     elif number=='3.4.11':
