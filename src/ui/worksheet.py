@@ -7,7 +7,7 @@ from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QColor, QPalette, QFontDatabase, QFont
 from PySide6.QtWidgets import (QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QGridLayout,
     QLabel,QPushButton,QCheckBox,QComboBox,QTableWidget,QTableWidgetItem,QHeaderView,QSplitter,QTabWidget,
-    QFileDialog,QMessageBox,QInputDialog,QDialog,QDialogButtonBox,QFormLayout,QLineEdit,QTextBrowser,QMenu)
+    QFileDialog,QMessageBox,QInputDialog,QDialog,QDialogButtonBox,QFormLayout,QLineEdit,QTextBrowser,QMenu,QProgressDialog,QStyledItemDelegate)
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT
 from bootstrap import ROOT, fresh, inside
 from src.project import load_project, save_project
@@ -27,11 +27,20 @@ def cell(value, editable=False):
     return result
 
 
+class EditStateDelegate(QStyledItemDelegate):
+    def __init__(self,callback,parent=None):
+        super().__init__(parent);self.callback=callback
+    def createEditor(self,parent,option,index):
+        editor=super().createEditor(parent,option,index)
+        if hasattr(editor,'textEdited'):editor.textEdited.connect(self.callback)
+        return editor
+
+
 class WorksheetWindow(QMainWindow):
     def __init__(self, project):
         super().__init__(); configure_font(QApplication.instance()); self.project=deepcopy(project); self.current=project['active_case']
         self.project['cases']=[adapt_case(c) for c in self.project['cases']]
-        self.changed=False; self.loading=True; self.canvases={}; self.toolbars={}; self.result=None
+        self.changed=False; self.loading=True; self.canvases={}; self.toolbars={}; self.result=None;self.export_worker=None
         self.timer=QTimer(self); self.timer.setSingleShot(True); self.timer.setInterval(550); self.timer.timeout.connect(self.recalculate)
         self.setWindowTitle('Envolventes de Vuelo | Hoja de cálculo'); self.resize(1500,940); self.setMinimumSize(1080,740)
         root=QWidget(); self.setCentralWidget(root); layout=QVBoxLayout(root)
@@ -43,6 +52,7 @@ class WorksheetWindow(QMainWindow):
         self.examples_button.setMenu(menu); top.addWidget(self.examples_button)
         for label,fn in [('Nuevo',self.new_project),('Abrir',self.open_project),('Guardar',self.save),('Exportar',self.export)]:
             b=QPushButton(label); b.clicked.connect(fn); top.addWidget(b)
+            if label=='Exportar':self.export_button=b
         layout.addLayout(top)
         self.conditions_row=QWidget(); conditions=QHBoxLayout(self.conditions_row);conditions.setContentsMargins(0,0,0,0)
         conditions.addWidget(QLabel('Condición'))
@@ -55,12 +65,13 @@ class WorksheetWindow(QMainWindow):
         layout.addWidget(self.conditions_row)
         split=QSplitter(Qt.Orientation.Horizontal); layout.addWidget(split,1)
         inputs=QWidget(); left=QVBoxLayout(inputs); left.setContentsMargins(0,0,10,0)
-        self.table=QTableWidget(len(EXCEL_FIELDS),3); self.table.setHorizontalHeaderLabels(['Nombre','Valor','Unidad']); self.table.verticalHeader().hide()
+        self.table=QTableWidget(len(EXCEL_FIELDS),3);self.table.setItemDelegate(EditStateDelegate(self.editing_pending,self.table)); self.table.setHorizontalHeaderLabels(['Nombre','Valor','Unidad']); self.table.verticalHeader().hide()
         self.table.horizontalHeader().setSectionResizeMode(0,QHeaderView.ResizeMode.Stretch); self.table.setColumnWidth(1,125); self.table.setColumnWidth(2,105)
         self.table.setAlternatingRowColors(True); self.table.verticalHeader().setDefaultSectionSize(34); left.addWidget(self.table,1)
         actions=QHBoxLayout(); self.complete_button=QPushButton('Completar cálculo…'); self.complete_button.clicked.connect(self.complete_data); actions.addWidget(self.complete_button)
         b=QPushButton('Resultados'); b.clicked.connect(self.show_results); actions.addWidget(b); left.addLayout(actions)
         self.variables_button=QPushButton('Resumen de variables'); self.variables_button.clicked.connect(self.show_variables); left.addWidget(self.variables_button)
+        self.calc_state=QLabel('Actualizando cálculo…');left.addWidget(self.calc_state)
         self.message=QLabel(); self.message.setWordWrap(True); left.addWidget(self.message)
         inputs.setMinimumWidth(340); split.addWidget(inputs)
         right=QWidget(); rl=QVBoxLayout(right); rl.setContentsMargins(0,0,0,0); self.summary=QLabel(); self.summary.setWordWrap(True); self.summary.setStyleSheet('padding:8px;background:#eeeeee'); rl.addWidget(self.summary)
@@ -108,9 +119,12 @@ class WorksheetWindow(QMainWindow):
             if key in FIELD_KEYS and key!='W_S_photo':self.table.item(FIELD_KEYS.index(key),1).setText(raw)
         self.loading=False
 
+    def editing_pending(self,*args):
+        self.timer.stop();self.changed=True;self.calc_state.setText('Edición en curso · confirme con Enter o saliendo de la celda')
+
     def schedule(self,*args):
         if self.loading:return
-        self.changed=True; self.timer.start()
+        self.changed=True;self.calc_state.setText('Cambios pendientes · confirme la celda para actualizar'); self.timer.start()
 
     def commit(self):
         c=self.case(); p=deepcopy(c['parameters']); changes=[]
@@ -138,10 +152,13 @@ class WorksheetWindow(QMainWindow):
         if unit is not None:self.table.cellWidget(i,2).setCurrentText(unit)
 
     def recalculate(self,*args):
+        self.calc_state.setText('Calculando…');self.calc_state.repaint()
         try:self.commit(); r=calculate(self.case())
         except (ValueError,TypeError,KeyError) as exc:
             r=dict(name=self.case()['name'],aircraft=self.case()['aircraft'],requires_thesis=False,worksheet=True,values={},curves={},points=[],blocked=[str(exc)],checks=[],equations=[],parameters=[],derived=[],partial={})
-        self.render(r); return not r['blocked']
+        self.render(r)
+        self.calc_state.setText('Cálculo parcial · hay datos pendientes' if r['blocked'] else 'Actualizado · '+datetime.now().strftime('%H:%M:%S'))
+        return not r['blocked']
 
     def render(self,r):
         self.result=r; self.loading=True
@@ -358,18 +375,35 @@ class WorksheetWindow(QMainWindow):
             except (ValueError,OSError) as exc:QMessageBox.warning(self,'Guardar',str(exc))
 
     def export(self):
+        if self.export_worker is not None:return
         if not self.try_commit():return
         if not self.recalculate():
             QMessageBox.warning(self,'Exportación incompleta','Corrija los datos pendientes antes de exportar una entrega. Puede guardar el proyecto para completarlo después.');return
-        try:
-            from src.reporting.exporter import export_project
-            QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
-            try:self.last_export=export_project(self.project,self.current,all_cases=True,include_niu=False)
-            finally:QApplication.restoreOverrideCursor()
-            QMessageBox.information(self,'Exportación terminada','Archivos guardados en:\n'+str(self.last_export))
-        except (ValueError,OSError,RuntimeError) as exc:QMessageBox.warning(self,'Exportar',str(exc))
+        from src.ui.export_worker import ExportWorker
+        from pathlib import Path
+        worker=ExportWorker(deepcopy(self.project),self.current,self);self.export_worker=worker
+        dialog=QProgressDialog('Preparando exportación','Cancelar exportación',0,100,self)
+        dialog.setWindowTitle('Exportando resultados');dialog.setWindowModality(Qt.WindowModality.WindowModal)
+        dialog.setAutoClose(False);dialog.setAutoReset(False);dialog.setMinimumDuration(0)
+        self.export_progress=dialog;self.export_button.setEnabled(False)
+        dialog.canceled.connect(worker.requestInterruption)
+        def progress(value,message):
+            dialog.setValue(value);dialog.setLabelText(message+' · Cancelar se aplica al terminar la etapa actual.')
+        def completed(path):
+            self.last_export=Path(path);self.calc_state.setText('Exportación terminada')
+            QMessageBox.information(self,'Exportación terminada','Archivos guardados en:\n'+path)
+        def failed(message):QMessageBox.warning(self,'Exportar',message)
+        def cancelled(path):
+            self.calc_state.setText('Exportación cancelada'+(' · archivos parciales en '+path if path else ''))
+        def finished():
+            dialog.blockSignals(True);dialog.close();dialog.deleteLater()
+            self.export_worker=None;self.export_button.setEnabled(True);worker.deleteLater()
+        worker.progress.connect(progress);worker.completed.connect(completed);worker.failed.connect(failed)
+        worker.cancelled.connect(cancelled);worker.finished.connect(finished);dialog.show();worker.start()
 
     def closeEvent(self,event):
+        if self.export_worker is not None:
+            self.message.setText('Espere a que termine la exportación o cancélela antes de cerrar.');self.message.show();event.ignore();return
         self.timer.stop()
         try:self.snapshot(); event.accept()
         except (ValueError,OSError) as exc:self.message.setText('No se pudo conservar la recuperación: '+str(exc)); event.ignore()

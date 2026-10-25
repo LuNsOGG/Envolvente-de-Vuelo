@@ -93,9 +93,10 @@ def envelope_figure(result,kind,compact=False,show_reference=False,figure=None):
         fig.text(.99,.005,footer,ha='right',fontsize=8,color='#666666')
     return fig
 
-def export_plots(result,directory):
+def export_plots(result,directory,progress=None):
     paths={}
     for k in ['man','gust','combined']:
+        if progress:progress(k)
         fig=envelope_figure(result,k)
         for ext in ['png','svg']:
             path=directory/f'{k}.{ext}';fig.savefig(path,dpi=260,bbox_inches='tight')

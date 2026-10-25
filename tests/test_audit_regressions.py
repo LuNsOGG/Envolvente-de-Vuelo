@@ -186,3 +186,74 @@ def test_15_recalculation_reuses_canvases_and_preserves_user_zoom(qt_lifetime):
         assert w.canvases['man'].figure.axes[0].get_ylim()==(-1,3)
     finally:w.timer.stop();w.changed=False;w.close()
 
+
+def test_16_cancel_marks_partial_files_and_keeps_previous_outputs(monkeypatch):
+    from uuid import uuid4
+    from bootstrap import ROOT
+    import json
+    import src.reporting.exporter as exporter
+    folder=ROOT/'tests/artifacts'/uuid4().hex;folder.mkdir(parents=True);monkeypatch.setattr(exporter,'ROOT',folder)
+    p=example_project(1);flag=[False]
+    def progress(value,message):
+        if value>=5:flag[0]=True
+    with pytest.raises(exporter.ExportCancelled) as exc:
+        exporter.export_project(p,p['active_case'],include_niu=False,progress=progress,cancel=lambda:flag[0])
+    assert exc.value.path.exists()
+    assert json.loads((exc.value.path/'ESTADO_EXPORTACION.json').read_text())['estado']=='CANCELADA'
+    assert (exc.value.path/'proyecto.json').is_file()
+
+def test_16_export_worker_keeps_qt_event_loop_responsive(qt_lifetime,monkeypatch):
+    import time
+    from PySide6.QtCore import QEventLoop,QTimer
+    from src.ui.export_worker import ExportWorker
+    import src.reporting.exporter as exporter
+    heartbeat=[];completed=[];loop=QEventLoop()
+    def export(*args,progress,cancel,**kwargs):
+        for i in range(5):time.sleep(.03);progress(i*20,'Etapa')
+        return 'resultado'
+    monkeypatch.setattr(exporter,'export_project',export)
+    worker=ExportWorker(example_project(1),'cessna_revisado');worker.completed.connect(completed.append);worker.finished.connect(loop.quit)
+    timer=QTimer();timer.timeout.connect(lambda:heartbeat.append(worker.isRunning()));timer.start(10)
+    qt_lifetime.processEvents()
+    worker.start();deadline=time.monotonic()+3
+    while worker.isRunning() and time.monotonic()<deadline:
+        qt_lifetime.processEvents();time.sleep(.005)
+    worker.wait(1000);qt_lifetime.processEvents();timer.stop()
+    assert completed==['resultado'] and any(heartbeat)
+
+def test_16_calculation_state_tracks_pending_and_updated(qt_lifetime):
+    from src.ui.worksheet import WorksheetWindow
+    w=WorksheetWindow(example_project(1))
+    try:
+        assert 'Actualizado' in w.calc_state.text()
+        w.set_value('W',3900);assert 'pendientes' in w.calc_state.text()
+        w.recalculate();assert 'Actualizado' in w.calc_state.text()
+        w.set_value('S','abc');w.recalculate();assert 'parcial' in w.calc_state.text()
+    finally:w.timer.stop();w.changed=False;w.close()
+
+
+def test_16_editing_cell_marks_old_result_as_pending(qt_lifetime):
+    from PySide6.QtWidgets import QStyleOptionViewItem
+    from PySide6.QtTest import QTest
+    from src.ui.worksheet import WorksheetWindow
+    from src.calculations.worksheet import FIELD_KEYS
+    w=WorksheetWindow(example_project(1))
+    try:
+        index=w.table.model().index(FIELD_KEYS.index('W'),1)
+        editor=w.table.itemDelegate().createEditor(w.table,QStyleOptionViewItem(),index)
+        QTest.keyClicks(editor,'9')
+        assert 'Edición en curso' in w.calc_state.text() and w.result['values']['W']==4000
+    finally:w.timer.stop();w.changed=False;w.close()
+
+def test_16_failed_export_is_not_marked_complete(monkeypatch):
+    import json
+    from uuid import uuid4
+    from bootstrap import ROOT
+    import src.reporting.exporter as exporter
+    folder=ROOT/'tests/artifacts'/uuid4().hex;folder.mkdir(parents=True);monkeypatch.setattr(exporter,'ROOT',folder)
+    def fail(value,message):
+        if value>=5:raise ValueError('fallo simulado')
+    p=example_project(1)
+    with pytest.raises(ValueError,match='simulado'):exporter.export_project(p,p['active_case'],include_niu=False,progress=fail)
+    path=next((folder/'outputs').iterdir())
+    assert json.loads((path/'ESTADO_EXPORTACION.json').read_text())['estado']=='FALLIDA'

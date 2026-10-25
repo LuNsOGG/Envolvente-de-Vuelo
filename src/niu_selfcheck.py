@@ -97,17 +97,36 @@ def run_selfcheck(gui=False):
                 QTimer.singleShot(200,finish)
             except Exception as exc:fail(exc)
         def finish():
-            try:
-                win=window()
-                from src.reporting.exporter import export_project
-                info['exports']={}
-                for n in [2,1]:
-                    win.examples_button.menu().actions()[n-1].trigger();check_views(win)
-                    info['exports'][str(n)]=str(export_project(win.project,win.current,all_cases=True,include_niu=False))
-                win.tabs.setCurrentIndex(0);capture(win,'calculadora_final')
-                info['checks']+=['Exportación de ambos casos en PNG/SVG/CSV/JSON/PDF/DOCX','Inicio final con Ejemplo Cessna; ficha 4000 lb, CN negativo de la polar 2D']
-                info['status']='correcto';record();win.changed=False;win.timer.stop();app.quit()
-            except Exception as exc:fail(exc)
+            from PySide6.QtWidgets import QMessageBox
+            from pathlib import Path
+            original_information=QMessageBox.information
+            QMessageBox.information=lambda *args:None
+            queue=iter([2,1]);info['exports']={};info['export_progress']=[]
+            def next_export():
+                try:
+                    number=next(queue)
+                except StopIteration:
+                    QMessageBox.information=original_information
+                    win=window();win.tabs.setCurrentIndex(0);capture(win,'calculadora_final')
+                    info['checks']+=['Exportación desde la interfaz en segundo plano de ambos ejemplos','Progreso Qt visible y seis vistas actualizadas; reporte PDF/DOCX y tablas generados']
+                    info['status']='correcto';record();win.changed=False;win.timer.stop();app.quit();return
+                try:
+                    win=window();win.examples_button.menu().actions()[number-1].trigger();check_views(win);win.export()
+                    worker=win.export_worker;assert worker is not None
+                    def progress(value,message):
+                        info['export_progress'].append(dict(example=number,value=value,message=message))
+                        if value==20:win.export_progress.grab().save(str(out/f'exportando_{number}.png'))
+                    def completed(path):
+                        folder=Path(path)
+                        assert (folder/'reporte_analisis.pdf').is_file() and (folder/'reporte_analisis.docx').is_file()
+                        assert json.loads((folder/'ESTADO_EXPORTACION.json').read_text(encoding='utf-8'))['estado']=='COMPLETO'
+                        info['exports'][str(number)]=path
+                    worker.progress.connect(progress);worker.completed.connect(completed)
+                    worker.failed.connect(lambda message:fail(RuntimeError(message)))
+                    worker.finished.connect(lambda:QTimer.singleShot(100,next_export))
+                except Exception as exc:
+                    QMessageBox.information=original_information;fail(exc)
+            next_export()
         QTimer.singleShot(1200,first)
         status=launch(example_project(1))
         if status:raise RuntimeError('Falló comprobación: '+str(out))
