@@ -1,0 +1,53 @@
+name: Compilar Windows
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compilar:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_CACHE_DIR: ${{ github.workspace }}/.runtime/pip-cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: python -m pip install -r requirements-dev.txt
+      - name: Verificar código
+        run: python -B tools/run_tests.py
+      - name: Compilar en una carpeta nueva
+        run: python -B tools/build_exe.py
+      - name: Completar y comprobar distribución
+        shell: pwsh
+        run: |
+          $buildInfo = Get-ChildItem .runtime/builds -Recurse -Filter resultado.json | Sort-Object FullName | Select-Object -Last 1
+          $build = Get-Content -LiteralPath $buildInfo.FullName -Raw | ConvertFrom-Json
+          $dist = Split-Path -Parent $build.exe
+          Copy-Item envolventes.workspace.json,README.md,ABRIR_CALCULADORA_EXE.cmd -Destination $dist
+          Copy-Item examples,docs -Destination $dist -Recurse
+          $p = Start-Process -FilePath $build.exe -ArgumentList '--comprobar' -Wait -PassThru -WindowStyle Hidden
+          if ($p.ExitCode -ne 0) { throw "Falló el EXE: $($p.ExitCode)" }
+          $checks = @(Get-ChildItem (Join-Path $dist 'outputs/qa') -Recurse -Filter verificacion.json | ForEach-Object { Get-Content $_.FullName -Raw | ConvertFrom-Json } | Where-Object { $_.frozen -eq $true -and $_.status -eq 'correcto' -and $_.executable -eq $build.exe })
+          if ($checks.Count -lt 1) { throw 'No se encontró comprobación correcta del ejecutable compilado' }
+          "DISTRIBUTION_DIR=$dist" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Publicar artefacto de la aplicación
+        uses: actions/upload-artifact@v4
+        with:
+          name: Envolventes-de-Vuelo-Windows
+          path: ${{ env.DISTRIBUTION_DIR }}/
+          retention-days: 30
+      - name: Conservar registros
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: registros-compilacion
+          path: |
+            .runtime/builds/
+            outputs/qa/
+          if-no-files-found: warn
+          retention-days: 14

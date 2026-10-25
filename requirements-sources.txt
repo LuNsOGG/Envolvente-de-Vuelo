@@ -1,0 +1,4 @@
+# Solo OCR e inspección de las fuentes locales; no requerido por la app.
+-r requirements-dev.txt
+PyMuPDF==2.0
+rapidocr-onnxruntime==1.4.4

@@ -1,0 +1,26 @@
+{
+  "fecha": "2026-10-24",
+  "plataforma": "Windows / Python 3.12 (64 bits)",
+  "pruebas": 97,
+  "fallos": 0,
+  "errores": 0,
+  "duracion_segundos": 52.856,
+  "enlaces_documentacion_actual": "correctos",
+  "integridad_exe_pdf_fotografias": "sin cambios",
+  "motor_e_interfaz": "sin modificaciones en esta publicación",
+  "actions": "Pendiente de ejecución remota; no se equipara a la validación local",
+  "registro_local": "outputs/qa/github_20261024_0940.txt",
+  "registro_xml_local": "outputs/qa/github_20261024_0940.xml",
+  "copia_separada": {
+    "pruebas": 97,
+    "fallos": 0,
+    "duracion_segundos": 54.92,
+    "sin_documentos_originales": true
+  },
+  "auditoria_publica": {
+    "rutas_absolutas": 0,
+    "correos_personales": 0,
+    "credenciales_detectadas": 0,
+    "registros_estacion_original": "excluidos"
+  }
+}
