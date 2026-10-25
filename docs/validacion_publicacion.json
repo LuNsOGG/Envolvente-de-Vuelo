@@ -8,7 +8,7 @@
   "duracion_segundos": 51.0,
   "registro_xml_local": "outputs/qa/github_cessna_20261024.xml",
   "motor_e_interfaz": "Se publican los cambios Cessna ya implementados; esta sincronización no modifica nuevamente la herramienta",
-  "actions": "Pendiente de ejecución remota para el nuevo commit",
+  "actions": "Correcto: 105 pruebas y comprobación de ejemplos en Windows",
   "compilacion_remota": "No ejecutada en esta sincronización; binario local conservado",
   "auditoria_publica": {
     "rutas_absolutas": 0,
@@ -20,5 +20,9 @@
     "pruebas": 97,
     "commit_validado": "32e6a69d15921560a19274150305e1cacd10df14",
     "actions_run": "https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40109034103"
-  }
+  },
+  "actions_commit_validado": "fdf2388c5f738a463f758cff314f04035afe5f05",
+  "actions_run": "https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40151700126",
+  "actions_pruebas": 105,
+  "actions_duracion_segundos": 53.19
 }
