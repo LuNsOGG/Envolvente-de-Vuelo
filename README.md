@@ -1,12 +1,15 @@
 # Envolvente de Vuelo
 
+**Versión actual:** menú **Ejemplo Cessna / Ejemplo libro**. El Cessna incluye la ficha revisada de 4000 lb y una condición de comparación de 4631 lb. Consulte [la revisión de la tesis](docs/cessna_tesis_20261024/README.md) para los datos, discrepancias y nuevas exportaciones.
+
 Calculadora de escritorio en español para construir diagramas **V–n de maniobras, ráfagas y envolvente combinada**. Permite editar datos de una aeronave, recalcular las gráficas, guardar proyectos y exportar resultados. Desarrollada en Python con PySide6 y Matplotlib.
 
-![Interfaz con las tres envolventes del Ejemplo 2](docs/imagenes/ejemplo_2.png)
+![Interfaz con el Ejemplo Cessna revisado](docs/imagenes/ejemplo_cessna_20261024.png)
 
 ## Funciones
 
 - Hoja de 14 filas con valores y unidades; carga alar calculada automáticamente.
+- Recálculo automático al confirmar una celda con Enter o salir de ella; espera de 550 ms desde el último cambio. La interfaz actual no necesita botón Calcular.
 - Cuatro vistas: **Las tres envolventes**, **Maniobras**, **Ráfagas** y **Combinado**.
 - Ráfagas cuasiestáticas de Niu calculadas como `n = 1 ± Δn`, independientes de los límites de maniobra.
 - Dos ejemplos reproducibles, coeficientes constantes o interpolación aerodinámica del caso del libro.
@@ -37,10 +40,10 @@ Para crear una distribución desde el código, consulte [Desarrollo y compilaci�
 
 | Caso | Descripción | Datos principales |
 |---|---|---|
-| [Ejemplo 1](examples/ejemplo_1.json) | Ejercicio de la hoja Excel | W=4631 lbf, S=181 ft², N=3.8, CN+=1.46, CN−=−1.35 |
-| [Ejemplo 2](examples/ejemplo_2.json) | Avión comercial genérico de Niu, §3.11 | W=88000 lbf, S=1200 ft², Vc=325 y Vd=400 kt EAS |
+| [Ejemplo Cessna](examples/ejemplo_cessna.json) | Tesis IPN revisada y comparación | W=4000/4631 lbf, S=181 ft², CN+=1.45816142, CN−=−0.8381569 |
+| [Ejemplo libro](examples/ejemplo_libro.json) | Avión comercial genérico de Niu, §3.11 | W=88000 lbf, S=1200 ft², Vc=325 y Vd=400 kt EAS |
 
-El coeficiente negativo −1.35 y las intensidades 50/25 ft/s del Ejemplo 1 son hipótesis editables. El Ejemplo 2 usa lecturas aproximadas e interpolaciones de figuras del libro. Consulte las [ecuaciones y supuestos](docs/METODOLOGIA.md) antes de reutilizarlos para otra aeronave.
+El Cessna usa la polar 2D de la tesis como idealización académica. La pendiente por grado y las intensidades 50/25 ft/s siguen siendo hipótesis editables. El ejemplo del libro usa lecturas aproximadas e interpolaciones de figuras. Consulte las [ecuaciones y supuestos](docs/METODOLOGIA.md) antes de reutilizarlos para otra aeronave.
 
 ## Documentación
 

@@ -1,0 +1,18 @@
+[
+  {
+    "ejemplo": "2",
+    "condiciones": 1,
+    "paginas_pdf": 21,
+    "datos_y_tablas": "coinciden",
+    "pdf": "texto dentro de hoja",
+    "docx": "OOXML íntegro"
+  },
+  {
+    "ejemplo": "1",
+    "condiciones": 2,
+    "paginas_pdf": 31,
+    "datos_y_tablas": "coinciden",
+    "pdf": "texto dentro de hoja",
+    "docx": "OOXML íntegro"
+  }
+]

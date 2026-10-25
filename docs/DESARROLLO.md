@@ -23,9 +23,9 @@ En la estación original, `bootstrap.py` puede cargar `.runtime/packages` al eje
 |---|---|
 | Abrir interfaz | `python -B main.py` |
 | Ayuda | `python -B main.py --help` |
-| Abrir proyecto | `python -B main.py --project examples/ejemplo_2.json` |
-| Exportar condición activa | `python -B main.py --project examples/ejemplo_1.json --export` |
-| Exportar todos los casos | `python -B main.py --project data/proyecto_inicial.json --all` |
+| Abrir proyecto | `python -B main.py --project examples/ejemplo_libro.json` |
+| Exportar condición activa | `python -B main.py --project examples/ejemplo_cessna.json --export` |
+| Exportar todos los casos | `python -B main.py --project examples/ejemplo_cessna.json --all` |
 | Elegir caso de un proyecto | `python -B main.py --project RUTA.json --case ID --export` |
 | Dibujos explicativos históricos | `python -B main.py --project data/proyecto_inicial.json --niu` |
 | Pruebas | `python -B tools/run_tests.py` |

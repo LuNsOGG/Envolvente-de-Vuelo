@@ -54,3 +54,6 @@ data/recuperaciones/
 !.env.example
 *.pem
 *.key
+
+# Inventarios de instalaciones Cessna conservados solo localmente
+/docs/cessna_tesis_20261024/instalacion*.json

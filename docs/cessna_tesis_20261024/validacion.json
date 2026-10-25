@@ -1,0 +1,19 @@
+{
+  "fecha": "2026-10-24",
+  "pruebas": 105,
+  "fallos": 0,
+  "errores": 0,
+  "segundos": 51.758,
+  "exe_frozen": true,
+  "exe_status": "correcto",
+  "exe_exit": 0,
+  "exe_sha256": "F7D1D5F2B7971029D388BBD2E19FA5AD52BE6ECC81B2CA68DBF1A54787EFE565",
+  "dependencias_verificadas": 1255,
+  "evidencia": "outputs\\qa\\niu_exe_20261024_113816",
+  "exportaciones": {
+    "2": "outputs\\entrega_20261024_113833",
+    "1": "outputs\\entrega_20261024_113836"
+  },
+  "originales": "tesis, libro y EXE previo conservados",
+  "hipotesis": "a por grado, ráfagas de diseño y polar 2D documentadas; no certificación"
+}

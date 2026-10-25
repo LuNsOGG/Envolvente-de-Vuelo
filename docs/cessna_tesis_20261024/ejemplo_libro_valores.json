@@ -1,0 +1,74 @@
+[
+  {
+    "condicion": "Ejemplo libro",
+    "values": {
+      "W": 88000.0,
+      "S": 1200.0,
+      "n_pos": 2.5,
+      "n_neg": -1.0,
+      "CN_pos": 1.3,
+      "CN_neg": -1.3,
+      "Vc": 325.0,
+      "Vd": 400.0,
+      "rho": 0.00176,
+      "chord": 13.0,
+      "a": 5.22,
+      "g": 32.2,
+      "U_c": 50.0,
+      "U_d": 25.0,
+      "U_b": 66.0,
+      "altitude": 10000.0,
+      "W_S": 73.33333333333333,
+      "Cse": 548.6,
+      "Vs": 130.21686073247,
+      "V_A_stall": 207.77390500188,
+      "V_G_stall": 130.21686073247,
+      "Va": 207.77390500188,
+      "Vb": 211.30532496749,
+      "mu_c": 34.6822797966564,
+      "Kg_c": 0.763348322713953,
+      "a_c": 5.74,
+      "delta_c": 1.9496526506337344,
+      "n_gust_c_pos": 2.9496526506337344,
+      "n_gust_c_neg": -0.9496526506337344,
+      "mu_d": 29.36228407563536,
+      "Kg_d": 0.7454445278383027,
+      "a_d": 6.779999999999999,
+      "delta_d": 1.3839304213427412,
+      "n_gust_d_pos": 2.3839304213427415,
+      "n_gust_d_neg": -0.38393042134274125,
+      "mu_b": 36.96298993939642,
+      "Kg_b": 0.7696433970552485,
+      "a_b": 5.3858274549544864,
+      "delta_b": 1.5829441489838354,
+      "n_gust_b_pos": 2.5829441489838354,
+      "n_gust_b_neg": -0.5829441489838354,
+      "mu": 34.6822797966564,
+      "Kg": 0.763348322713953,
+      "n3": 2.9496526506337344,
+      "n4": -0.9496526506337344
+    },
+    "checks": [
+      {
+        "código": "TABLA AERODINÁMICA",
+        "estado": "INFO",
+        "detalle": "Interpolación por Mach de Fig. 3.11.6. CLmax después de 300 kt: lectura aproximada de Fig. 3.11.4. a(400)=6.78/rad, coherente con 5.22×1.300 y μ≈29.3. Las curvas pertenecen solo a este ejemplo."
+      },
+      {
+        "código": "RÁFAGAS",
+        "estado": "OK",
+        "detalle": "Cálculo independiente n=1±Δn. n3 y n4 son resultados en Vc; nunca se fijan iguales a los límites de maniobra."
+      },
+      {
+        "código": "COMBINADO",
+        "estado": "INFO",
+        "detalle": "Extremos de maniobra y ráfaga limitados por pérdida estática, con cierre en Vd. Las demandas de ráfaga completas permanecen visibles; no se recortan al límite de maniobra."
+      },
+      {
+        "código": "ALCANCE",
+        "estado": "INFO",
+        "detalle": "Modelo cuasiestático del capítulo 3. Las reglas de velocidad y maniobra se declaran por caso; no es análisis de ráfaga dinámica ni demostración de certificación."
+      }
+    ]
+  }
+]

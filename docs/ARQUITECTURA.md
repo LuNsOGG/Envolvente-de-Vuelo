@@ -27,6 +27,7 @@ flowchart TD
 | `src/calculations/niu.py` | Ráfagas, maniobra, tabla por Mach, VB, raíces y combinado actuales |
 | `src/calculations/worksheet.py` | Catorce entradas, adaptación y derivaciones de la hoja |
 | `src/calculations/examples.py` | Dos proyectos actuales y catálogo de variables |
+| `src/calculations/thesis.py` | Condiciones Cessna, referencias publicadas, contraste y avisos de aplicabilidad |
 | `src/calculations/cases.py` | Creación y duplicación de condiciones independientes |
 | `src/calculations/units.py` | Conversión explícita y EAS/TAS |
 | `src/ui/worksheet.py` | Interfaz vigente, menú Ejemplos, edición y recuperación |
@@ -45,4 +46,6 @@ Los cálculos de preparación trabajan con copias, para conservar la procedencia
 
 `inside()` impide leer y escribir proyectos fuera de la raíz autorizada. `fresh()` selecciona un nombre libre; no reemplaza por defecto los archivos de usuario. `save_project()` valida antes de escribir. Cada exportación crea un destino nuevo.
 
-Las tablas del Ejemplo 2 son constantes específicas de ese caso; no constituyen una base aerodinámica universal. Los modos históricos se conservan por compatibilidad. La vista vigente no presenta el contorno A4 histórico como una ráfaga física independiente.
+La interfaz programa el recálculo con un QTimer de disparo único de 550 ms; cada cambio confirmado reinicia la espera. Los cambios de condición y diálogos aceptados recalculan inmediatamente. La fuente DejaVu Sans incluida con Matplotlib permite mostrar texto y símbolos también en las comprobaciones Qt sin pantalla.
+
+Las tablas del Ejemplo libro son constantes específicas de ese caso; no constituyen una base aerodinámica universal. Los modos históricos se conservan por compatibilidad. La vista vigente no presenta el contorno A4 histórico como una ráfaga física independiente.
