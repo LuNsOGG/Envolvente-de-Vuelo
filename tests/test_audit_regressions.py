@@ -142,3 +142,20 @@ def test_12_figure_vb_matches_both_stall_and_gust_before_vc():
     assert 0<vb<.8 and n==pytest.approx(8*vb**2)
     assert n==pytest.approx(np.interp(vb,gust.get_xdata(),gust.get_ydata()))
 
+
+def test_13_export_requires_complete_inputs_and_labels_explicit_partial(qt_lifetime,monkeypatch):
+    from uuid import uuid4
+    from bootstrap import ROOT
+    import json
+    import src.reporting.exporter as exporter
+    folder=ROOT/'tests/artifacts'/uuid4().hex;folder.mkdir(parents=True)
+    monkeypatch.setattr(exporter,'ROOT',folder)
+    p=example_project(1);p['cases']=p['cases'][:1];c=p['cases'][0];c['parameters']['CN_neg']['value']=None
+    with pytest.raises(ValueError,match='incompleta'):exporter.export_project(p,c['id'],include_niu=False)
+    assert not (folder/'outputs').exists()
+    path=exporter.export_project(p,c['id'],include_niu=False,allow_partial=True)
+    state=json.loads((path/'ESTADO_EXPORTACION.json').read_text(encoding='utf-8'))
+    assert state['estado']=='PARCIAL' and state['pendientes']
+    assert (path/'reporte_parcial_analisis.pdf').exists() and not (path/'reporte_analisis.pdf').exists()
+    assert 'PARCIAL' in (path/'LEER_PRIMERO.txt').read_text(encoding='utf-8')
+

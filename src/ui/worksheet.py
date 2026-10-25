@@ -354,7 +354,8 @@ class WorksheetWindow(QMainWindow):
 
     def export(self):
         if not self.try_commit():return
-        self.recalculate()
+        if not self.recalculate():
+            QMessageBox.warning(self,'Exportación incompleta','Corrija los datos pendientes antes de exportar una entrega. Puede guardar el proyecto para completarlo después.');return
         try:
             from src.reporting.exporter import export_project
             QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
