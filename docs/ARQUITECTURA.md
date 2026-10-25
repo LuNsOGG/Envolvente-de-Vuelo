@@ -34,6 +34,9 @@ flowchart TD
 | `src/ui/calculator.py`, `window.py` | Interfaces anteriores conservadas y probadas |
 | `src/plotting/envelopes.py` | Figuras V–n y exportación PNG/SVG |
 | `src/plotting/niu.py` | Catálogo histórico de diez dibujos explicativos |
+| `src/calculations/appendix.py` | Preparación independiente de A3/A4 y lecturas documentadas |
+| `src/ui/appendix_dialog.py`, `cover_dialog.py` | Procedimiento A3/A4 y edición de portada |
+| `src/reporting/matlab_export.py`, `matlab_template.m` | Archivo MATLAB autónomo, entradas, motor y comprobaciones de referencia |
 | `src/reporting/exporter.py` | Carpetas nuevas, tablas, resultados, figuras y reportes |
 | `src/reporting/general_report.py` | Contenido de reportes actuales e hipótesis |
 | `src/reporting/reports.py` | Render PDF/DOCX y reportes históricos |

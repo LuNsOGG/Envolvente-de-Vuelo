@@ -18,6 +18,8 @@ El método actual es `niu`. En condiciones de hoja aparecen `worksheet`, `speed_
 
 El Cessna incluye `reference_dataset="ipn_2007"`, `chord_mode="geometric"` y las condiciones `cessna_revisado` y `cessna_capitulo_19`. `span` y `Va_selected` son parámetros con unidades y procedencia. En modo geométrico, c se deriva de S/b; en modo `manual` se conserva la cuerda introducida. Va seleccionada no sustituye la intersección A.
 
+`export_options` admite opciones booleanas `include_niu`, `include_appendix` e `include_matlab`. Cada condición puede conservar `appendix_review` con n3, n4, source, page y speed_mode (`selected` o `minimum`). Estas lecturas están separadas de los n3/n4 calculados por Niu.
+
 ## Parámetros y procedencia
 
 ```json

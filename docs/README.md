@@ -5,6 +5,8 @@
 La documentación de la raíz de `docs/` describe la versión actual. Los registros anteriores se conservan en la estación original; cuando difieran, use el código actual y esta documentación.
 
 | Necesidad | Documento |
+|---|---|
+| Usar portada, figuras, A3/A4 y MATLAB | [REVISION_18_21.md](REVISION_18_21.md) |
 | Revisar correcciones 1–17 y sus comprobaciones | [REVISION_1_17.md](REVISION_1_17.md) |
 |---|---|
 | Empezar a utilizar la calculadora | [USO.md](USO.md) |

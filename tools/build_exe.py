@@ -38,7 +38,7 @@ def main():
     spec.write_text(f'''# Especificación de compilación en carpeta nueva
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files
-datas = collect_data_files('docx') + collect_data_files('reportlab') + collect_data_files('matplotlib')
+datas = collect_data_files('docx') + collect_data_files('reportlab') + collect_data_files('matplotlib') + [({str(ROOT/'src/reporting/matlab_template.m')!r}, 'src/reporting')]
 a = Analysis([{str(ROOT/'main.py')!r}], pathex={[str(ROOT),str(ROOT/'.runtime/packages')]!r},
     binaries=[], datas=datas, hiddenimports=['matplotlib.backends.backend_qtagg','matplotlib.backends.backend_agg','matplotlib.backends.backend_svg','matplotlib.backends.backend_pdf','matplotlib.backends.backend_ps','docx'],
     hookspath=[], hooksconfig={{}}, runtime_hooks=[], excludes={excludes!r}, noarchive=False, optimize=0)

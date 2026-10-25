@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## Versión 4.2 — Figuras, procedimiento A3/A4, portada y MATLAB
+
+- Integra el reporte de las diez figuras de Niu en el botón Exportar.
+- Añade vista y reporte separados para el procedimiento académico A3/A4.
+- Permite completar la portada y conservarla en proyectos y reportes.
+- Exporta un archivo MATLAB con datos, fórmulas y gráficas editables.
+- Los puntos 22–24 quedan pendientes; se conserva el aviso de aplicabilidad existente.
+
 ## Versión 4.1 — Correcciones de los puntos 1–17
 
 - Corrige importación de unidades, validación JSON y recuperación de borradores.

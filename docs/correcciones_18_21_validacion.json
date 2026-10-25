@@ -1,0 +1,100 @@
+{
+  "version": "4.2",
+  "scope_completed": [
+    18,
+    19,
+    20,
+    21
+  ],
+  "scope_deferred": [
+    22,
+    23,
+    24
+  ],
+  "tests": {
+    "passed": 148,
+    "failed": 0,
+    "junit": "correcciones_18_21_verificadas.xml",
+    "independent_commits": [
+      {
+        "punto": 18,
+        "exit": 0,
+        "seconds": 11.91
+      },
+      {
+        "punto": 19,
+        "exit": 0,
+        "seconds": 11.55
+      },
+      {
+        "punto": 20,
+        "exit": 0,
+        "seconds": 6.33
+      },
+      {
+        "punto": 21,
+        "exit": 0,
+        "seconds": 1.42
+      }
+    ]
+  },
+  "desktop": {
+    "frozen": true,
+    "status": "correcto",
+    "exit_code": 0,
+    "examples_exported": [
+      "Ejemplo Cessna",
+      "Ejemplo libro"
+    ],
+    "dependencies_verified": 1256,
+    "exe_sha256": "1ffa2941e166ceef8336028e21eadd830fc125e87cbb8fd9dd82fda097184e25",
+    "previous_exe_sha256": "409b55a4a2da7e25b1cb4cefd6076698773d9f46bc3fb399658c1484039465d0",
+    "previous_distribution_preserved": true
+  },
+  "reports": [
+    {
+      "file": "reporte_analisis.pdf",
+      "pages": 32,
+      "author": "Prueba QA",
+      "text_bounds": "correctos"
+    },
+    {
+      "file": "reporte_figuras_niu.pdf",
+      "pages": 11,
+      "author": "Prueba QA",
+      "text_bounds": "correctos"
+    },
+    {
+      "file": "reporte_apendice_a.pdf",
+      "pages": 15,
+      "author": "Prueba QA",
+      "text_bounds": "correctos"
+    },
+    {
+      "file": "reporte_analisis.docx",
+      "integrity": "correcta",
+      "cover": "correcta"
+    },
+    {
+      "file": "reporte_figuras_niu.docx",
+      "integrity": "correcta",
+      "cover": "correcta"
+    },
+    {
+      "file": "reporte_apendice_a.docx",
+      "integrity": "correcta",
+      "cover": "correcta"
+    }
+  ],
+  "matlab": {
+    "syntax": "MLint R2025a sin diagnósticos en ambos ejemplos exportados por el EXE",
+    "native_execution": "pendiente: error MathWorks 5201; no se alteró la instalación",
+    "format": "m",
+    "xlsx": false
+  },
+  "commits": {
+    "18": "3b0c099b1ed9899dfe5c66a9b12782a6be86cfaa",
+    "19": "858ead298c699f921946c9c55c9e1391c801d870",
+    "20": "37f0360a8b35a5689691543bf480af466f15ce35"
+  }
+}

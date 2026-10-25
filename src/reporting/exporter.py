@@ -85,6 +85,11 @@ def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=No
             checkpoint(88,'Escribiendo DOCX');render_docx(pages,out/(stem+'.docx'))
             write_csv(out/'comparacion_resultados.csv',compare(project['cases']))
             write_csv(out/'cambios.csv',chosen.get('changes',[]))
+            if not pending and project.get('export_options',{}).get('include_matlab',True):
+                checkpoint(89,'Preparando archivo MATLAB editable')
+                from .matlab_export import export_matlab
+                ap_enabled=include_appendix if include_appendix is not None else project.get('export_options',{}).get('include_appendix',False)
+                export_matlab(project,cases,out/'calculos_envolvente.m',include_appendix=ap_enabled)
         if not niu_only and (include_appendix if include_appendix is not None else project.get('export_options',{}).get('include_appendix',False)):
             from .appendix_report import export_appendix
             export_appendix(project,cases,out,checkpoint,write_csv,allow_partial=allow_partial)

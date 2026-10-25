@@ -72,6 +72,26 @@ def test_20_metadata_roundtrip_and_report_cover(qt_lifetime):
     assert all(any(text in x for x in pages[0]['paragraphs']) for text in ['Prueba QA','Cargas','Docente de prueba'])
 
 
+def test_21_matlab_contains_editable_inputs_and_equations_for_both_examples():
+    from bootstrap import ROOT
+    from uuid import uuid4
+    from src.reporting.matlab_export import export_matlab
+    folder=ROOT/'tests/artifacts'/uuid4().hex;folder.mkdir(parents=True)
+    for n in [1,2]:
+        p=example_project(n);path=export_matlab(p,p['cases'],folder/f'ejemplo_{n}.m',include_appendix=n==1)
+        text=path.read_text(encoding='utf-8')
+        assert 'cfg.W =' in text and 'cfg.S =' in text and '498' in text
+        assert 'function r = calcular_niu' in text and 'function r=calcular_apendice' in text
+        assert 'interp1' in text and 'resultados_matlab' in text
+        assert text.count('casos(')>=len(p['cases'])
+
+def test_21_matlab_quotes_cannot_escape_input_literals():
+    from src.reporting.matlab_export import literal
+    assert literal("Luis'; error('x')")=="'Luis''; error(''x'')'"
+    assert literal(None)=='NaN' and literal(True)=='true'
+
+
+
 def test_19_appendix_configuration_roundtrip_and_export(monkeypatch):
     import json,zipfile
     from uuid import uuid4
@@ -89,7 +109,6 @@ def test_19_appendix_configuration_roundtrip_and_export(monkeypatch):
     with zipfile.ZipFile(out/'reporte_apendice_a.docx') as doc:
         assert 'Lectura QA A1/A2' in doc.read('word/document.xml').decode('utf-8')
 
-
 def test_20_cover_button_updates_metadata_without_changing_calculation(qt_lifetime):
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication
@@ -102,4 +121,10 @@ def test_20_cover_button_updates_metadata_without_changing_calculation(qt_lifeti
         assert w.project['metadata']['student']=='Portada QA' and w.changed
         assert w.result['values']==before
     finally:w.changed=False;w.timer.stop();w.close()
+
+def test_21_rejects_unsafe_case_ids_before_writing_matlab():
+    from pathlib import Path
+    from src.reporting.matlab_export import export_matlab
+    p=example_project(1);p['cases'][0]['id']='../../fuera'
+    with pytest.raises(ValueError,match='ID'):export_matlab(p,p['cases'],Path('nunca_creado.m'))
 

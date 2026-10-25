@@ -68,6 +68,19 @@ def run_selfcheck(gui=False):
                         dialog.grab().save(str(out/'tesis_y_revision.png'));dialog.accept()
                     except Exception as exc:fail(exc)
                 QTimer.singleShot(500,inspect_reference);win.reference_button.click()
+                def inspect_appendix():
+                    try:
+                        dialog=app.activeModalWidget();assert dialog.windowTitle()=='Procedimiento del Apéndice A'
+                        assert dialog.calculation['values']['n3']==3.8
+                        dialog.grab().save(str(out/'procedimiento_apendice.png'));dialog.reject()
+                    except Exception as exc:fail(exc)
+                QTimer.singleShot(400,inspect_appendix);win.show_appendix()
+                def inspect_cover():
+                    try:
+                        dialog=app.activeModalWidget();assert dialog.windowTitle()=='Datos de portada'
+                        dialog.edits['student'].setText('Comprobación QA');dialog.grab().save(str(out/'portada.png'));dialog.save()
+                    except Exception as exc:fail(exc)
+                QTimer.singleShot(400,inspect_cover);win.edit_cover();assert win.project['metadata']['student']=='Comprobación QA'
                 win.set_value('W',3600);QTimer.singleShot(1800,edited)
             except Exception as exc:fail(exc)
         def edited():
@@ -121,6 +134,8 @@ def run_selfcheck(gui=False):
                         assert (folder/'reporte_analisis.pdf').is_file() and (folder/'reporte_analisis.docx').is_file()
                         assert (folder/'reporte_figuras_niu.pdf').is_file() and (folder/'reporte_figuras_niu.docx').is_file()
                         assert len(list((folder/'figuras_niu').glob('*.png')))==10
+                        assert (folder/'calculos_envolvente.m').is_file()
+                        if number==1:assert (folder/'reporte_apendice_a.pdf').is_file() and (folder/'reporte_apendice_a.docx').is_file()
                         assert json.loads((folder/'ESTADO_EXPORTACION.json').read_text(encoding='utf-8'))['estado']=='COMPLETO'
                         info['exports'][str(number)]=path
                     worker.progress.connect(progress);worker.completed.connect(completed)
