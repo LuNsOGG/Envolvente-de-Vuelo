@@ -66,7 +66,7 @@ def calculate_niu(case, samples=601):
         try:
             v=convert(q.get('value'),q.get('unit',''),SPECS[key][1]); values[key]=v; return v
         except (ValueError,TypeError,OverflowError) as exc:
-            if required:r['blocked'].append(key+': '+str(exc))
+            if required or q.get('value') is not None:r['blocked'].append(key+': '+str(exc))
             return None
     def check(code,state,detail):r['checks'].append(dict(código=code,estado=state,detalle=detail))
     def equation(name,formula,value,unit,sub=''):
