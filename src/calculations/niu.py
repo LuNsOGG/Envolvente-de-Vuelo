@@ -19,7 +19,7 @@ BOOK_CL = (1.3, 1.290, 1.288, 1.275, 1.260, 1.241, 1.202, 1.17, 1.13, 1.02)
 
 def interpolate(x, xs, ys):
     if x < xs[0]-1e-9 or x > xs[-1]+1e-9:
-        raise ValueError('Mach fuera del intervalo tabulado del Ejemplo 2; use coeficientes propios.')
+        raise ValueError('Mach fuera del intervalo tabulado del Ejemplo libro; use coeficientes propios.')
     for i in range(1, len(xs)):
         if x <= xs[i]:
             t=(x-xs[i-1])/(xs[i]-xs[i-1])
@@ -116,7 +116,7 @@ def calculate_niu(case, samples=601):
         r['blocked'].append('La tabla del libro requiere coeficientes CL; CN no es compatible.');return r
     cse=get('Cse') if book else None
     if book and (cse is None or cse<=0 or vd/cse>400/548.6+1e-9):
-        r['blocked'].append('La tabla del Ejemplo 2 cubre 0 ≤ Mach ≤ 400/548.6. Ajuste Cse/Vd o seleccione coeficientes constantes.');return r
+        r['blocked'].append('La tabla del Ejemplo libro cubre 0 ≤ Mach ≤ 400/548.6. Ajuste Cse/Vd o seleccione coeficientes constantes.');return r
     if book:
         machs=[v/548.6 for v in BOOK_V]
         def slope(v):return a*interpolate(v/cse,machs,BOOK_A)/5.22

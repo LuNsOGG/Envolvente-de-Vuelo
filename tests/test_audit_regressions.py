@@ -232,6 +232,15 @@ def test_16_calculation_state_tracks_pending_and_updated(qt_lifetime):
     finally:w.timer.stop();w.changed=False;w.close()
 
 
+def test_17_derived_speed_sources_distinguish_appendix_and_selected_data():
+    r=calculate(example_project(1)['cases'][0]);derived={x['variable']:x for x in r['derived']}
+    for k in ['Vc_min_base','Vd_min_base','Va_min_base']:assert 'Apéndice A' in derived[k]['source']
+    assert 'Tesis IPN' in derived['Va_selected']['source']
+    from pathlib import Path
+    from bootstrap import ROOT
+    assert 'Ejemplo 2' not in (ROOT/'src/ui/worksheet.py').read_text(encoding='utf-8')
+
+
 def test_16_editing_cell_marks_old_result_as_pending(qt_lifetime):
     from PySide6.QtWidgets import QStyleOptionViewItem
     from PySide6.QtTest import QTest

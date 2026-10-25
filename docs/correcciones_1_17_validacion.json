@@ -1,0 +1,136 @@
+{
+  "version": "4.1",
+  "fecha": "2026-10-24",
+  "puntos_corregidos": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "puntos_pendientes": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "pruebas": 136,
+  "fallos": 0,
+  "errores": 0,
+  "segundos": 54.171,
+  "gui_exportacion": "correcta; progreso visible y sin bloquear Qt",
+  "pdf_ecuaciones": "revisión visual correcta",
+  "actions": "Consultar ejecución del commit publicado",
+  "pruebas_por_punto": [
+    {
+      "punto": 1,
+      "exit": 0,
+      "seconds": 1.22
+    },
+    {
+      "punto": 2,
+      "exit": 0,
+      "seconds": 1.22
+    },
+    {
+      "punto": 3,
+      "exit": 0,
+      "seconds": 1.2
+    },
+    {
+      "punto": 4,
+      "exit": 0,
+      "seconds": 6.11
+    },
+    {
+      "punto": 5,
+      "exit": 0,
+      "seconds": 1.17
+    },
+    {
+      "punto": 6,
+      "exit": 0,
+      "seconds": 1.25
+    },
+    {
+      "punto": 7,
+      "exit": 0,
+      "seconds": 6.11
+    },
+    {
+      "punto": 8,
+      "exit": 0,
+      "seconds": 5.09
+    },
+    {
+      "punto": 9,
+      "exit": 0,
+      "seconds": 1.25
+    },
+    {
+      "punto": 10,
+      "exit": 0,
+      "seconds": 5.05
+    },
+    {
+      "punto": 11,
+      "exit": 0,
+      "seconds": 4.05
+    },
+    {
+      "punto": 12,
+      "exit": 0,
+      "seconds": 4.19
+    },
+    {
+      "punto": 13,
+      "exit": 0,
+      "seconds": 7.77
+    },
+    {
+      "punto": 14,
+      "exit": 0,
+      "seconds": 1.16
+    },
+    {
+      "punto": 15,
+      "exit": 0,
+      "seconds": 4.86
+    },
+    {
+      "punto": 16,
+      "exit": 0,
+      "seconds": 6.88
+    },
+    {
+      "punto": 17,
+      "exit": 0,
+      "seconds": 1.5
+    }
+  ],
+  "exe_frozen": true,
+  "exe_status": "correcto",
+  "exe_exit": 0,
+  "exe_sha256": "409b55a4a2da7e25b1cb4cefd6076698773d9f46bc3fb399658c1484039465d0",
+  "dependencias_verificadas": 1255,
+  "version_anterior_conservada": true,
+  "ejemplos_exportados": [
+    "Cessna",
+    "libro"
+  ]
+}

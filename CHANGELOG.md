@@ -1,5 +1,15 @@
 # Historial de cambios
 
+## Versión 4.1 — Correcciones de los puntos 1–17
+
+- Corrige importación de unidades, validación JSON y recuperación de borradores.
+- Conserva procedencia y actualiza hipótesis y títulos con los datos efectivos.
+- Comprueba criterios seleccionados, Va y compatibilidad de coeficientes.
+- Completa ecuaciones y visibilidad de curvas; corrige VB en el redibujo.
+- Distingue entregas parciales y conserva las ramas calculables.
+- Mantiene zoom y añade estado, progreso y cancelación de exportaciones.
+- Pruebas de regresión por hallazgo en `tests/test_audit_regressions.py`.
+
 ## 2026-10-24 - Sincronización de la revisión Cessna con GitHub
 
 - Publicación del código, pruebas y proyectos Cessna/libro pendientes.

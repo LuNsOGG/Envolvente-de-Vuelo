@@ -1,5 +1,7 @@
 # Validación
 
+**Versión 4.1, correcciones 1–17:** 136 pruebas aprobadas y exportación real de ambos pesos desde la interfaz con progreso. Se revisó visualmente el PDF de ecuaciones. Véase [el registro de correcciones](REVISION_1_17.md). Las comprobaciones de versiones anteriores se conservan a continuación como evidencia histórica.
+
 ## Referencias vigentes Cessna y libro
 
 La revisión Cessna está cubierta por 105 pruebas, incluidas ocho pruebas de tesis, geometría, contraste, persistencia e interfaz. Los valores se conservan en [ejemplo_cessna_valores.json](cessna_tesis_20261024/ejemplo_cessna_valores.json) y [ejemplo_libro_valores.json](cessna_tesis_20261024/ejemplo_libro_valores.json).

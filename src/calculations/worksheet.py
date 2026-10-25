@@ -184,6 +184,7 @@ def calculate_worksheet(case, samples=601):
         from .thesis import augment_review
         augment_review(prepared,r)
         for row in r['parameters']:
+            if row['símbolo']=='Va':row['descripción']='Alias histórico de la intersección A; la selección independiente es Va_selected'
             if row['símbolo'] in ['n3','n4']:
                 row.update(valor=r['values'].get(row['símbolo']),estado='calculado',fuente='Niu, ecuación de ráfaga en Vc',
                            descripción='Factor de ráfaga en Vc',observaciones='1±Δn; independiente del límite de maniobra.')
@@ -197,7 +198,10 @@ def calculate_worksheet(case, samples=601):
                 ('Va_selected','kt EAS','Velocidad seleccionada; independiente de A'),('mu','1','2(W/S)/(ρ c a g), en Vc'),
                 ('Kg','1','0.88 μ/(5.3+μ), en Vc'),('n3','1','1+Δn en Vc'),('n4','1','1-Δn en Vc'),
                 ('n_gust_d_pos','1','1+Δn en Vd'),('n_gust_d_neg','1','1-Δn en Vd')]:
-            if key in r['values']:derived.append(dict(variable=key,value=r['values'][key],unit=unit,formula=formula,source='Niu, cap. 3'))
+            if key in r['values']:
+                source=next((e['fuente'] for e in r['equations'] if e['nombre']==key),'Niu, cap. 3')
+                if key=='Va_selected':source=case['parameters'].get(key,{}).get('source') or 'Selección introducida para la condición'
+                derived.append(dict(variable=key,value=r['values'][key],unit=unit,formula=formula,source=source))
     else:
         r['checks'].insert(0, dict(código='AUTOMÁTICO', estado='INFO', detalle='Velocidades mínimas base calculadas; no son datos operativos. Las entradas ausentes permanecen pendientes.'))
     curves = r['curves']; v = curves.get('V', []); values = r['values']

@@ -257,7 +257,7 @@ class WorksheetWindow(QMainWindow):
             for key,visible in [('Vc',speed.currentData()=='manual'),('Vd',speed.currentData()=='manual'),('n_neg',negative.currentData()=='manual'),('Cse',aero.currentData()=='niu_table')]:
                 labels[key].setVisible(visible);edits[key].setVisible(visible)
         speed.currentIndexChanged.connect(visibility);negative.currentIndexChanged.connect(visibility);aero.currentIndexChanged.connect(visibility);visibility()
-        note=QLabel('n3 y n4 se calculan en Vc. La tabla por Mach pertenece al Ejemplo 2.');note.setWordWrap(True);box.addWidget(note)
+        note=QLabel('n3 y n4 se calculan en Vc. La tabla por Mach pertenece al Ejemplo libro.');note.setWordWrap(True);box.addWidget(note)
         buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);box.addWidget(buttons);buttons.rejected.connect(dialog.reject)
         def accept():
             try:

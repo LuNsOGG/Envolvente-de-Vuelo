@@ -1,10 +1,12 @@
 # Envolvente de Vuelo
 
-**Versión actual:** menú **Ejemplo Cessna / Ejemplo libro**. El Cessna incluye la ficha revisada de 4000 lb y una condición de comparación de 4631 lb. Consulte [la revisión de la tesis](docs/cessna_tesis_20261024/README.md) para los datos, discrepancias y nuevas exportaciones.
+**Versión actual: 4.1.** Se corrigieron los puntos 1–17 de la [revisión de software](docs/REVISION_1_17.md), con pruebas de regresión por corrección.
+
+**Ejemplos:** menú **Ejemplo Cessna / Ejemplo libro**. El Cessna incluye la ficha revisada de 4000 lb y una condición de comparación de 4631 lb. Consulte [la revisión de la tesis](docs/cessna_tesis_20261024/README.md) para los datos, discrepancias y nuevas exportaciones.
 
 Calculadora de escritorio en español para construir diagramas **V–n de maniobras, ráfagas y envolvente combinada**. Permite editar datos de una aeronave, recalcular las gráficas, guardar proyectos y exportar resultados. Desarrollada en Python con PySide6 y Matplotlib.
 
-![Interfaz con el Ejemplo Cessna revisado](docs/imagenes/ejemplo_cessna_20261024.png)
+![Interfaz con el Ejemplo Cessna revisado](docs/imagenes/correcciones_1_17.png)
 
 ## Funciones
 

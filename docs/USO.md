@@ -18,6 +18,8 @@ En **Datos de cálculo** se definen el coeficiente negativo, el límite negativo
 
 Los cálculos se actualizan automáticamente: confirme la edición con **Enter** o saliendo de la celda. Después de 550 ms desde el último cambio confirmado se recalculan resultados y gráficas. Cambiar unidades también inicia ese recálculo; cambiar de condición recalcula de inmediato. La interfaz actual no tiene botón **Calcular**. Esto actualiza los resultados en pantalla; para conservar el proyecto utilice **Guardar**.
 
+El estado visible indica cambios pendientes, cálculo en curso, actualización terminada o cálculo parcial. El zoom se conserva al recalcular una condición. Las ramas que disponen de todos sus datos pueden consultarse aunque falten entradas de otra envolvente; el combinado completo sigue pendiente.
+
 La edición actualiza las gráficas. Si un dato requerido falta o es inválido, se retiran las curvas anteriores para evitar mostrar resultados de otra condición. Revise **Resultados** para ver ecuaciones, comprobaciones e hipótesis.
 
 ## Interpretar las vistas
@@ -40,6 +42,8 @@ Al cambiar de ejemplo o proyecto, las ediciones pendientes se conservan en `data
 Cambiar h no recalcula automáticamente ρ, Cse ni las intensidades de ráfaga. Compruebe estos datos explícitamente. Guardar un ejemplo modificado no valida los datos de una nueva aeronave.
 
 ## Exportar
+
+**Exportar** trabaja en segundo plano, muestra el progreso y permite cancelar al terminar la etapa actual. Los archivos parciales de una cancelación se conservan identificados. Si faltan datos, la entrega completa se bloquea; puede guardar el proyecto para completarlo después.
 
 **Exportar** crea una carpeta nueva `outputs/entrega_FECHA_HORA/`. Incluye el proyecto JSON, las tablas CSV, resultados JSON, las gráficas y reportes PDF/DOCX. Las fórmulas de los reportes se incorporan como imágenes; el texto y las tablas del DOCX son editables.
 
