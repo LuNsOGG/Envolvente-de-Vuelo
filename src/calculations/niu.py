@@ -179,8 +179,12 @@ def calculate_niu(case, samples=601):
     values['n3']=1+dc;values['n4']=1-dc
     equation('Relación de masas','μ = 2 (W/S)/(ρ c a g)',values['mu'],'1',f'En Vc: 2×{ws:.8g}/({rho:g}×{chord:g}×{slope(vc):.8g}×{g:g})')
     equation('Alivio de ráfaga','Kg = 0.88 μ/(5.3+μ)',values['Kg'],'1')
-    equation('Pérdida EAS (Niu)','q S C / W = 1',values['Vs'],'kt EAS',
-             ('q = V²/296; C = CL(M)' if book else 'q = ρ0 (V × kt_to_fps)²/2; C = '+r['coefficient_basis']))
+    equation('Pérdida EAS (Niu)','qfactor Vs² C+(Vs)/(W/S) = 1',values['Vs'],'kt EAS',
+             f'Resolver {qfactor:.12g} × V² × {cp:.12g} × escala(V) / {ws:.12g} − 1 = 0; escala(Vs)={lift_scale(values["Vs"]):.12g}')
+    equation('Intersección A','qfactor A² C+(A)/(W/S) = N',values['V_A_stall'],'kt EAS',
+             f'Resolver {qfactor:.12g} × V² × {cp:.12g} × escala(V) / {ws:.12g} − {N:g} = 0')
+    equation('Intersección G','qfactor G² C−(G)/(W/S) = n−',values['V_G_stall'],'kt EAS',
+             f'Resolver {qfactor:.12g} × V² × {cn:.12g} × escala(V) / {ws:.12g} − ({nn:g}) = 0')
     knots=[0,vc,vd,*values_subset(values,['Vs','V_A_stall','V_G_stall','Vb'])]
     if book:knots.extend(v/548.6*cse for v in BOOK_V if v/548.6*cse<=vd)
     for fn,kind,nfunc in [(lambda v:stall_pos(v)-gp(v),'pérdida-ráfaga positiva',gp),

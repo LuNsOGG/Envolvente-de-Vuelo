@@ -24,7 +24,7 @@ def general_analysis_pages(project,case,result,plots,directory):
         entries=[]
         for eq in eqs:
             index=result['equations'].index(eq)
-            entries.append(dict(heading=eq['nombre'],image=equation_art(eq,directory,index),body='Sustitución: '+eq['sustitución']+' = '+number(eq['resultado'])+' '+eq['unidad']+'.',source=eq['fuente']))
+            entries.append(dict(heading=eq['nombre'],image=equation_art(eq,directory,index),body='Sustitución: '+eq['sustitución']+'. Resultado: '+number(eq['resultado'])+' '+eq['unidad']+'.',source=eq['fuente']))
         pages.append(dict(title=f'Ecuaciones y sustituciones {i}',equations=entries))
     pages.append(dict(title='Puntos característicos y construcción',paragraphs=[
         'Las curvas de pérdida usan el coeficiente normal positivo y negativo introducidos. La intersección A se obtiene con Vs por la raíz de n positivo; la Va elegida se mantiene como un parámetro separado.',

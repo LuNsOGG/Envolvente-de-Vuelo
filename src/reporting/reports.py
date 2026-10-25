@@ -34,7 +34,7 @@ def equation_art(eq,directory,index):
     formulas={
        'Carga alar':r'$w_s=\frac{W}{S}$',
        'Pérdida EAS':r'$V_S=\frac{1}{k_v}\sqrt{\frac{2(W/S)}{\rho_0 C_{N+}}}$',
-       'Intersección A':r'$V_{A,\mathrm{stall}}=V_S\sqrt{n_+}$',
+       'Intersección A':r'$q(A)\,C_+(A)/(W/S)=n_+$',
        'Relación de masas':r'$\mu_g=\frac{2(W/S)}{\rho\,\bar{c}\,a\,g}$',
        'Alivio de ráfaga':r'$K_g=\frac{0.88\mu_g}{5.3+\mu_g}$',
        'Ráfaga C':r'$\Delta n=\frac{K_g U_{de} V a}{498(W/S)},\quad n=1\pm\Delta n$',
@@ -44,8 +44,10 @@ def equation_art(eq,directory,index):
         k={'Vc_A_raw':17,'Vd_A_raw':24,'Va_A_raw':15,'Vf_A_raw':11}[eq['nombre']]
         formula=rf'$V_{{\min,\mathrm{{base}}}}={k}\sqrt{{\max(n_1,3.8)\,(W/S)}}$'
     else:formula=formulas.get(eq['nombre'])
-    if not formula:return None
-    fig=Figure(figsize=(6.7,.55),dpi=220);fig.text(.02,.45,formula,fontsize=16,va='center')
+    if not formula:
+        import textwrap
+        formula='\n'.join(textwrap.wrap(eq.get('ecuación','Fórmula pendiente'),85))
+    fig=Figure(figsize=(6.7,.55),dpi=220);fig.text(.02,.45,formula,fontsize=13 if not formula.startswith('$') else 16,va='center')
     path=directory/f'equation_{index:02}.png';fig.savefig(path,dpi=220,transparent=False)
     return path
 

@@ -108,3 +108,16 @@ def test_09_engine_rejects_book_table_with_cn_from_json():
     r=calculate(p['cases'][0]);assert r['blocked'] and not r['curves']
     assert 'CL' in r['blocked'][0]
 
+
+def test_10_every_current_equation_has_a_rendered_expression():
+    from uuid import uuid4
+    from bootstrap import ROOT
+    from src.reporting.reports import equation_art
+    folder=ROOT/'tests/artifacts'/uuid4().hex;folder.mkdir(parents=True)
+    for n in [1,2]:
+        r=calculate(example_project(n)['cases'][0])
+        assert {'Intersección A','Intersección G'} <= {e['nombre'] for e in r['equations']}
+        for i,e in enumerate(r['equations']):assert equation_art(e,folder,n*100+i).is_file()
+        vs=next(e for e in r['equations'] if e['nombre']=='Pérdida EAS (Niu)')
+        assert 'Resolver' in vs['sustitución'] and 'Vs' in vs['ecuación']
+
