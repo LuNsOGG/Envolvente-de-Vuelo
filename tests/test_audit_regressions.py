@@ -121,3 +121,13 @@ def test_10_every_current_equation_has_a_rendered_expression():
         vs=next(e for e in r['equations'] if e['nombre']=='Pérdida EAS (Niu)')
         assert 'Resolver' in vs['sustitución'] and 'Vs' in vs['ecuación']
 
+
+def test_11_combined_axes_include_uncut_gust_and_published_reference():
+    from src.plotting.envelopes import envelope_figure
+    c=example_project(1)['cases'][0];c['parameters']['U_c']['value']=200;r=calculate(c)
+    fig=envelope_figure(r,'combined',show_reference=True);ax=fig.axes[0];low,high=ax.get_ylim()
+    for line in ax.lines:
+        assert all(low<=y<=high for y in line.get_ydata() if y is not None)
+    assert high>max(r['curves']['gust_pos'])
+    assert ax.get_xlim()[1]>=max(r['reference_curves']['V'])
+

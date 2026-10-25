@@ -74,6 +74,12 @@ def envelope_figure(result,kind,compact=False,show_reference=False):
     if show_reference and result.get('reference_curves'):
         ref=result['reference_curves'];ax.plot(ref['V'],ref[kind+'_pos'],ls='--',color='#777777',lw=1.4,label='Tesis publicada · referencia')
         ax.plot(ref['V'],ref[kind+'_neg'],ls='--',color='#777777',lw=1.4)
+    # Incluye todas las curvas visibles, también demanda sin recorte y referencia.
+    import math
+    visible_y=[float(y) for line in ax.lines for y in line.get_ydata() if y is not None and math.isfinite(float(y))]
+    visible_x=[float(x) for line in ax.lines for x in line.get_xdata() if x is not None and math.isfinite(float(x))]
+    if visible_y:ax.set_ylim(min(-2,min(visible_y)-.55),max(4,max(visible_y)+.8))
+    if visible_x:ax.set_xlim(0,max(visible_x)*1.04)
     ax.legend(loc='upper left',fontsize=6 if compact else 8,framealpha=.95)
     if result.get('partial',{}).get(kind):
         ax.text(.98,.035,result['partial'][kind],transform=ax.transAxes,ha='right',fontsize=7 if compact else 9,
