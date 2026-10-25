@@ -79,8 +79,10 @@ def adapt_case(case):
     for key in FIELD_KEYS:
         c['parameters'].setdefault(key, parameter(None, DEFAULT_UNITS[key]))
         if c['parameters'][key]['unit'] not in UNITS[SPECS[key][1]]:
-            c['parameters'][key]['unit'] = DEFAULT_UNITS[key]
-            c['parameters'][key]['status'] = 'unidad interpretada'
+            if c['parameters'][key].get('value') is None:
+                c['parameters'][key]['unit']=DEFAULT_UNITS[key]
+            else:
+                raise ValueError(f"{key}: unidad {c['parameters'][key]['unit']!r} incompatible; no se reinterpretará el valor.")
     if not already:
         # Los ejemplos anteriores incluían cifras elegidas para demostrar la UI.
         # Se preservan en original, pero no se convierten en datos de la hoja nueva.

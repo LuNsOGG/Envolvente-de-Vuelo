@@ -85,7 +85,10 @@ def test_ui_edit_recalculates_loading_and_invalid_clears_curves(sheet):
 def test_previous_demonstration_additions_are_not_imported_as_aircraft_data():
     from bootstrap import ROOT
     from src.project import load_project
-    original=load_project(ROOT/'data/proyecto_inicial.json')['cases'][1]; adapted=adapt_case(original)
+    original=load_project(ROOT/'data/proyecto_inicial.json')['cases'][1]
+    with pytest.raises(ValueError,match='incompatible'):adapt_case(original)
+    compatible=deepcopy(original);compatible['parameters']['CLalpha_photo']['value']=None
+    adapted=adapt_case(compatible)
     assert adapted['parameters']['CN_neg']['value'] is None and original['parameters']['CN_neg']['value']==-1.35
     assert adapted['parameters']['altitude']['value'] is None
 
