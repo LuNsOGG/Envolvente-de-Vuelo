@@ -8,6 +8,8 @@ def validate_project(project):
     if not isinstance(project,dict):raise ValueError('El proyecto debe ser un objeto JSON')
     if project.get('schema_version')!=1 or not isinstance(project.get('cases'),list) or not project['cases']:
         raise ValueError('JSON de proyecto incompatible: se requiere schema_version=1 y casos')
+    options=project.get('export_options',{})
+    if not isinstance(options,dict) or any(not isinstance(v,bool) for v in options.values()):raise ValueError('Las opciones de exportación deben ser valores booleanos')
     ids=[]
     for case in project['cases']:
         if not isinstance(case,dict):raise ValueError('Cada condición debe ser un objeto')

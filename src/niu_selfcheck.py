@@ -119,6 +119,8 @@ def run_selfcheck(gui=False):
                     def completed(path):
                         folder=Path(path)
                         assert (folder/'reporte_analisis.pdf').is_file() and (folder/'reporte_analisis.docx').is_file()
+                        assert (folder/'reporte_figuras_niu.pdf').is_file() and (folder/'reporte_figuras_niu.docx').is_file()
+                        assert len(list((folder/'figuras_niu').glob('*.png')))==10
                         assert json.loads((folder/'ESTADO_EXPORTACION.json').read_text(encoding='utf-8'))['estado']=='COMPLETO'
                         info['exports'][str(number)]=path
                     worker.progress.connect(progress);worker.completed.connect(completed)

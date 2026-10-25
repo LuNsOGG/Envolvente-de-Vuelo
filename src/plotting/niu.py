@@ -203,9 +203,10 @@ def niu_figure(number):
     fig.text(.99,.003,f'Redibujo interpretativo · Niu · impresa {f["page"]} / visor {f["viewer"]} · Sin escala',ha='right',fontsize=8,color='#667b88')
     return fig
 
-def export_niu(directory):
+def export_niu(directory,progress=None):
     paths={}
     for f in FIGURES:
+        if progress:progress(f['number'])
         fig=niu_figure(f['number']);name='niu_'+f['number'].replace('.','_')
         for ext in ['png','svg']:
             path=directory/(name+'.'+ext);fig.savefig(path,dpi=230,bbox_inches='tight');paths[(f['number'],ext)]=path

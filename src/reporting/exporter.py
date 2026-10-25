@@ -36,7 +36,7 @@ def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=No
     try:
         chosen=next(c for c in project['cases'] if c['id']==case_id)
         legacy=chosen.get('requires_thesis','Wn_photo' in chosen['parameters'])
-        if include_niu is None:include_niu=legacy
+        if include_niu is None:include_niu=project.get('export_options',{}).get('include_niu',True)
         cases=project['cases'] if all_cases else [chosen]
         results={} if niu_only else {c['id']:calculate(c) for c in cases}
         pending={c['id']:results[c['id']]['blocked'] for c in cases if c['id'] in results and results[c['id']]['blocked']}
@@ -84,7 +84,7 @@ def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=No
             write_csv(out/'cambios.csv',chosen.get('changes',[]))
         if include_niu or niu_only:
             checkpoint(92,'Generando figuras de Niu')
-            niudir=out/'figuras_niu';niudir.mkdir();images=export_niu(niudir)
+            niudir=out/'figuras_niu';niudir.mkdir();images=export_niu(niudir,progress=lambda number:checkpoint(92,'Figura Niu '+number))
             pages=niu_pages(project,images);render_pdf(pages,out/'reporte_figuras_niu.pdf');render_docx(pages,out/'reporte_figuras_niu.docx')
             write_csv(out/'indice_niu.csv',[dict(figura=f['number'],título=f['title'],impresa=f['page'],visor=f['viewer'],estado='Localizada y revisada visualmente') for f in FIGURES])
         note=('CÁLCULO PARCIAL: datos pendientes.\n' if pending else 'Exportación completa; revise advertencias de aplicabilidad.\n')+'Aeronave: '+chosen.get('aircraft','Sin identificar')+'\nCondición: '+chosen['name']+'\n'

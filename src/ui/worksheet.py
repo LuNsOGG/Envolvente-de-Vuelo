@@ -71,6 +71,8 @@ class WorksheetWindow(QMainWindow):
         actions=QHBoxLayout(); self.complete_button=QPushButton('Completar cálculo…'); self.complete_button.clicked.connect(self.complete_data); actions.addWidget(self.complete_button)
         b=QPushButton('Resultados'); b.clicked.connect(self.show_results); actions.addWidget(b); left.addLayout(actions)
         self.variables_button=QPushButton('Resumen de variables'); self.variables_button.clicked.connect(self.show_variables); left.addWidget(self.variables_button)
+        self.include_niu=QCheckBox('Incluir reporte de figuras de Niu');self.include_niu.setChecked(True)
+        self.include_niu.toggled.connect(self.set_niu_export);left.addWidget(self.include_niu)
         self.calc_state=QLabel('Actualizando cálculo…');left.addWidget(self.calc_state)
         self.message=QLabel(); self.message.setWordWrap(True); left.addWidget(self.message)
         inputs.setMinimumWidth(340); split.addWidget(inputs)
@@ -90,8 +92,12 @@ class WorksheetWindow(QMainWindow):
 
     def case(self):return next(c for c in self.project['cases'] if c['id']==self.current)
 
+    def set_niu_export(self,checked):
+        if not self.loading:self.project.setdefault('export_options',{})['include_niu']=checked;self.changed=True
+
     def fill(self):
         self.loading=True
+        self.include_niu.setChecked(self.project.get('export_options',{}).get('include_niu',True))
         self.condition_selector.blockSignals(True);self.condition_selector.clear()
         for candidate in self.project['cases']:self.condition_selector.addItem(case_label(candidate),candidate['id'])
         self.condition_selector.setCurrentIndex(self.condition_selector.findData(self.current));self.condition_selector.blockSignals(False)
