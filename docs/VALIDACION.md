@@ -24,7 +24,7 @@ Se revisaron capturas de ambos ejemplos, contraste, edición, guardado y exporta
 
 ## Publicación de la revisión Cessna
 
-La nueva ejecución local de pruebas se registra en [validacion_publicacion.json](validacion_publicacion.json). El estado remoto de Actions debe comprobarse en la ejecución asociada al commit publicado; la aprobación local no se presenta como aprobación remota. Esta publicación actualiza código y documentación, sin recompilar ni alterar el EXE local.
+La nueva ejecución local de pruebas se registra en [validacion_publicacion.json](validacion_publicacion.json). La ejecución remota [Pruebas Windows](https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40151700126), asociada al commit `fdf2388c5f738a463f758cff314f04035afe5f05`, aprobó las 105 pruebas en 53.19 s y la comprobación de ejemplos. El commit posterior registra esta evidencia y solo modifica documentación. Esta publicación actualiza código y documentación, sin recompilar ni alterar el EXE local.
 
 ## Qué verifican las pruebas
 
