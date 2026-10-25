@@ -8,7 +8,10 @@
   "enlaces_documentacion_actual": "correctos",
   "integridad_exe_pdf_fotografias": "sin cambios",
   "motor_e_interfaz": "sin modificaciones en esta publicación",
-  "actions": "Pendiente de ejecución remota; no se equipara a la validación local",
+  "actions": "Correcto: instalación, pruebas y comprobación de ejemplos en Windows",
+  "actions_commit_validado": "32e6a69d15921560a19274150305e1cacd10df14",
+  "actions_run": "https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40109034103",
+  "compilacion_remota": "Flujo manual disponible; no ejecutado en esta publicación documental",
   "registro_local": "outputs/qa/github_20261024_0940.txt",
   "registro_xml_local": "outputs/qa/github_20261024_0940.xml",
   "copia_separada": {
