@@ -36,6 +36,14 @@ def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=No
             write_csv(folder/'puntos.csv',result['points'],['punto','V','n'])
             write_csv(folder/'intersecciones.csv',result['intersections'],['tipo','V','n'])
             write_csv(folder/'verificaciones.csv',result['checks'])
+            if result.get('reference_rows'):
+                write_csv(folder/'contraste_tesis.csv',result['reference_rows'])
+                write_csv(folder/'velocidades.csv',result['speed_rows'])
+                write_csv(folder/'discrepancias_tesis.csv',({'observacion':item} for item in result['source_issues']))
+                ref=result['reference_curves'];write_csv(folder/'curvas_tesis_publicadas.csv',({k:ref[k][i] for k in ref} for i in range(len(ref['V']))))
+                for kind in ['man','gust','combined']:
+                    from src.plotting.envelopes import envelope_figure
+                    for ext in ['png','svg']:envelope_figure(result,kind,show_reference=True).savefig(folder/f'{kind}_comparacion_tesis.{ext}',dpi=200,bbox_inches='tight')
             curves=result['curves'];keys=list(curves)
             write_csv(folder/'curvas.csv',({k:curves[k][i] for k in keys} for i in range(len(curves.get('V',[])))),keys or ['sin datos'])
             paths[case['id']]=export_plots(result,folder)

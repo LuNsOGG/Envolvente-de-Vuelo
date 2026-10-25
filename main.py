@@ -16,8 +16,8 @@ def main():
     p.add_argument('--comprobar-gui',action='store_true',help='Comprobar edición y recálculo en la interfaz')
     args=p.parse_args()
     from src.project import load_project
-    from src.calculations.worksheet import worksheet_project
-    project=load_project(args.project) if args.project else worksheet_project()
+    from src.calculations.examples import example_project
+    project=load_project(args.project) if args.project else example_project(1)
     if args.comprobar or args.comprobar_gui:
         from src.worksheet_selfcheck import run_selfcheck
         run_selfcheck(gui=args.comprobar_gui)

@@ -4,10 +4,10 @@ import pytest
 from src.calculations import calculate
 from src.calculations.examples import example_project,VARIABLES
 from src.calculations.units import KT_TO_FPS
-from src.calculations.worksheet import prepare_case
+from src.calculations.worksheet import prepare_case,worksheet_project
 
 
-def case(number=1):return example_project(number)['cases'][0]
+def case(number=1):return (worksheet_project() if number==1 else example_project(number))['cases'][0]
 
 
 def test_excel_matches_independent_hand_calculation():

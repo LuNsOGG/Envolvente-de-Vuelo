@@ -9,6 +9,8 @@ from math import sqrt, isfinite
 from .units import convert, KT_TO_FPS, RHO0
 
 SPECS = {
+ 'span': ('Envergadura de referencia', 'length'),
+ 'Va_selected': ('Velocidad de maniobra seleccionada', 'speed'),
  'U_b': ('Ráfaga máxima en VB', 'gust'),
  'Cse': ('Velocidad del sonido equivalente', 'speed'),
  'W': ('Peso de la condición', 'weight'), 'S': ('Superficie alar', 'area'),

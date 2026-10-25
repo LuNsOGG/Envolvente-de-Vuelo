@@ -135,13 +135,13 @@ def test_reference_category_weights_do_not_replace_active_weight():
 
 def test_example_menu_loads_independent_units_and_returns_to_excel(sheet):
     actions=sheet.examples_button.menu().actions()
-    assert [a.text() for a in actions]==['Ejemplo 1','Ejemplo 2']
+    assert [a.text() for a in actions]==['Ejemplo Cessna','Ejemplo libro']
     actions[1].trigger()
     assert sheet.result['values']['W']==88000 and sheet.case()['parameters']['a']['unit']=='1/rad'
     assert sheet.result['values']['Vb']<325 and sheet.table.item(8,0).text()=='Cʟ máx.'
     actions[0].trigger()
-    assert sheet.result['values']['W']==4631 and sheet.case()['parameters']['a']['unit']=='1/deg'
-    assert sheet.result['values']['CN_neg']==-1.35 and 'Vb' not in sheet.result['values']
+    assert sheet.result['values']['W']==4000 and sheet.case()['parameters']['a']['unit']=='1/deg'
+    assert sheet.result['values']['CN_neg']==-.8381569 and 'Vb' not in sheet.result['values']
 
 
 def test_niu_dialog_edits_gust_and_preserves_other_data(sheet):

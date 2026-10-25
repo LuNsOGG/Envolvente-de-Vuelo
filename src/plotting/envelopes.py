@@ -2,7 +2,7 @@ from matplotlib.figure import Figure
 
 COLORS=dict(man='#111111',gust='#333333',combined='#000000')
 
-def envelope_figure(result,kind,compact=False):
+def envelope_figure(result,kind,compact=False,show_reference=False):
     fig=Figure(figsize=(10,6.3),dpi=110,layout='constrained')
     fig.get_layout_engine().set(rect=(0,.045,1,.955))
     ax=fig.add_subplot(111)
@@ -52,6 +52,8 @@ def envelope_figure(result,kind,compact=False):
     speed_labels=[('Vs','Vs'),('V_A_stall','A'),('Vc','Vc'),('Vd','Vd')] if compact else [('Vs','Vs'),('V_A_stall','A'),('Va','Va sel.'),('Vc','Vc'),('Vd','Vd')]
     if result.get('method')=='niu':
         speed_labels=[('Vs','Vs'),('Vb','VB') if kind!='man' and 'Vb' in result['values'] else ('V_A_stall','A'),('Vc','Vc'),('Vd','Vd')]
+    if result.get('reference_dataset')=='ipn_2007' or result.get('speed_rows'):
+        if not compact:speed_labels.insert(2,('Va_selected','Va sel.'))
     for i,(key2,label) in enumerate(speed_labels):
         x=result['values'].get(key2)
         if x is None:continue
@@ -69,10 +71,15 @@ def envelope_figure(result,kind,compact=False):
         for side,yoff in [('pos',20),('neg',-15)]:
             val=result['values'].get('n_gust_c_'+side)
             if val is not None:ax.annotate(f'n={val:.3f}',(result['values']['Vc'],val),xytext=(7,yoff),textcoords='offset points',fontsize=9,color=color)
+    if show_reference and result.get('reference_curves'):
+        ref=result['reference_curves'];ax.plot(ref['V'],ref[kind+'_pos'],ls='--',color='#777777',lw=1.4,label='Tesis publicada · referencia')
+        ax.plot(ref['V'],ref[kind+'_neg'],ls='--',color='#777777',lw=1.4)
     ax.legend(loc='upper left',fontsize=6 if compact else 8,framealpha=.95)
     if result.get('partial',{}).get(kind):
         ax.text(.98,.035,result['partial'][kind],transform=ax.transAxes,ha='right',fontsize=7 if compact else 9,
                 bbox=dict(facecolor='white',edgecolor='#777777',alpha=.95,pad=3))
+    if result.get('academic_notice'):
+        fig.text(.99,.003,'Uso académico · Aproximación estática · '+('Apéndice A: AR>7' if result['values'].get('AR',0)>7 else 'Aplicabilidad pendiente'),ha='right',fontsize=6 if compact else 8,color='#555555')
     if not compact and not result.get('worksheet'):
         footer='Uso académico · Datos e hipótesis en el reporte'
         if result.get('requires_thesis',False):footer+=' · Variante pendiente de tesis'

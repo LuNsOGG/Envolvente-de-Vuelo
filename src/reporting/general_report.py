@@ -65,4 +65,12 @@ def general_analysis_pages(project,case,result,plots,directory):
         from src.calculations.examples import VARIABLES
         for i,rows in enumerate(chunks(VARIABLES,8),1):
             pages.append(dict(title=f'Resumen de variables {i}',table=[['Símbolo','Nombre','Significado']]+[list(row) for row in rows],widths=[1.,1.8,4.]))
+    if result.get('reference_rows'):
+        rows=[['Magnitud','kt EAS','Criterio']]+[[row['magnitud'],number(row['valor']),row['criterio']] for row in result['speed_rows']]
+        pages.append(dict(title='Velocidades mínimas seleccionadas e intersecciones',table=rows,widths=[1.65,1.05,4.1],paragraphs=['A, Va mínimo base y Va seleccionada son magnitudes independientes. La selección de la tesis se conserva; el peso y la polar revisados modifican las intersecciones.']))
+        for i,group in enumerate(chunks(result['reference_rows'],8),1):
+            rows=[['Dato','Tesis','Actual','Unidad','Página']]+[[row['dato'],number(row['tesis']),number(row['recalculado']),row['unidad'],row['pagina']] for row in group]
+            pages.append(dict(title=f'Contraste con la tesis IPN {i}',table=rows,widths=[2.4,1.,1.,1.1,1.3],paragraphs=['La referencia publicada conserva sus inconsistencias; el cálculo actual no adopta resultados erróneos para forzar coincidencias.']))
+        for i,group in enumerate(chunks(result['source_issues'],4),1):
+            pages.append(dict(title=f'Discrepancias e hipótesis de la tesis {i}',paragraphs=group))
     return pages

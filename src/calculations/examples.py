@@ -4,10 +4,12 @@ from .cases import parameter
 
 
 def example_project(number):
-    if number==1:return worksheet_project()
+    if number==1:
+        from .thesis import cessna_project
+        return cessna_project()
     if number!=2:raise ValueError('Ejemplo desconocido')
-    project=worksheet_project(False,'Ejemplo 2');c=project['cases'][0]
-    c.update(name='Ejemplo 2',example=2,category='transporte',speed_mode='manual',negative_rule='transport',
+    project=worksheet_project(False,'Ejemplo libro');c=project['cases'][0]
+    c.update(name='Ejemplo libro',example=2,category='transporte',speed_mode='manual',negative_rule='transport',
              negative_end='zero',aero_model='niu_table',coefficient_basis='CL',q_convention='niu_296')
     source='Niu, cap. 3, ejemplo 2 de §3.11, pp.74–77'
     data={'W':(88000,'lbf'),'S':(1200,'ft²'),'n_pos':(2.5,'1'),'CN_pos':(1.3,'1'),
@@ -38,19 +40,20 @@ VARIABLES=[
  ('W/S','Carga alar','Peso por unidad de superficie del ala; calculado.'),
  ('N, n+','Límite positivo','Factor máximo de maniobra positiva seleccionado.'),
  ('n−','Límite negativo','Factor límite de maniobra negativa; regla en Datos de cálculo.'),
- ('CN máx./mín.','Coeficiente normal','Fuerza normal al eje de referencia dividida por qS; Ejemplo 1.'),
- ('CL máx./mín.','Coeficiente de sustentación','Sustentación dividida por qS; Ejemplo 2. No es intercambiable con CN.'),
+ ('CN máx./mín.','Coeficiente normal','Fuerza normal al eje de referencia dividida por qS; Ejemplo Cessna.'),
+ ('CL máx./mín.','Coeficiente de sustentación','Sustentación dividida por qS; Ejemplo libro. No es intercambiable con CN.'),
  ('ρ','Densidad local','Densidad del aire de la condición; interviene en μ.'),
  ('ρ₀','Densidad de referencia','Densidad estándar que define la velocidad equivalente EAS.'),
  ('c','Cuerda media','Longitud de referencia del ala utilizada en μ; 13 ft en el libro.'),
  ('a','Pendiente de la aeronave','Cambio de coeficiente por ángulo de ataque; entra en las ráfagas.'),
- ('a₀','Pendiente a Mach cero','Base de a(M) cuando se usa la tabla del Ejemplo 2.'),
+ ('a₀','Pendiente a Mach cero','Base de a(M) cuando se usa la tabla del Ejemplo libro.'),
  ('CLα','Pendiente de sustentación de referencia','Dato independiente: en el libro corresponde al ala. No reemplaza a automáticamente.'),
  ('g','Gravedad','Aceleración usada para convertir peso a masa en μ.'),
  ('Vc','Crucero de diseño','Velocidad del punto de ráfaga Uc; automática o introducida.'),
  ('Vd','Picada de diseño','Velocidad máxima del diagrama, donde se aplica Ud.'),
  ('Vs','Pérdida a 1 g','Intersección de la curva de pérdida positiva con n=1.'),
- ('A / Va','Maniobra','Intersección de pérdida positiva con el límite N.'),
+ ('A','Intersección de maniobra','Intersección de pérdida positiva con N; distinta de Va seleccionada y del mínimo base.'),
+ ('Va mín. / Va sel.','Velocidades de referencia','Mínimo base de A3 y velocidad seleccionada, separados de la intersección A.'),
  ('G','Maniobra negativa','Intersección de pérdida negativa con el límite n−.'),
  ('VB','Turbulencia','Intersección de pérdida positiva con 1+Δn para Ub; calculada si Ub>0.'),
  ('Ub, Uc, Ud','Intensidad de ráfaga','Velocidad vertical del aire en VB, Vc y Vd; ft/s. Ub=0 omite VB.'),
