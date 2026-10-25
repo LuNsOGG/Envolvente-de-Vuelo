@@ -1,6 +1,10 @@
 # Validación
 
-**Versión vigente 4.2:** [comprobaciones 18-21](REVISION_18_21.md), 148 pruebas aprobadas y EXE instalado comprobado. Los registros siguientes documentan etapas anteriores. La ejecución numérica del archivo MATLAB está pendiente por error 5201; su análisis de sintaxis pasó.
+**Versión vigente 4.3:** exportación de gráficas, 152 pruebas aprobadas y EXE instalado comprobado. Consulte [el cambio vigente](EXPORTACION_GRAFICAS.md).
+
+**Versión vigente 4.3:** exportación de gráficas, 152 pruebas aprobadas y EXE instalado comprobado. Consulte [el cambio vigente](EXPORTACION_GRAFICAS.md).
+
+**Registro de la versión 4.2:** [comprobaciones 18-21](REVISION_18_21.md), 148 pruebas aprobadas y EXE instalado comprobado. Los registros siguientes documentan etapas anteriores. La ejecución numérica del archivo MATLAB está pendiente por error 5201; su análisis de sintaxis pasó.
 
 **Versión 4.1, correcciones 1–17:** 136 pruebas aprobadas y exportación real de ambos pesos desde la interfaz con progreso. Se revisó visualmente el PDF de ecuaciones. Véase [el registro de correcciones](REVISION_1_17.md). Las comprobaciones de versiones anteriores se conservan a continuación como evidencia histórica.
 

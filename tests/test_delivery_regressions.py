@@ -4,14 +4,16 @@ from src.calculations import calculate
 from src.calculations.examples import example_project
 
 
-def test_18_figures_option_defaults_on_and_is_preserved(qt_lifetime):
+def test_export_window_omits_report_options(qt_lifetime):
     from src.ui.worksheet import WorksheetWindow
+    from PySide6.QtWidgets import QPushButton,QCheckBox
     w=WorksheetWindow(example_project(1))
     try:
-        assert w.include_niu.isChecked()
-        w.include_niu.setChecked(False);p=deepcopy(w.project);w.replace_project(p)
-        assert not w.include_niu.isChecked() and not w.project['export_options']['include_niu']
+        assert not any('Incluir' in c.text() for c in w.findChildren(QCheckBox))
+        assert not any(c.text()=='Portada' for c in w.findChildren(QPushButton))
+        assert w.export_button.isEnabled()
     finally:w.changed=False;w.timer.stop();w.close()
+
 
 def test_18_export_contains_both_figure_reports_and_all_ten_drawings(monkeypatch):
     import src.reporting.exporter as exporter

@@ -206,12 +206,12 @@ def test_16_export_worker_keeps_qt_event_loop_responsive(qt_lifetime,monkeypatch
     import time
     from PySide6.QtCore import QEventLoop,QTimer
     from src.ui.export_worker import ExportWorker
-    import src.reporting.exporter as exporter
+    import src.reporting.graphs as exporter
     heartbeat=[];completed=[];loop=QEventLoop()
     def export(*args,progress,cancel,**kwargs):
         for i in range(5):time.sleep(.03);progress(i*20,'Etapa')
         return 'resultado'
-    monkeypatch.setattr(exporter,'export_project',export)
+    monkeypatch.setattr(exporter,'export_graphs',export)
     worker=ExportWorker(example_project(1),'cessna_revisado');worker.completed.connect(completed.append);worker.finished.connect(loop.quit)
     timer=QTimer();timer.timeout.connect(lambda:heartbeat.append(worker.isRunning()));timer.start(10)
     qt_lifetime.processEvents()

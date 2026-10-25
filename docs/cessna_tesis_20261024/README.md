@@ -34,7 +34,7 @@ Se distinguen **A (intersección)**, **Va mínimo base** y **Va seleccionada**. 
 
 ## Guardado y exportación
 
-Los dos pesos pertenecen al mismo proyecto JSON; guardar y abrir conserva ambos. El botón Exportar de la interfaz crea una carpeta nueva e incluye resultados de las dos condiciones. En la línea de comandos, use `--all` para exportar ambas; `--export` genera los archivos de la condición activa. Ambos conservan todas las condiciones en el proyecto JSON y comparan sus valores en `comparacion_resultados.csv`. Para cada una se añaden `velocidades.csv`, `contraste_tesis.csv`, `discrepancias_tesis.csv`, `curvas_tesis_publicadas.csv` y gráficas de comparación PNG/SVG. El reporte de la condición activa incluye tablas de velocidades, contraste y explicaciones; compara los resultados de ambos pesos. Los informes PDF/DOCX mantienen el alcance académico y la aproximación de pérdida estática.
+Los dos pesos pertenecen al mismo proyecto JSON; Guardar conserva ambos. Desde la versión 4.3, Exportar guarda exclusivamente las tres gráficas de la condición activa en PNG/SVG. Si se activa la comparación con la tesis, se conserva esa capa en las imágenes. Para obtener las de otro peso, cambie de condición y vuelva a exportar. Las entregas anteriores de informes y tablas se conservan como registros históricos. Consulte [exportación actual](../EXPORTACION_GRAFICAS.md).
 
 `examples/ejemplo_cessna.json` y `examples/ejemplo_libro.json` son los proyectos nuevos. `ejemplo_1.json`, `ejemplo_2.json`, la documentación histórica y las recuperaciones anteriores se conservan para reproducción histórica.
 

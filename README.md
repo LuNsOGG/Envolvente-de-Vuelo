@@ -1,12 +1,12 @@
 # Envolvente de Vuelo
 
-**Versión actual: 4.2.** Incluye las [correcciones 1–17](docs/REVISION_1_17.md) y la [etapa 18–21](docs/REVISION_18_21.md): figuras de Niu, procedimiento A3/A4, portada editable y archivo MATLAB. Los puntos 22–24 siguen pendientes.
+**Versión actual: 4.3.** El botón Exportar guarda únicamente las tres gráficas de la condición activa en PNG/SVG. Consulte [exportación simplificada](docs/EXPORTACION_GRAFICAS.md). Los puntos 22-24 siguen pendientes; las etapas anteriores se conservan documentadas.
 
 **Ejemplos:** menú **Ejemplo Cessna / Ejemplo libro**. El Cessna incluye la ficha revisada de 4000 lb y una condición de comparación de 4631 lb. Consulte [la revisión de la tesis](docs/cessna_tesis_20261024/README.md) para los datos, discrepancias y nuevas exportaciones.
 
 Calculadora de escritorio en español para construir diagramas **V–n de maniobras, ráfagas y envolvente combinada**. Permite editar datos de una aeronave, recalcular las gráficas, guardar proyectos y exportar resultados. Desarrollada en Python con PySide6 y Matplotlib.
 
-![Interfaz con el Ejemplo Cessna revisado](docs/imagenes/correcciones_18_21.png)
+![Interfaz con el Ejemplo Cessna revisado](docs/imagenes/exportacion_graficas_4_3.png)
 
 ## Funciones
 
@@ -16,8 +16,8 @@ Calculadora de escritorio en español para construir diagramas **V–n de maniob
 - Ráfagas cuasiestáticas de Niu calculadas como `n = 1 ± Δn`, independientes de los límites de maniobra.
 - Dos ejemplos reproducibles, coeficientes constantes o interpolación aerodinámica del caso del libro.
 - Guardado en JSON con procedencia de parámetros, versiones y recuperaciones de edición.
-- Exportación de tablas CSV, gráficas PNG/SVG, reportes PDF/DOCX y cálculos MATLAB editables.
-- Portada editable y selección de reportes de figuras de Niu y del procedimiento académico A3/A4.
+- Exportación de las tres gráficas de la condición activa en PNG y SVG, sin informes ni tablas adicionales.
+- Consulta independiente del procedimiento académico A3/A4 en pantalla.
 - Interfaz y reportes en blanco, negro y grises; resumen integrado de variables.
 
 ## Ejecutar desde el código

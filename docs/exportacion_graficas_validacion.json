@@ -1,0 +1,51 @@
+{
+  "version": "4.3",
+  "tests_passed": 152,
+  "exe_exit": 0,
+  "exe_sha256": "93b07f1594a867ae8d836582dfe21f7c36e7cab8bae52d36c8e7d77e8c1f2fcc",
+  "previous_sha256": "1ffa2941e166ceef8336028e21eadd830fc125e87cbb8fd9dd82fda097184e25",
+  "dependencies_verified": 1256,
+  "previous_preserved": true,
+  "exported_examples": [
+    "Cessna",
+    "Libro"
+  ],
+  "files_per_export": 6,
+  "formats": [
+    "png",
+    "svg"
+  ],
+  "plots": [
+    "maniobras",
+    "rafagas",
+    "combinado"
+  ],
+  "scope_deferred": [
+    22,
+    23,
+    24
+  ],
+  "independent_artifacts": {
+    "live_format": "MATLAB plain text Live Code R2025a+",
+    "self_contained": true,
+    "local_functions": 0,
+    "syntax": "MLint R2025a sin diagnósticos",
+    "numeric_equations_against_engine": [
+      {
+        "weight": 4000.0,
+        "points": 609,
+        "intersections": 5,
+        "max_curve_error": 3.552713678800501e-15
+      },
+      {
+        "weight": 4631.0,
+        "points": 609,
+        "intersections": 5,
+        "max_curve_error": 3.552713678800501e-15
+      }
+    ],
+    "native_matlab": "bloqueado: MathWorks5201",
+    "latex_structure": "entornos y llaves correctos; números contrastados",
+    "latex_native_compile": "motor TeX no instalado"
+  }
+}

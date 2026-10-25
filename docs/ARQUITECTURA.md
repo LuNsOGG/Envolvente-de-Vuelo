@@ -37,7 +37,8 @@ flowchart TD
 | `src/calculations/appendix.py` | Preparación independiente de A3/A4 y lecturas documentadas |
 | `src/ui/appendix_dialog.py`, `cover_dialog.py` | Procedimiento A3/A4 y edición de portada |
 | `src/reporting/matlab_export.py`, `matlab_template.m` | Archivo MATLAB autónomo, entradas, motor y comprobaciones de referencia |
-| `src/reporting/exporter.py` | Carpetas nuevas, tablas, resultados, figuras y reportes |
+| `src/reporting/graphs.py` | Exportación vigente: tres gráficas PNG/SVG de una condición |
+| `src/reporting/exporter.py` | Generador anterior conservado para reproducción y pruebas |
 | `src/reporting/general_report.py` | Contenido de reportes actuales e hipótesis |
 | `src/reporting/reports.py` | Render PDF/DOCX y reportes históricos |
 | `src/niu_selfcheck.py` | Comprobación de ambos ejemplos, GUI y ejecutable |
@@ -52,3 +53,5 @@ Los cálculos de preparación trabajan con copias, para conservar la procedencia
 La interfaz programa el recálculo con un QTimer de disparo único de 550 ms; cada cambio confirmado reinicia la espera. Los cambios de condición y diálogos aceptados recalculan inmediatamente. La fuente DejaVu Sans incluida con Matplotlib permite mostrar texto y símbolos también en las comprobaciones Qt sin pantalla.
 
 Las tablas del Ejemplo libro son constantes específicas de ese caso; no constituyen una base aerodinámica universal. Los modos históricos se conservan por compatibilidad. La vista vigente no presenta el contorno A4 histórico como una ráfaga física independiente.
+
+Desde la versión 4.3 la interfaz y `--export` utilizan `export_graphs()`. Las opciones históricas `export_options` y los metadatos se conservan al abrir JSON, pero no agregan archivos a la exportación vigente. Las portadas y reportes se retiraron de los controles de exportación.

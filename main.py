@@ -10,7 +10,7 @@ def main():
     p.add_argument('--case',default=None)
     p.add_argument('--export',action='store_true')
     p.add_argument('--all',action='store_true',help='Exportar todas las condiciones')
-    p.add_argument('--niu',action='store_true',help='Generar solo reporte independiente de Niu')
+    p.add_argument('--niu',action='store_true',help=argparse.SUPPRESS)
     p.add_argument('--screenshot',default=None,help=argparse.SUPPRESS)
     p.add_argument('--comprobar',action='store_true',help='Comprobar cálculo, guardado y tres gráficas del ejecutable')
     p.add_argument('--comprobar-gui',action='store_true',help='Comprobar edición y recálculo en la interfaz')
@@ -28,8 +28,10 @@ def main():
     if args.export or args.all or args.niu:
         import matplotlib
         matplotlib.use('Agg')
-        from src.reporting.exporter import export_project
-        print(export_project(project,project['active_case'],all_cases=args.all,niu_only=args.niu))
+        if args.niu:p.error('La exportación actual guarda solo las tres gráficas; --niu ya no genera reportes.')
+        from src.reporting.graphs import export_graphs
+        ids=[c['id'] for c in project['cases']] if args.all else [project['active_case']]
+        for case_id in ids:print(export_graphs(project,case_id))
         return 0
     from src.ui.worksheet import launch
     return launch(project,args.screenshot)

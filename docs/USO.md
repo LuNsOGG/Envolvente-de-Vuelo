@@ -41,27 +41,28 @@ Al cambiar de ejemplo o proyecto, las ediciones pendientes se conservan en `data
 
 Cambiar h no recalcula automáticamente ρ, Cse ni las intensidades de ráfaga. Compruebe estos datos explícitamente. Guardar un ejemplo modificado no valida los datos de una nueva aeronave.
 
-## Portada y procedimiento del Apéndice A
-
-**Portada** permite editar título, estudiante, materia, docente y fecha. Guardar conserva estos datos en JSON y exportarlos actualiza las portadas PDF/DOCX. Cuando se introduce un nombre, la carpeta de entrega lo incluye con caracteres seguros.
+## Procedimiento del Apéndice A
 
 **Procedimiento del Apéndice A…** abre una vista independiente de Niu con lecturas n3/n4, fuente, página y elección entre velocidades seleccionadas o mínimos A3. Actualizar muestra tablas, maniobras y contorno A4; Guardar conserva la configuración. Las lecturas predeterminadas del Cessna son las adoptadas por la tesis, no una nueva digitalización de nomogramas.
 
-## Exportar
+## Exportar solo las gráficas
 
-Marque **Incluir reporte de figuras de Niu** y, para casos compatibles, **Incluir comparación del Apéndice A** para agregar esos reportes. El Cessna trae ambas opciones activadas. El procedimiento A4 no se presenta como un cálculo físico separado de ráfagas.
+Seleccione la condición de peso que desea y pulse **Exportar**. Se crea una carpeta nueva `outputs/graficas_CONDICION_FECHA_HORA/` con exactamente seis archivos:
 
-**Exportar** trabaja en segundo plano, muestra el progreso y permite cancelar al terminar la etapa actual. Los archivos parciales de una cancelación se conservan identificados. Si faltan datos, la entrega completa se bloquea; puede guardar el proyecto para completarlo después.
+- `maniobras.png` y `maniobras.svg`.
+- `rafagas.png` y `rafagas.svg`.
+- `combinado.png` y `combinado.svg`.
 
-**Exportar** crea una carpeta nueva `outputs/entrega_FECHA_HORA/`. Incluye el proyecto JSON, las tablas CSV, resultados JSON, las gráficas y reportes PDF/DOCX. Las fórmulas de los reportes se incorporan como imágenes; el texto y las tablas del DOCX son editables. También se genera `calculos_envolvente.m`, con entradas y ecuaciones editables que recalculan y dibujan las envolventes al ejecutarse en MATLAB. No necesita Python. Cada ejecución del script reserva una carpeta nueva `resultados_matlab*`.
+PNG sirve para pegar imágenes y SVG conserva trazos vectoriales. Si está activado **Comparar con tesis publicada**, las gráficas exportadas incluyen la misma referencia. Solo se exporta la condición activa; cambie a la otra para guardar sus gráficas.
 
-Para exportar sin abrir la interfaz:
+La operación trabaja en segundo plano, muestra progreso y permite cancelar. Los archivos ya escritos se conservan; una cancelación puede dejar menos de seis archivos. No se generan reportes, tablas, MATLAB ni portadas. **Guardar** conserva por separado el proyecto JSON. Las entregas anteriores permanecen intactas.
+
+Sin interfaz:
 
 ```powershell
-python -B main.py --project examples/ejemplo_cessna.json --all
+python -B main.py --project examples/ejemplo_cessna.json --export
+python -B main.py --project examples/ejemplo_cessna.json --case cessna_capitulo_19 --export
 python -B main.py --project examples/ejemplo_libro.json --all
 ```
 
-Con `--all` se generan los resultados de todas las condiciones y el informe de la condición activa. El proyecto histórico `data/proyecto_inicial.json` se conserva para reproducir la tarea inicial; no equivale a los dos ejemplos actuales.
-
-La cuerda se calcula con S/b cuando se selecciona el modo geométrico; se edita en modo introducido desde Datos de cálculo. Va seleccionada, A y Va mínimo base aparecen separadas en Resultados. El aviso de AR>7 identifica el alcance académico del Cessna. Consulte [la revisión vigente](cessna_tesis_20261024/README.md).
+`--all` guarda las gráficas de cada condición en una carpeta independiente. El Live Script y el código de Overleaf se entregan aparte, no se añaden automáticamente a las exportaciones.

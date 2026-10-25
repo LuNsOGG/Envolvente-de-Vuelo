@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## Versión 4.3 - Exportación de gráficas
+
+- Exportar guarda solo maniobras, ráfagas y combinado de la condición activa en PNG/SVG.
+- La comparación con la tesis se conserva en las imágenes cuando está seleccionada.
+- Retira de la ventana las opciones de reportes y Portada; mantiene el guardado JSON separado.
+- Conserva archivos y generadores anteriores para reproducción histórica.
+
 ## Versión 4.2 — Figuras, procedimiento A3/A4, portada y MATLAB
 
 - Integra el reporte de las diez figuras de Niu en el botón Exportar.

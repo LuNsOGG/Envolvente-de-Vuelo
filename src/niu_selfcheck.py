@@ -75,12 +75,6 @@ def run_selfcheck(gui=False):
                         dialog.grab().save(str(out/'procedimiento_apendice.png'));dialog.reject()
                     except Exception as exc:fail(exc)
                 QTimer.singleShot(400,inspect_appendix);win.show_appendix()
-                def inspect_cover():
-                    try:
-                        dialog=app.activeModalWidget();assert dialog.windowTitle()=='Datos de portada'
-                        dialog.edits['student'].setText('Comprobación QA');dialog.grab().save(str(out/'portada.png'));dialog.save()
-                    except Exception as exc:fail(exc)
-                QTimer.singleShot(400,inspect_cover);win.edit_cover();assert win.project['metadata']['student']=='Comprobación QA'
                 win.set_value('W',3600);QTimer.singleShot(1800,edited)
             except Exception as exc:fail(exc)
         def edited():
@@ -121,7 +115,7 @@ def run_selfcheck(gui=False):
                 except StopIteration:
                     QMessageBox.information=original_information
                     win=window();win.tabs.setCurrentIndex(0);capture(win,'calculadora_final')
-                    info['checks']+=['Exportación desde la interfaz en segundo plano de ambos ejemplos','Progreso Qt visible y seis vistas actualizadas; reporte PDF/DOCX y tablas generados']
+                    info['checks']+=['Exportación desde la interfaz en segundo plano de ambos ejemplos','Progreso Qt visible; solo tres gráficas PNG/SVG de la condición activa']
                     info['status']='correcto';record();win.changed=False;win.timer.stop();app.quit();return
                 try:
                     win=window();win.examples_button.menu().actions()[number-1].trigger();check_views(win);win.export()
@@ -131,12 +125,9 @@ def run_selfcheck(gui=False):
                         if value==20:win.export_progress.grab().save(str(out/f'exportando_{number}.png'))
                     def completed(path):
                         folder=Path(path)
-                        assert (folder/'reporte_analisis.pdf').is_file() and (folder/'reporte_analisis.docx').is_file()
-                        assert (folder/'reporte_figuras_niu.pdf').is_file() and (folder/'reporte_figuras_niu.docx').is_file()
-                        assert len(list((folder/'figuras_niu').glob('*.png')))==10
-                        assert (folder/'calculos_envolvente.m').is_file()
-                        if number==1:assert (folder/'reporte_apendice_a.pdf').is_file() and (folder/'reporte_apendice_a.docx').is_file()
-                        assert json.loads((folder/'ESTADO_EXPORTACION.json').read_text(encoding='utf-8'))['estado']=='COMPLETO'
+                        expected={name+'.'+ext for name in ['maniobras','rafagas','combinado'] for ext in ['png','svg']}
+                        assert {p.name for p in folder.iterdir()}==expected
+                        assert all(p.stat().st_size>1000 for p in folder.iterdir())
                         info['exports'][str(number)]=path
                     worker.progress.connect(progress);worker.completed.connect(completed)
                     worker.failed.connect(lambda message:fail(RuntimeError(message)))

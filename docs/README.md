@@ -6,7 +6,8 @@ La documentación de la raíz de `docs/` describe la versión actual. Los regist
 
 | Necesidad | Documento |
 |---|---|
-| Usar portada, figuras, A3/A4 y MATLAB | [REVISION_18_21.md](REVISION_18_21.md) |
+| Exportar las tres gráficas de la condición activa | [EXPORTACION_GRAFICAS.md](EXPORTACION_GRAFICAS.md) |
+| Consultar la etapa previa 18-21 | [REVISION_18_21.md](REVISION_18_21.md) |
 | Revisar correcciones 1–17 y sus comprobaciones | [REVISION_1_17.md](REVISION_1_17.md) |
 |---|---|
 | Empezar a utilizar la calculadora | [USO.md](USO.md) |

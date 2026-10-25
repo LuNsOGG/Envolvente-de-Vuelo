@@ -50,7 +50,7 @@ class WorksheetWindow(QMainWindow):
         for number,label in [(1,'Ejemplo Cessna'),(2,'Ejemplo libro')]:
             action=menu.addAction(label); action.triggered.connect(lambda checked=False,n=number:self.load_example(n))
         self.examples_button.setMenu(menu); top.addWidget(self.examples_button)
-        for label,fn in [('Nuevo',self.new_project),('Abrir',self.open_project),('Guardar',self.save),('Portada',self.edit_cover),('Exportar',self.export)]:
+        for label,fn in [('Nuevo',self.new_project),('Abrir',self.open_project),('Guardar',self.save),('Exportar',self.export)]:
             b=QPushButton(label); b.clicked.connect(fn); top.addWidget(b)
             if label=='Exportar':self.export_button=b
         layout.addLayout(top)
@@ -72,9 +72,6 @@ class WorksheetWindow(QMainWindow):
         b=QPushButton('Resultados'); b.clicked.connect(self.show_results); actions.addWidget(b); left.addLayout(actions)
         self.variables_button=QPushButton('Resumen de variables'); self.variables_button.clicked.connect(self.show_variables); left.addWidget(self.variables_button)
         self.appendix_button=QPushButton('Procedimiento del Apéndice A…');self.appendix_button.clicked.connect(self.show_appendix);left.addWidget(self.appendix_button)
-        self.include_appendix=QCheckBox('Incluir comparación del Apéndice A');self.include_appendix.toggled.connect(self.set_appendix_export);left.addWidget(self.include_appendix)
-        self.include_niu=QCheckBox('Incluir reporte de figuras de Niu');self.include_niu.setChecked(True)
-        self.include_niu.toggled.connect(self.set_niu_export);left.addWidget(self.include_niu)
         self.calc_state=QLabel('Actualizando cálculo…');left.addWidget(self.calc_state)
         self.message=QLabel(); self.message.setWordWrap(True); left.addWidget(self.message)
         inputs.setMinimumWidth(340); split.addWidget(inputs)
@@ -115,10 +112,8 @@ class WorksheetWindow(QMainWindow):
 
     def fill(self):
         self.loading=True
-        self.include_niu.setChecked(self.project.get('export_options',{}).get('include_niu',True))
         eligible=self.case().get('coefficient_basis','CN')=='CN' and self.case().get('category','normal') in ['normal','utilidad','acrobática']
-        self.appendix_button.setEnabled(eligible);self.include_appendix.setEnabled(eligible)
-        self.include_appendix.setChecked(eligible and self.project.get('export_options',{}).get('include_appendix',self.case().get('reference_dataset')=='ipn_2007'))
+        self.appendix_button.setEnabled(eligible)
         self.condition_selector.blockSignals(True);self.condition_selector.clear()
         for candidate in self.project['cases']:self.condition_selector.addItem(case_label(candidate),candidate['id'])
         self.condition_selector.setCurrentIndex(self.condition_selector.findData(self.current));self.condition_selector.blockSignals(False)
@@ -408,10 +403,9 @@ class WorksheetWindow(QMainWindow):
             QMessageBox.warning(self,'Exportación incompleta','Corrija los datos pendientes antes de exportar una entrega. Puede guardar el proyecto para completarlo después.');return
         from src.ui.export_worker import ExportWorker
         from pathlib import Path
-        self.project.setdefault('export_options',{})['include_appendix']=self.include_appendix.isChecked()
-        worker=ExportWorker(deepcopy(self.project),self.current,self);self.export_worker=worker
+        worker=ExportWorker(deepcopy(self.project),self.current,self,show_reference=self.reference_toggle.isChecked());self.export_worker=worker
         dialog=QProgressDialog('Preparando exportación','Cancelar exportación',0,100,self)
-        dialog.setWindowTitle('Exportando resultados');dialog.setWindowModality(Qt.WindowModality.WindowModal)
+        dialog.setWindowTitle('Exportando gráficas');dialog.setWindowModality(Qt.WindowModality.WindowModal)
         dialog.setAutoClose(False);dialog.setAutoReset(False);dialog.setMinimumDuration(0)
         self.export_progress=dialog;self.export_button.setEnabled(False)
         dialog.canceled.connect(worker.requestInterruption)
@@ -419,7 +413,7 @@ class WorksheetWindow(QMainWindow):
             dialog.setValue(value);dialog.setLabelText(message+' · Cancelar se aplica al terminar la etapa actual.')
         def completed(path):
             self.last_export=Path(path);self.calc_state.setText('Exportación terminada')
-            QMessageBox.information(self,'Exportación terminada','Archivos guardados en:\n'+path)
+            QMessageBox.information(self,'Exportación terminada','Tres gráficas en PNG y SVG guardadas en:\n'+path)
         def failed(message):QMessageBox.warning(self,'Exportar',message)
         def cancelled(path):
             self.calc_state.setText('Exportación cancelada'+(' · archivos parciales en '+path if path else ''))

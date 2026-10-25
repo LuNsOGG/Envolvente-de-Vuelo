@@ -7,15 +7,14 @@ class ExportWorker(QThread):
     failed=Signal(str)
     cancelled=Signal(str)
 
-    def __init__(self,project,current,parent=None):
+    def __init__(self,project,current,parent=None,*,show_reference=False):
         super().__init__(parent)
-        self.project=project;self.current=current
+        self.project=project;self.current=current;self.show_reference=show_reference
 
     def run(self):
-        from src.reporting.exporter import export_project,ExportCancelled
+        from src.reporting.graphs import export_graphs,ExportCancelled
         try:
-            path=export_project(self.project,self.current,all_cases=True,include_niu=self.project.get('export_options',{}).get('include_niu',True),
-                include_appendix=self.project.get('export_options',{}).get('include_appendix',False),
+            path=export_graphs(self.project,self.current,show_reference=self.show_reference,
                 progress=self.progress.emit,cancel=self.isInterruptionRequested)
             self.completed.emit(str(path))
         except ExportCancelled as exc:self.cancelled.emit(str(exc.path) if exc.path else '')

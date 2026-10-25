@@ -60,3 +60,7 @@ El contraste Cessna añade `speed_rows`, `reference_rows`, `source_issues`, `aca
 No interprete un resultado con `blocked` como una envolvente completa. Los CSV usan UTF-8 con BOM para facilitar su apertura en Excel. `curvas.csv` conserva cada nodo de la malla, incluidas las intersecciones.
 
 `huellas_fuentes.json` registra los PDF/JPG presentes en la raíz al exportar. Si el clon no contiene esos originales, el registro puede quedar vacío; esto no impide calcular los ejemplos. Los reportes históricos pueden citar documentos conservados únicamente en la estación original.
+
+## Exportación vigente 4.3
+
+Los campos de portada y `export_options` se conservan por compatibilidad con proyectos anteriores. La interfaz actual guarda exclusivamente las tres gráficas PNG/SVG de la condición seleccionada; esos campos no activan reportes ni archivos de cálculos. El proyecto JSON se guarda mediante Guardar, de forma independiente.
