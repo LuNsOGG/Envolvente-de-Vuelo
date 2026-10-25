@@ -1,6 +1,6 @@
 # Formato de proyectos y resultados
 
-Los proyectos se almacenan como JSON UTF-8 con `schema_version=1`. [Ejemplo 1](../examples/ejemplo_1.json) y [Ejemplo 2](../examples/ejemplo_2.json) son archivos completos que pueden abrirse directamente.
+Los proyectos se almacenan como JSON UTF-8 con `schema_version=1`. [Ejemplo Cessna](../examples/ejemplo_cessna.json) y [Ejemplo libro](../examples/ejemplo_libro.json) son archivos completos que pueden abrirse directamente.
 
 ## Campos del proyecto
 
@@ -14,7 +14,9 @@ Los proyectos se almacenan como JSON UTF-8 con `schema_version=1`. [Ejemplo 1](.
 
 Cada condición incluye `id`, `name`, `aircraft`, `method`, `parameters` y, cuando corresponde, `assumptions`, `changes` y `applicability`. Los IDs usan minúsculas, números, guion o guion bajo, con un máximo de 64 caracteres; no se admiten rutas relativas en ellos.
 
-El método actual es `niu`. En condiciones de hoja aparecen `worksheet`, `speed_mode` (`excel`, `subparte_c` o `manual`), `negative_rule` (`excel`, `normal`, `transport` o `manual`), `negative_end` (`constant`, `zero` u otra selección histórica), `aero_model` (`constant` o `niu_table`) y `coefficient_basis` (`CN` o `CL`). El Ejemplo 2 usa `q_convention=niu_296`.
+El método actual es `niu`. En condiciones de hoja aparecen `worksheet`, `speed_mode` (`excel`, `subparte_c` o `manual`), `negative_rule` (`excel`, `normal`, `transport` o `manual`), `negative_end` (`constant`, `zero` u otra selección histórica), `aero_model` (`constant` o `niu_table`) y `coefficient_basis` (`CN` o `CL`). El Ejemplo libro usa `q_convention=niu_296`.
+
+El Cessna incluye `reference_dataset="ipn_2007"`, `chord_mode="geometric"` y las condiciones `cessna_revisado` y `cessna_capitulo_19`. `span` y `Va_selected` son parámetros con unidades y procedencia. En modo geométrico, c se deriva de S/b; en modo `manual` se conserva la cuerda introducida. Va seleccionada no sustituye la intersección A.
 
 ## Parámetros y procedencia
 
@@ -50,6 +52,8 @@ Los símbolos internos principales son W, S, n_pos, n_neg, CN_pos, CN_neg, Vc, V
 | `points`, `intersections` | Puntos característicos y empalmes numéricos |
 | `curves` | Listas de igual longitud para V, pérdida, maniobra, ráfaga y combinado |
 | `assumptions` | Hipótesis de la condición |
+
+El contraste Cessna añade `speed_rows`, `reference_rows`, `source_issues`, `academic_notice`, `reference_curves` y `reference_curve_note`. Las curvas publicadas son referencias separadas y no reemplazan `curves`.
 
 No interprete un resultado con `blocked` como una envolvente completa. Los CSV usan UTF-8 con BOM para facilitar su apertura en Excel. `curvas.csv` conserva cada nodo de la malla, incluidas las intersecciones.
 

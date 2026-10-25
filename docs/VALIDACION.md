@@ -1,8 +1,46 @@
 # Validación
 
-## Valores numéricos de referencia
+## Referencias vigentes Cessna y libro
 
-Resultados del motor actual, conservados también en `rafagas_niu_20261024/valores_referencia.json` y contrastados por `tests/test_niu.py`.
+La revisión Cessna está cubierta por 105 pruebas, incluidas ocho pruebas de tesis, geometría, contraste, persistencia e interfaz. Los valores se conservan en [ejemplo_cessna_valores.json](cessna_tesis_20261024/ejemplo_cessna_valores.json) y [ejemplo_libro_valores.json](cessna_tesis_20261024/ejemplo_libro_valores.json).
+
+| Resultado | Cessna 4000 lb | Cessna 4631 lb | Libro |
+|---|---:|---:|---:|
+| W/S [lbf/ft²] | 22.099448 | 25.585635 | 73.333333 |
+| Vc / Vd [kt EAS] | 170 / 240 | 170 / 240 | 325 / 400 |
+| Vs [kt EAS] | 66.907472 | 71.991632 | 130.216861 |
+| A [kt EAS] | 130.426675 | 140.337526 | 207.773905 |
+| Va seleccionada [kt EAS] | 150 | 150 | No fijada aparte |
+| n3 en Vc | 4.267631 | 3.901810 | 2.949653 |
+| n4 en Vc | -2.267631 | -1.901810 | -0.949653 |
+
+El cálculo independiente usa una sola condición de peso, c=S/b, pendiente convertida a radianes y la ecuación de ráfaga completa. Los valores publicados de la tesis se contrastan por separado, sin forzar el resultado revisado. A, Va mínimo base y Va seleccionada se comprueban como magnitudes distintas.
+
+## Ejecutable local vigente
+
+La comprobación del EXE instalado registró `frozen=true`, estado correcto y salida 0; también se verificaron 1255 archivos de dependencias. SHA256: `F7D1D5F2B7971029D388BBD2E19FA5AD52BE6ECC81B2CA68DBF1A54787EFE565`. Los registros resumidos están en [validacion.json](cessna_tesis_20261024/validacion.json) y [validacion_exportaciones.json](cessna_tesis_20261024/validacion_exportaciones.json).
+
+Se revisaron capturas de ambos ejemplos, contraste, edición, guardado y exportaciones. Los PDF se comprobaron en texto y límites de página; los DOCX se comprobaron por integridad OOXML, sin renderizado visual completo. Los ejecutables previos y documentos originales se conservan localmente.
+
+## Publicación de la revisión Cessna
+
+La nueva ejecución local de pruebas se registra en [validacion_publicacion.json](validacion_publicacion.json). El estado remoto de Actions debe comprobarse en la ejecución asociada al commit publicado; la aprobación local no se presenta como aprobación remota. Esta publicación actualiza código y documentación, sin recompilar ni alterar el EXE local.
+
+## Qué verifican las pruebas
+
+- Fórmula de ráfaga frente a un cálculo independiente y conversiones de pendiente.
+- Origen de ráfagas en n=1, simetría alrededor de esa referencia y distinción de los límites de maniobra.
+- Inclusión de velocidades, VB e intersecciones en las curvas; continuidad entre anclas.
+- Límites de pérdida del combinado y demandas de ráfaga completas.
+- Tabla del libro, variación con Mach y bloqueo de extrapolación.
+- Datos faltantes, inválidos o incompatibles; retirada de resultados anteriores.
+- Guardado sin sobrescritura, procedencia, apertura y restricciones de ruta.
+- Actualización de gráficas, menú de ejemplos y resumen de variables.
+- Representación de gráficas, reportes e interfaces históricas.
+
+## Referencias históricas Excel/libro
+
+Resultados del motor histórico Excel/libro, conservados también en `rafagas_niu_20261024/valores_referencia.json` y contrastados por `tests/test_niu.py`.
 
 | Resultado | Ejemplo 1 | Ejemplo 2 |
 |---|---:|---:|
@@ -19,17 +57,6 @@ Resultados del motor actual, conservados también en `rafagas_niu_20261024/valor
 
 El libro da 1.95 y 1.382 para Δn en Vc/Vd del Ejemplo 2. Las diferencias proceden del redondeo, la carga alar exacta y la interpretación de la tabla. No se alteran las entradas para forzar coincidencia.
 
-## Qué verifican las pruebas
-
-- Fórmula de ráfaga frente a un cálculo independiente y conversiones de pendiente.
-- Origen de ráfagas en n=1, simetría alrededor de esa referencia y distinción de los límites de maniobra.
-- Inclusión de velocidades, VB e intersecciones en las curvas; continuidad entre anclas.
-- Límites de pérdida del combinado y demandas de ráfaga completas.
-- Tabla del libro, variación con Mach y bloqueo de extrapolación.
-- Datos faltantes, inválidos o incompatibles; retirada de resultados anteriores.
-- Guardado sin sobrescritura, procedencia, apertura y restricciones de ruta.
-- Actualización de gráficas, menú de ejemplos y resumen de variables.
-- Representación de gráficas, reportes e interfaces históricas.
 
 ## Evidencia previa del ejecutable instalado
 
@@ -39,10 +66,10 @@ SHA256 del EXE entregado: `FD253C3A9E3DA1B49CA5494A536A127B34A1F7FE05B59F3C05D48
 
 La captura incluida en `docs/imagenes/ejemplo_2.png` procede de esa comprobación. La publicación del código y la documentación no recompila ni sustituye ese EXE.
 
-## Comprobación de esta publicación
+## Publicación anterior en GitHub
 
 La suite sobre el código preparado para GitHub aprobó las 97 pruebas en 53.28 s. Una copia separada, sin los documentos originales, aprobó también las 97 pruebas en 54.92 s. El resumen se registra en `validacion_publicacion.json`; los registros completos permanecen en `outputs/qa/`.
 
-La ejecución remota de [Pruebas Windows](https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40109034103), correspondiente al commit `32e6a69d15921560a19274150305e1cacd10df14`, terminó correctamente: instalación de dependencias, suite de pruebas y comprobación de ejemplos. La compilación manual de Windows está disponible, pero no se ejecutó como parte de esta publicación documental.
+La ejecución remota de [Pruebas Windows](https://github.com/LuNsOGG/Envolvente-de-Vuelo/actions/runs/40109034103), correspondiente al commit `32e6a69d15921560a19274150305e1cacd10df14`, terminó correctamente: instalación de dependencias, suite de pruebas y comprobación de ejemplos. La compilación manual de Windows está disponible, pero no se ejecutó como parte de la publicación anterior documental.
 
 La validación de ecuaciones y software no demuestra la validez aerodinámica de una aeronave distinta ni la resistencia de su estructura. Las fuentes escaneadas y sus ambigüedades están descritas en [FUENTES.md](FUENTES.md).

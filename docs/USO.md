@@ -2,9 +2,11 @@
 
 ## Abrir y seleccionar un ejemplo
 
-En la instalación local, ejecute `Envolventes_de_Vuelo.exe` junto a `_internal/`. Desde el código, use `python -B main.py` con las dependencias instaladas. Se abre el Ejemplo 1.
+En la instalación local, ejecute `Envolventes_de_Vuelo.exe` junto a `_internal/`. Desde el código, use `python -B main.py` con las dependencias instaladas. Se abre el Ejemplo Cessna.
 
-El menú **Ejemplos** ofrece únicamente **Ejemplo 1** y **Ejemplo 2**. Cada uno carga un proyecto independiente. También pueden abrirse `examples/ejemplo_1.json` y `examples/ejemplo_2.json` con **Abrir**.
+El menú **Ejemplos** ofrece únicamente **Ejemplo Cessna** y **Ejemplo libro**. Cada uno carga un proyecto independiente. También pueden abrirse `examples/ejemplo_cessna.json` y `examples/ejemplo_libro.json` con **Abrir**.
+
+El Cessna ofrece dos condiciones en el selector: ficha revisada de 4000 lb y comparación con las 4631 lb del capítulo 1.9. **Tesis y revisión** muestra fuentes, discrepancias y velocidades. **Comparar con tesis publicada** añade una referencia gráfica que no altera el recálculo.
 
 ## Editar una condición
 
@@ -12,7 +14,9 @@ La tabla contiene, en este orden, nᵤ, nₙ, Wₙ, Wᵤ, W, S, W/S, N, coeficie
 
 Edite el valor y seleccione su unidad. W/S es un resultado automático. N es el límite positivo seleccionado; los campos de categorías nᵤ/nₙ y pesos Wₙ/Wᵤ son referencias y no sustituyen W ni N.
 
-En **Datos de cálculo** se definen el coeficiente negativo, el límite negativo, el modo de velocidades y Ub/Uc/Ud. Seleccione coeficientes constantes al introducir datos de otra aeronave: la tabla del Ejemplo 2 pertenece exclusivamente al caso del libro. Ub=0 omite VB.
+En **Datos de cálculo** se definen el coeficiente negativo, el límite negativo, el modo de velocidades y Ub/Uc/Ud. Seleccione coeficientes constantes al introducir datos de otra aeronave: la tabla del Ejemplo libro pertenece exclusivamente al caso del libro. Ub=0 omite VB.
+
+Los cálculos se actualizan automáticamente: confirme la edición con **Enter** o saliendo de la celda. Después de 550 ms desde el último cambio confirmado se recalculan resultados y gráficas. Cambiar unidades también inicia ese recálculo; cambiar de condición recalcula de inmediato. La interfaz actual no tiene botón **Calcular**. Esto actualiza los resultados en pantalla; para conservar el proyecto utilice **Guardar**.
 
 La edición actualiza las gráficas. Si un dato requerido falta o es inválido, se retiran las curvas anteriores para evitar mostrar resultados de otra condición. Revise **Resultados** para ver ecuaciones, comprobaciones e hipótesis.
 
@@ -42,8 +46,10 @@ Cambiar h no recalcula automáticamente ρ, Cse ni las intensidades de ráfaga. 
 Para exportar sin abrir la interfaz:
 
 ```powershell
-python -B main.py --project examples/ejemplo_1.json --export
-python -B main.py --project examples/ejemplo_2.json --all
+python -B main.py --project examples/ejemplo_cessna.json --all
+python -B main.py --project examples/ejemplo_libro.json --all
 ```
 
 Con `--all` se generan los resultados de todas las condiciones y el informe de la condición activa. El proyecto histórico `data/proyecto_inicial.json` se conserva para reproducir la tarea inicial; no equivale a los dos ejemplos actuales.
+
+La cuerda se calcula con S/b cuando se selecciona el modo geométrico; se edita en modo introducido desde Datos de cálculo. Va seleccionada, A y Va mínimo base aparecen separadas en Resultados. El aviso de AR>7 identifica el alcance académico del Cessna. Consulte [la revisión vigente](cessna_tesis_20261024/README.md).

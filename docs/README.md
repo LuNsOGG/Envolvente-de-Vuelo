@@ -1,5 +1,7 @@
 # Documentación del proyecto
 
+**Actualización vigente:** [Ejemplo Cessna y Ejemplo libro: revisión de tesis, dos condiciones de peso y contraste](cessna_tesis_20261024/README.md). Los ejemplos numéricos anteriores se conservan como históricos.
+
 La documentación de la raíz de `docs/` describe la versión actual. Los registros anteriores se conservan en la estación original; cuando difieran, use el código actual y esta documentación.
 
 | Necesidad | Documento |
@@ -16,7 +18,7 @@ La documentación de la raíz de `docs/` describe la versión actual. Los regist
 
 ## Registros históricos
 
-- [Entrega de ráfagas de Niu, 24 de octubre](rafagas_niu_20261024/MANUAL.md): descripción original de la implementación actual.
+- [Entrega de ráfagas de Niu, 24 de octubre](rafagas_niu_20261024/MANUAL.md): descripción histórica anterior a la revisión Cessna; sus nombres y números no sustituyen la documentación vigente.
 - Los manuales anteriores de la hoja Excel, de la calculadora y sus validaciones se conservan localmente.
 - `historico/`, `hoja_excel_20261023/` y los registros de instalación permanecen en la estación original. No forman parte de esta publicación pública.
 

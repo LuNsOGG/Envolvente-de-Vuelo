@@ -25,7 +25,7 @@ Con unidades consistentes:
 
 $$q=\frac12\rho_0 V_{ft/s}^2,\qquad n_{pérdida}=\frac{qSC}{W}.$$
 
-En el Ejemplo 2 se conserva la convención redondeada del libro `q = V_kt²/296`. Los coeficientes de pérdida pueden ser constantes o variar por Mach según la tabla de ese ejemplo.
+En el Ejemplo libro se conserva la convención redondeada del libro `q = V_kt²/296`. Los coeficientes de pérdida pueden ser constantes o variar por Mach según la tabla de ese ejemplo.
 
 La rama positiva es el mínimo entre la curva de pérdida positiva y N. La rama negativa es el máximo entre pérdida negativa y límite negativo. Este último puede ser constante o cambiar linealmente desde Vc hasta el valor declarado en Vd.
 
@@ -53,21 +53,21 @@ La malla de cálculo utiliza 601 muestras por defecto e incorpora las velocidade
 
 ## Condiciones de los ejemplos
 
-| Elección | Ejemplo 1 | Ejemplo 2 |
+| Elección | Ejemplo Cessna | Ejemplo libro |
 |---|---|---|
 | Base de coeficiente | CN | CL |
-| Coeficientes | Constantes; CN+=1.46, CN−=−1.35 | Tabla por Mach, CL(0)=±1.3 |
+| Coeficientes | Idealización de la polar 2D: CN+=1.45816142, CN−=−0.8381569 | Tabla por Mach, CL(0)=±1.3 |
 | Maniobra | +3.8/−1.9 | +2.5/−1; rama negativa llega a cero en Vd |
-| Vc, Vd | 17 y 24 multiplicados por √(max(N,3.8)W/S) | 325 y 400 kt EAS |
+| Vc, Vd | Seleccionadas: 170 y 240 kt EAS; mínimos A3 mostrados aparte | 325 y 400 kt EAS |
 | Ub/Uc/Ud | 0/50/25 ft/s | 66/50/25 ft/s |
 | Altitud | No inferida de ρ | 10000 ft como dato de referencia |
 
-En el Ejemplo 1, CN− y Uc/Ud son aproximaciones o hipótesis autorizadas del ejercicio. Las velocidades base conservan la elección de la hoja Excel sin demostrar la aplicabilidad normativa del apéndice A.
+En el Ejemplo Cessna, W=4000 lb de la ficha es la condición revisada y W=4631 lb de §1.9 se conserva como comparación. Se usa cuerda geométrica S/b. Los coeficientes proceden de una polar de perfil 2D a Mach 0.5 y Re=4e6 y se idealizan constantes; a por grado y Uc/Ud siguen siendo hipótesis. Va seleccionada=150 kt EAS, mínimo base y A son independientes. AR≈8.73 impide afirmar aplicabilidad directa del apéndice A. El contraste publicado no gobierna las curvas revisadas.
 
-En el Ejemplo 2, a(M) se interpola con pendientes 5.22, 5.25, 5.25, 5.32, 5.37, 5.44, 5.60, 5.74, 5.95 y 6.78/rad para V=0,50,100,150,200,250,300,325,350,400 kt de la referencia Cse=548.6 kt EAS. El dígito de 400 kt es ambiguo en el escaneo; 6.78 es la interpretación documentada. Los CLmax de 325/350/400 kt (1.17/1.13/1.02) son lecturas aproximadas de una figura. Se bloquea la extrapolación fuera del intervalo de Mach.
+En el Ejemplo libro, a(M) se interpola con pendientes 5.22, 5.25, 5.25, 5.32, 5.37, 5.44, 5.60, 5.74, 5.95 y 6.78/rad para V=0,50,100,150,200,250,300,325,350,400 kt de la referencia Cse=548.6 kt EAS. El dígito de 400 kt es ambiguo en el escaneo; 6.78 es la interpretación documentada. Los CLmax de 325/350/400 kt (1.17/1.13/1.02) son lecturas aproximadas de una figura. Se bloquea la extrapolación fuera del intervalo de Mach.
 
 W/S se obtiene de W y S exactos: 88000/1200=73.333333, sin forzarlo al 73.2 impreso. Las discrepancias por redondeo se conservan visibles en [VALIDACION.md](VALIDACION.md).
 
 ## Alcance
 
-No se resuelven respuesta dinámica de ráfaga, aeroelasticidad, flutter, cargas locales ni resistencia. El combinado incorpora la pérdida estática como criterio del modelo; esto no reemplaza un análisis dinámico. La normativa histórica citada y la aerodinámica de cada ejemplo requieren evaluación propia antes de aplicarse a otra aeronave. La tesis y la variante exacta del Cessna del ejercicio original siguen sin documentarse.
+No se resuelven respuesta dinámica de ráfaga, aeroelasticidad, flutter, cargas locales ni resistencia. El combinado incorpora la pérdida estática como criterio del modelo; esto no reemplaza un análisis dinámico. La normativa histórica citada y la aerodinámica de cada ejemplo requieren evaluación propia antes de aplicarse a otra aeronave. La tesis IPN (2007) ya fue revisada; sus contradicciones se documentan en la pantalla y en el reporte de contraste. La variante y la aerodinámica 3D certificada del Cessna no se infieren de ella.

@@ -1,0 +1,209 @@
+[
+  {
+    "condicion": "Revisado · ficha 4000 lb",
+    "values": {
+      "W": 4000.0,
+      "S": 181.0,
+      "n_pos": 3.8,
+      "n_neg": -1.9,
+      "CN_pos": 1.45816142,
+      "CN_neg": -0.8381569,
+      "Vc": 170.0,
+      "Vd": 240.0,
+      "rho": 0.0023769,
+      "chord": 4.551881188118813,
+      "a": 6.016056848873644,
+      "g": 32.2,
+      "U_c": 50.0,
+      "U_d": 25.0,
+      "U_b": 0.0,
+      "W_S": 22.099447513812155,
+      "Vs": 66.90747242692,
+      "V_A_stall": 130.42667477523,
+      "V_G_stall": 121.64424400685,
+      "Va": 130.42667477523,
+      "mu_c": 21.08831016836919,
+      "Kg_c": 0.7032550712705133,
+      "a_c": 6.016056848873644,
+      "delta_c": 3.2676307217981893,
+      "n_gust_c_pos": 4.26763072179819,
+      "n_gust_c_neg": -2.2676307217981893,
+      "mu_d": 21.08831016836919,
+      "Kg_d": 0.7032550712705133,
+      "a_d": 6.016056848873644,
+      "delta_d": 2.30656286244578,
+      "n_gust_d_pos": 3.30656286244578,
+      "n_gust_d_neg": -1.3065628624457801,
+      "mu": 21.08831016836919,
+      "Kg": 0.7032550712705133,
+      "n3": 4.26763072179819,
+      "n4": -2.2676307217981893,
+      "span": 39.763779527559045,
+      "AR": 8.73568045478632,
+      "chord_geometric": 4.551881188118813,
+      "Va_selected": 150.0,
+      "Vc_min_base": 155.78707667733067,
+      "Vd_min_base": 219.93469648564331,
+      "Va_min_base": 137.45918530352708,
+      "Vf_min_base": 100.80340255591986
+    },
+    "checks": [
+      {
+        "código": "RÁFAGAS",
+        "estado": "OK",
+        "detalle": "Cálculo independiente n=1±Δn. n3 y n4 son resultados en Vc; nunca se fijan iguales a los límites de maniobra."
+      },
+      {
+        "código": "COMBINADO",
+        "estado": "INFO",
+        "detalle": "Extremos de maniobra y ráfaga limitados por pérdida estática, con cierre en Vd. Las demandas de ráfaga completas permanecen visibles; no se recortan al límite de maniobra."
+      },
+      {
+        "código": "ALCANCE",
+        "estado": "INFO",
+        "detalle": "Modelo cuasiestático del capítulo 3. Las reglas de velocidad y maniobra se declaran por caso; no es análisis de ráfaga dinámica ni demostración de certificación."
+      },
+      {
+        "código": "A23.1 AR",
+        "estado": "NO APLICA",
+        "detalle": "AR=b²/S=8.735680; límite histórico 7. El resto de condiciones de aplicabilidad tampoco se acredita automáticamente."
+      },
+      {
+        "código": "VELOCIDADES Vc",
+        "estado": "OK",
+        "detalle": "Seleccionada 170.000000; mínimo base académico 155.787077 kt EAS. A permanece separado."
+      },
+      {
+        "código": "VELOCIDADES Vd",
+        "estado": "OK",
+        "detalle": "Seleccionada 240.000000; mínimo base académico 219.934696 kt EAS. A permanece separado."
+      },
+      {
+        "código": "VELOCIDADES Va_selected",
+        "estado": "OK",
+        "detalle": "Seleccionada 150.000000; mínimo base académico 137.459185 kt EAS. A permanece separado."
+      },
+      {
+        "código": "PAREJA nW",
+        "estado": "OK",
+        "detalle": "Referencias actuales: Wn nn=15200.000000; Wu nu=15200.000000 lbf. No sustituyen el peso activo W."
+      },
+      {
+        "código": "POLAR 2D",
+        "estado": "HIPÓTESIS",
+        "detalle": "CN+=1.45816142 y CN−=-0.8381569 proceden de la polar 2D de la tesis; editar los coeficientes exige justificar la condición del avión."
+      },
+      {
+        "código": "PENDIENTE Y RÁFAGA",
+        "estado": "HIPÓTESIS",
+        "detalle": "Unidad por grado de a=0.105 e intensidades 50/25 ft/s son hipótesis explícitas, no datos aeronáuticos confirmados."
+      }
+    ]
+  },
+  {
+    "condicion": "Comparación · cap. 1.9, 4631 lb",
+    "values": {
+      "W": 4631.0,
+      "S": 181.0,
+      "n_pos": 3.8,
+      "n_neg": -1.9,
+      "CN_pos": 1.45816142,
+      "CN_neg": -0.8381569,
+      "Vc": 170.0,
+      "Vd": 240.0,
+      "rho": 0.0023769,
+      "chord": 4.551881188118813,
+      "a": 6.016056848873644,
+      "g": 32.2,
+      "U_c": 50.0,
+      "U_d": 25.0,
+      "U_b": 0.0,
+      "W_S": 25.585635359116022,
+      "Vs": 71.99163196517,
+      "V_A_stall": 140.33752626234,
+      "V_G_stall": 130.88773686359,
+      "Va": 140.33752626234,
+      "mu_c": 24.414991097429432,
+      "Kg_c": 0.723042187537338,
+      "a_c": 6.016056848873644,
+      "delta_c": 2.9018098211700964,
+      "n_gust_c_pos": 3.9018098211700964,
+      "n_gust_c_neg": -1.9018098211700964,
+      "mu_d": 24.414991097429432,
+      "Kg_d": 0.723042187537338,
+      "a_d": 6.016056848873644,
+      "delta_d": 2.0483363443553624,
+      "n_gust_d_pos": 3.0483363443553624,
+      "n_gust_d_neg": -1.0483363443553624,
+      "mu": 24.414991097429432,
+      "Kg": 0.723042187537338,
+      "n3": 3.9018098211700964,
+      "n4": -1.9018098211700964,
+      "span": 39.763779527559045,
+      "AR": 8.73568045478632,
+      "chord_geometric": 4.551881188118813,
+      "Va_selected": 150.0,
+      "Vc_min_base": 167.62501230837006,
+      "Vd_min_base": 236.64707620005186,
+      "Va_min_base": 147.9044226250324,
+      "Vf_min_base": 108.4632432583571
+    },
+    "checks": [
+      {
+        "código": "RÁFAGAS",
+        "estado": "OK",
+        "detalle": "Cálculo independiente n=1±Δn. n3 y n4 son resultados en Vc; nunca se fijan iguales a los límites de maniobra."
+      },
+      {
+        "código": "COMBINADO",
+        "estado": "INFO",
+        "detalle": "Extremos de maniobra y ráfaga limitados por pérdida estática, con cierre en Vd. Las demandas de ráfaga completas permanecen visibles; no se recortan al límite de maniobra."
+      },
+      {
+        "código": "ALCANCE",
+        "estado": "INFO",
+        "detalle": "Modelo cuasiestático del capítulo 3. Las reglas de velocidad y maniobra se declaran por caso; no es análisis de ráfaga dinámica ni demostración de certificación."
+      },
+      {
+        "código": "A23.1 AR",
+        "estado": "NO APLICA",
+        "detalle": "AR=b²/S=8.735680; límite histórico 7. El resto de condiciones de aplicabilidad tampoco se acredita automáticamente."
+      },
+      {
+        "código": "VELOCIDADES Vc",
+        "estado": "OK",
+        "detalle": "Seleccionada 170.000000; mínimo base académico 167.625012 kt EAS. A permanece separado."
+      },
+      {
+        "código": "VELOCIDADES Vd",
+        "estado": "OK",
+        "detalle": "Seleccionada 240.000000; mínimo base académico 236.647076 kt EAS. A permanece separado."
+      },
+      {
+        "código": "VELOCIDADES Va_selected",
+        "estado": "OK",
+        "detalle": "Seleccionada 150.000000; mínimo base académico 147.904423 kt EAS. A permanece separado."
+      },
+      {
+        "código": "PAREJA nW",
+        "estado": "OK",
+        "detalle": "Referencias actuales: Wn nn=17597.800000; Wu nu=17597.800000 lbf. No sustituyen el peso activo W."
+      },
+      {
+        "código": "PESO DE FICHA",
+        "estado": "ADVERTENCIA",
+        "detalle": "La condición supera 4000 lb de la tabla 1.1. Es una comparación con §1.9, no un MTOW aprobado."
+      },
+      {
+        "código": "POLAR 2D",
+        "estado": "HIPÓTESIS",
+        "detalle": "CN+=1.45816142 y CN−=-0.8381569 proceden de la polar 2D de la tesis; editar los coeficientes exige justificar la condición del avión."
+      },
+      {
+        "código": "PENDIENTE Y RÁFAGA",
+        "estado": "HIPÓTESIS",
+        "detalle": "Unidad por grado de a=0.105 e intensidades 50/25 ft/s son hipótesis explícitas, no datos aeronáuticos confirmados."
+      }
+    ]
+  }
+]
