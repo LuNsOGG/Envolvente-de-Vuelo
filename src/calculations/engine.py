@@ -65,6 +65,8 @@ def calculate(case, samples=601):
     if case.get('method') == 'niu':
         from .niu import calculate_niu
         result=calculate_niu(case, samples)
+        from .partial import recover_independent
+        recover_independent(case,result,samples)
         from .context import update_context
         update_context(case,result)
         return result

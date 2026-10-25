@@ -179,7 +179,7 @@ def calculate_worksheet(case, samples=601):
     prepared, derived = prepare_case(case)
     prepared.pop('worksheet', None)
     r = calculate(prepared, samples)
-    r['derived'] = derived; r['worksheet'] = True; r['partial'] = {}
+    r['derived'] = derived; r['worksheet'] = True; r.setdefault('partial', {})
     if case['method']=='niu':
         from .thesis import augment_review
         augment_review(prepared,r)

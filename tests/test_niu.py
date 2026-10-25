@@ -75,7 +75,10 @@ def test_book_row_at_200_matches_unrounded_formula_and_cl_table():
 @pytest.mark.parametrize('field,value',[('W',0),('S',-1),('CN_neg',0),('rho',-1),('a',0),('U_c',-1),('chord',None),('CN_pos',None)])
 def test_bad_or_missing_inputs_leave_no_stale_graph(field,value):
     c=case();calculate(c);c['parameters'][field]['value']=value;r=calculate(c)
-    assert r['blocked'] and not r['curves']
+    assert r['blocked']
+    if value is None and field=='CN_pos':assert 'gust_pos' in r['curves'] and 'man_pos' not in r['curves']
+    elif value is None and field=='chord':assert 'man_pos' in r['curves'] and 'gust_pos' not in r['curves']
+    else:assert not r['curves']
 
 
 def test_missing_weight_clears_derived_speeds_in_memory():
@@ -86,7 +89,7 @@ def test_missing_weight_clears_derived_speeds_in_memory():
 def test_missing_gust_never_substitutes_old_n3_n4():
     c=case();c['parameters']['n3']['value']=100;c['parameters']['n4']['value']=-100
     c['parameters']['U_c']['value']=None;r=calculate(c)
-    assert r['blocked'] and not r['curves']
+    assert r['blocked'] and 'man_pos' in r['curves'] and 'gust_pos' not in r['curves']
 
 
 def test_book_outside_table_blocks_extrapolation():

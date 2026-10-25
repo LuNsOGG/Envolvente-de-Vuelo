@@ -46,7 +46,7 @@ def test_geometric_chord_updates_but_manual_chord_is_preserved():
     c['chord_mode']='manual';c['parameters']['chord']['value']=4.26
     assert calculate(c)['values']['chord']==4.26
     c['chord_mode']='geometric';c['parameters']['span']['value']=None
-    bad=calculate(c);assert bad['blocked'] and not bad['curves']
+    bad=calculate(c);assert bad['blocked'] and 'man_pos' in bad['curves'] and 'gust_pos' not in bad['curves']
 
 
 def test_published_curves_never_replace_revised_curves():

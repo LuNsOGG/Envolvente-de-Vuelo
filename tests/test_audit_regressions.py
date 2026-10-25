@@ -159,3 +159,16 @@ def test_13_export_requires_complete_inputs_and_labels_explicit_partial(qt_lifet
     assert (path/'reporte_parcial_analisis.pdf').exists() and not (path/'reporte_analisis.pdf').exists()
     assert 'PARCIAL' in (path/'LEER_PRIMERO.txt').read_text(encoding='utf-8')
 
+
+def test_14_missing_negative_lift_keeps_independent_gust_unchanged():
+    c=example_project(1)['cases'][0];complete=calculate(c);c['parameters']['CN_neg']['value']=None;r=calculate(c)
+    assert r['blocked'] and 'gust_pos' in r['curves'] and 'combined_pos' not in r['curves']
+    assert all(x is None for x in r['curves']['man_neg'])
+    assert r['values']['n3']==pytest.approx(complete['values']['n3'])
+    assert r['values']['n4']==pytest.approx(complete['values']['n4'])
+
+def test_14_missing_gust_input_keeps_full_maneuver():
+    c=example_project(2)['cases'][0];complete=calculate(c);c['parameters']['U_c']['value']=None;r=calculate(c)
+    assert r['blocked'] and 'man_pos' in r['curves'] and 'gust_pos' not in r['curves']
+    assert max(r['curves']['man_pos'])==max(complete['curves']['man_pos'])
+
