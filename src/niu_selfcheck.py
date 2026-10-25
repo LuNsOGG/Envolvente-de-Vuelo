@@ -19,10 +19,15 @@ def run_selfcheck(gui=False):
             project=example_project(number);r=calculate(project['cases'][0]);v=r['values']
             assert not r['blocked'] and r['curves']['gust_pos'][0]==r['curves']['gust_neg'][0]==1
             assert r['curves']['man_pos']!=r['curves']['gust_pos']
-            expected=3.910272016204428 if number==1 else 2.9496526506337344
+            expected=4.26763072179819 if number==1 else 2.9496526506337344
             assert abs(v['n3']-expected)<1e-10
             if number==2:assert abs(v['delta_d']-1.3839304213427412)<1e-10 and v['Vb']<325
             path=save_project(project,out/f'ejemplo_{number}.json');assert load_project(path)==project
+            if number==1:
+                alternate=calculate(project['cases'][1]);assert not alternate['blocked']
+                assert alternate['values']['W']==4631 and v['W']==4000
+                assert v['Va_selected']==150 and v['V_A_stall']<v['Va_min_base']<150
+                assert any(x['código']=='A23.1 AR' and x['estado']=='NO APLICA' for x in r['checks'])
             info['examples'][str(number)]=v
         info['checks']+=['Ráfagas independientes alrededor de n=1','Dos ejemplos completos; resultados contra cálculo independiente','Guardar y abrir conserva todos los datos']
         if not gui:info['status']='correcto';record();return out
@@ -48,13 +53,26 @@ def run_selfcheck(gui=False):
         def first():
             try:
                 win=window();assert win.tabs.count()==4 and win.table.rowCount()==14
-                assert [a.text() for a in win.examples_button.menu().actions()]==['Ejemplo 1','Ejemplo 2']
-                check_views(win);capture(win,'ejemplo_1')
-                win.set_value('W',4000);QTimer.singleShot(1800,edited)
+                assert [a.text() for a in win.examples_button.menu().actions()]==['Ejemplo Cessna','Ejemplo libro']
+                check_views(win);capture(win,'ejemplo_cessna')
+                win.condition_selector.setCurrentIndex(1);assert win.result['values']['W']==4631
+                win.condition_selector.setCurrentIndex(0);assert win.result['values']['W']==4000
+                win.reference_toggle.setChecked(True)
+                assert any(line.get_label()=='Tesis publicada · referencia' for line in win.canvases['combined'].figure.axes[0].lines)
+                capture(win,'cessna_contraste');win.reference_toggle.setChecked(False)
+                def inspect_reference():
+                    try:
+                        dialog=next(w for w in app.topLevelWidgets() if isinstance(w,QDialog) and w.windowTitle()=='Tesis y revisión')
+                        text=dialog.findChild(QTextBrowser).toPlainText()
+                        assert all(word in text for word in ['4016','Va seleccionada','Va mínimo base','AR'])
+                        dialog.grab().save(str(out/'tesis_y_revision.png'));dialog.accept()
+                    except Exception as exc:fail(exc)
+                QTimer.singleShot(500,inspect_reference);win.reference_button.click()
+                win.set_value('W',3600);QTimer.singleShot(1800,edited)
             except Exception as exc:fail(exc)
         def edited():
             try:
-                win=window();assert win.result['values']['W']==4000 and win.result['values']['W_S']==4000/181
+                win=window();assert win.result['values']['W']==3600 and win.result['values']['W_S']==3600/181
                 assert win.result['values']['n3']!=info['examples']['1']['n3'];check_views(win)
                 win.set_value('S','abc');assert not win.recalculate() and not win.result['curves']
                 win.set_value('S',181);assert win.recalculate()
@@ -87,7 +105,7 @@ def run_selfcheck(gui=False):
                     win.examples_button.menu().actions()[n-1].trigger();check_views(win)
                     info['exports'][str(n)]=str(export_project(win.project,win.current,all_cases=True,include_niu=False))
                 win.tabs.setCurrentIndex(0);capture(win,'calculadora_final')
-                info['checks']+=['Exportación de ambos casos en PNG/SVG/CSV/JSON/PDF/DOCX','Inicio final con Ejemplo 1; CN negativo -1.35']
+                info['checks']+=['Exportación de ambos casos en PNG/SVG/CSV/JSON/PDF/DOCX','Inicio final con Ejemplo Cessna; ficha 4000 lb, CN negativo de la polar 2D']
                 info['status']='correcto';record();win.changed=False;win.timer.stop();app.quit()
             except Exception as exc:fail(exc)
         QTimer.singleShot(1200,first)

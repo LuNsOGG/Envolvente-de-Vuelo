@@ -4,9 +4,9 @@ from datetime import datetime
 from html import escape
 import math
 from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QColor, QPalette
+from PySide6.QtGui import QColor, QPalette, QFontDatabase, QFont
 from PySide6.QtWidgets import (QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QGridLayout,
-    QLabel,QPushButton,QComboBox,QTableWidget,QTableWidgetItem,QHeaderView,QSplitter,QTabWidget,
+    QLabel,QPushButton,QCheckBox,QComboBox,QTableWidget,QTableWidgetItem,QHeaderView,QSplitter,QTabWidget,
     QFileDialog,QMessageBox,QInputDialog,QDialog,QDialogButtonBox,QFormLayout,QLineEdit,QTextBrowser,QMenu)
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT
 from bootstrap import ROOT, fresh, inside
@@ -28,7 +28,7 @@ def cell(value, editable=False):
 
 class WorksheetWindow(QMainWindow):
     def __init__(self, project):
-        super().__init__(); self.project=deepcopy(project); self.current=project['active_case']
+        super().__init__(); configure_font(QApplication.instance()); self.project=deepcopy(project); self.current=project['active_case']
         self.project['cases']=[adapt_case(c) for c in self.project['cases']]
         self.changed=False; self.loading=True; self.canvases={}; self.toolbars={}; self.result=None
         self.timer=QTimer(self); self.timer.setSingleShot(True); self.timer.setInterval(550); self.timer.timeout.connect(self.recalculate)
@@ -37,12 +37,21 @@ class WorksheetWindow(QMainWindow):
         top=QHBoxLayout(); title=QLabel('Calculadora de envolventes de vuelo'); title.setStyleSheet('font-size:21px;font-weight:600;padding:7px 0')
         top.addWidget(title,1)
         self.examples_button=QPushButton('Ejemplos'); menu=QMenu(self.examples_button)
-        for number in [1,2]:
-            action=menu.addAction('Ejemplo '+str(number)); action.triggered.connect(lambda checked=False,n=number:self.load_example(n))
+        for number,label in [(1,'Ejemplo Cessna'),(2,'Ejemplo libro')]:
+            action=menu.addAction(label); action.triggered.connect(lambda checked=False,n=number:self.load_example(n))
         self.examples_button.setMenu(menu); top.addWidget(self.examples_button)
         for label,fn in [('Nuevo',self.new_project),('Abrir',self.open_project),('Guardar',self.save),('Exportar',self.export)]:
             b=QPushButton(label); b.clicked.connect(fn); top.addWidget(b)
         layout.addLayout(top)
+        self.conditions_row=QWidget(); conditions=QHBoxLayout(self.conditions_row);conditions.setContentsMargins(0,0,0,0)
+        conditions.addWidget(QLabel('Condición'))
+        self.condition_selector=QComboBox();conditions.addWidget(self.condition_selector,1)
+        self.reference_toggle=QCheckBox('Comparar con tesis publicada');conditions.addWidget(self.reference_toggle)
+        self.reference_button=QPushButton('Tesis y revisión');conditions.addWidget(self.reference_button)
+        self.condition_selector.currentIndexChanged.connect(self.select_condition)
+        self.reference_toggle.toggled.connect(self.recalculate)
+        self.reference_button.clicked.connect(self.show_reference)
+        layout.addWidget(self.conditions_row)
         split=QSplitter(Qt.Orientation.Horizontal); layout.addWidget(split,1)
         inputs=QWidget(); left=QVBoxLayout(inputs); left.setContentsMargins(0,0,10,0)
         self.table=QTableWidget(len(EXCEL_FIELDS),3); self.table.setHorizontalHeaderLabels(['Nombre','Valor','Unidad']); self.table.verticalHeader().hide()
@@ -71,17 +80,23 @@ class WorksheetWindow(QMainWindow):
 
     def fill(self):
         self.loading=True
+        self.condition_selector.blockSignals(True);self.condition_selector.clear()
+        for candidate in self.project['cases']:self.condition_selector.addItem(candidate['name'],candidate['id'])
+        self.condition_selector.setCurrentIndex(self.condition_selector.findData(self.current));self.condition_selector.blockSignals(False)
+        thesis=self.case().get('reference_dataset')=='ipn_2007'
+        self.conditions_row.setVisible(thesis or len(self.project['cases'])>1)
+        self.reference_toggle.setVisible(thesis);self.reference_button.setVisible(thesis)
         for i,(key,label,description) in enumerate(EXCEL_FIELDS):
             old=self.table.cellWidget(i,2)
             if old:old.hide()
             p=self.case()['parameters'][key]; self.table.setItem(i,0,cell(label)); self.table.item(i,0).setToolTip(description)
             if key=='CN_pos' and self.case().get('coefficient_basis')=='CL':self.table.item(i,0).setText('Cʟ máx.')
             if key=='a' and self.case().get('aero_model')=='niu_table':self.table.item(i,0).setText('a₀')
-            value=cell('' if p.get('value') is None else f'{p["value"]:.10g}',key!='W_S_photo'); self.table.setItem(i,1,value)
+            value=cell('' if p.get('value') is None else f'{p["value"]:.10g}',key!='W_S_photo' and not(key=='chord' and self.case().get('chord_mode')=='geometric')); self.table.setItem(i,1,value)
             value.setToolTip(p.get('notes','')+'\nFuente: '+p.get('source',''))
             if key=='W_S_photo':
                 self.table.setItem(i,2,cell('lbf/ft²')); value.setBackground(QColor('#dddddd')); continue
-            combo=QComboBox(); combo.addItems(list(UNITS[SPECS[key][1]])); combo.setCurrentText(p['unit']); combo.currentTextChanged.connect(self.schedule); self.table.setCellWidget(i,2,combo)
+            combo=QComboBox(); combo.addItems(list(UNITS[SPECS[key][1]])); combo.setCurrentText(p['unit']); combo.setEnabled(not(key=='chord' and self.case().get('chord_mode')=='geometric')); combo.currentTextChanged.connect(self.schedule); self.table.setCellWidget(i,2,combo)
         draft=self.project.get('draft_cells',{}) if self.project.get('draft_case_id',self.current)==self.current else {}
         for key,raw in draft.items():
             if key in FIELD_KEYS and key!='W_S_photo':self.table.item(FIELD_KEYS.index(key),1).setText(raw)
@@ -94,7 +109,7 @@ class WorksheetWindow(QMainWindow):
     def commit(self):
         c=self.case(); p=deepcopy(c['parameters']); changes=[]
         for i,key in enumerate(FIELD_KEYS):
-            if key=='W_S_photo':continue
+            if key=='W_S_photo' or (key=='chord' and c.get('chord_mode')=='geometric'):continue
             raw=self.table.item(i,1).text().strip(); unit=self.table.cellWidget(i,2).currentText()
             try:
                 value=float(raw.replace(',','.')) if raw else None
@@ -121,9 +136,11 @@ class WorksheetWindow(QMainWindow):
     def render(self,r):
         self.result=r; self.loading=True
         ws=r['values'].get('W_S'); self.table.item(6,1).setText('' if ws is None else f'{ws:.6f}')
+        if self.case().get('chord_mode')=='geometric':
+            q=self.case()['parameters']['chord'];self.table.item(FIELD_KEYS.index('chord'),1).setText('' if q.get('value') is None else f'{q["value"]:.10g}')
         self.loading=False
         for key,old in list(self.canvases.items()):
-            compact=key.startswith('overview_'); kind=key.removeprefix('overview_'); new=FigureCanvasQTAgg(envelope_figure(r,kind,compact)); page_layout=old.parentWidget().layout()
+            compact=key.startswith('overview_'); kind=key.removeprefix('overview_'); new=FigureCanvasQTAgg(envelope_figure(r,kind,compact,show_reference=self.reference_toggle.isChecked())); page_layout=old.parentWidget().layout()
             page_layout.replaceWidget(old,new); old.hide(); old.deleteLater(); self.canvases[key]=new; new.show()
             if not compact:
                 previous=self.toolbars[kind]; toolbar=NavigationToolbar2QT(new,self); page_layout.replaceWidget(previous,toolbar); previous.hide(); previous.deleteLater(); self.toolbars[kind]=toolbar; toolbar.show()
@@ -136,6 +153,7 @@ class WorksheetWindow(QMainWindow):
             if p.get(k,{}).get('value') is None:missing.append(k)
         self.complete_button.setText('Completar cálculo…' if missing else 'Datos de cálculo…')
         self.message.setText(('Faltan: '+', '.join(missing)+'.') if missing else ('Revise los datos en Resultados.' if r['blocked'] else ''))
+        if r.get('academic_notice') and not r['blocked']:self.message.setText(r['academic_notice'])
         if not r['values'] and r['blocked']:self.message.setText(r['blocked'][0])
         self.message.setVisible(bool(self.message.text()))
         self.statusBar().clearMessage(); self.statusBar().hide()
@@ -188,13 +206,15 @@ class WorksheetWindow(QMainWindow):
         speed=choice('Vc y Vd',[('Automáticas · fórmulas del Excel','excel'),('Automáticas · normal FAR 23 histórico','subparte_c'),('Introducidas','manual')],c.get('speed_mode'))
         negative=choice('Límite de maniobra negativo',[('−0.5 N · ejercicio Excel','excel'),('−0.4 N · normal','normal'),('−1 · ejemplo de transporte','transport'),('Introducido','manual')],c.get('negative_rule'))
         end=choice('Límite negativo entre Vc y Vd',[('Constante','constant'),('Llega a cero en Vd','zero')],c.get('negative_end'))
-        aero=choice('Coeficientes aerodinámicos',[('Constantes','constant'),('Tabla por Mach · Ejemplo 2','niu_table')],c.get('aero_model'))
+        aero=choice('Coeficientes aerodinámicos',[('Constantes','constant'),('Tabla por Mach · Ejemplo libro','niu_table')],c.get('aero_model'))
         basis=choice('Tipo de coeficiente',[('CN · fuerza normal','CN'),('CL · sustentación','CL')],c.get('coefficient_basis'))
+        chord_choice=choice('Cuerda para ráfagas',[('Introducida','manual'),('Geométrica · S/b','geometric')],c.get('chord_mode','manual'))
         edits={};labels={}
         rows=[('CN_neg','Coeficiente mínimo negativo','1'),('n_neg','Factor negativo n−','1'),
               ('Vc','Vc [kt EAS]','kt EAS'),('Vd','Vd [kt EAS]','kt EAS'),
               ('U_c','Uc [ft/s]','ft/s'),('U_d','Ud [ft/s]','ft/s'),('U_b','Ub [ft/s] · 0 omite VB','ft/s'),
-              ('altitude','Altitud [ft] · referencia','ft'),('Cse','Sonido equivalente Cse [kt EAS]','kt EAS')]
+              ('altitude','Altitud [ft] · referencia','ft'),('Cse','Sonido equivalente Cse [kt EAS]','kt EAS'),
+              ('Va_selected','Va seleccionada [kt EAS] · distinta de A','kt EAS'),('span','Envergadura [ft] · para S/b','ft')]
         for key,label,unit in rows:
             q=c['parameters'].get(key,{}); value=q.get('value'); edit=QLineEdit()
             if value is not None:value=convert(value,q['unit'],SPECS[key][1])
@@ -209,7 +229,7 @@ class WorksheetWindow(QMainWindow):
             try:
                 trial=deepcopy(c)
                 trial.update(speed_mode=speed.currentData(),negative_rule=negative.currentData(),negative_end=end.currentData(),
-                             aero_model=aero.currentData(),coefficient_basis=basis.currentData())
+                             aero_model=aero.currentData(),coefficient_basis=basis.currentData(),chord_mode=chord_choice.currentData())
                 for key,_,unit in rows:
                     if edits[key].isHidden():continue
                     raw=edits[key].text().strip();value=float(raw.replace(',','.')) if raw else None
@@ -224,11 +244,34 @@ class WorksheetWindow(QMainWindow):
             except ValueError as exc:QMessageBox.warning(dialog,'Revisar dato',str(exc))
         buttons.accepted.connect(accept);dialog.exec()
 
+    def select_condition(self,index):
+        if self.loading or index<0:return
+        selected=self.condition_selector.itemData(index)
+        if selected==self.current:return
+        self.timer.stop();self.snapshot();self.current=selected;self.project['active_case']=selected
+        self.fill();self.recalculate();self.changed=True
+
+    def reference_html(self,r):
+        if not r.get('reference_rows'):return ''
+        def val(x):return 'Pendiente' if x is None else f'{x:.8g}'
+        text='<h3>Velocidades: mínimo, selección e intersección</h3><table border="1" cellspacing="0" cellpadding="5"><tr><th>Magnitud</th><th>kt EAS</th><th>Criterio</th></tr>'
+        for row in r['speed_rows']:text+='<tr><td>'+escape(row['magnitud'])+'</td><td>'+val(row['valor'])+'</td><td>'+escape(row['criterio'])+'</td></tr>'
+        text+='</table><h3>Tesis publicada y condición actual</h3><p>Los valores publicados son referencias: no se utilizan para forzar las curvas revisadas.</p><table border="1" cellspacing="0" cellpadding="5"><tr><th>Dato</th><th>Tesis</th><th>Actual</th><th>Unidad</th><th>Página</th></tr>'
+        for row in r['reference_rows']:text+='<tr><td>'+escape(row['dato'])+'</td><td>'+val(row['tesis'])+'</td><td>'+val(row['recalculado'])+'</td><td>'+escape(row['unidad'])+'</td><td>'+escape(row['pagina'])+'</td></tr>'
+        text+='</table><h3>Discrepancias e hipótesis</h3>'
+        for issue in r['source_issues']:text+='<p>'+escape(issue)+'</p>'
+        return text+'<p>'+escape(r['reference_curve_note'])+'</p>'
+
+    def show_reference(self):
+        self.recalculate();dialog=QDialog(self);dialog.setWindowTitle('Tesis y revisión');dialog.resize(1050,760)
+        box=QVBoxLayout(dialog);view=QTextBrowser();view.setHtml(self.reference_html(self.result));box.addWidget(view)
+        buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Close);buttons.rejected.connect(dialog.reject);box.addWidget(buttons);dialog.exec()
+
     def load_example(self,number):
         self.replace_project(example_project(number))
 
     def variables_html(self):
-        text='<h3>Resumen de variables</h3><p>Ejemplo 1: ejercicio del Excel. Ejemplo 2: avión comercial del capítulo 3 de Niu.</p>'
+        text='<h3>Resumen de variables</h3><p>Ejemplo Cessna: tesis IPN, ficha revisada y comparación con el capítulo 1.9. Ejemplo libro: avión comercial de Niu.</p>'
         text+='<table border="1" cellspacing="0" cellpadding="6"><tr><th>Símbolo</th><th>Nombre</th><th>Significado</th></tr>'
         for symbol,name,meaning in VARIABLES:text+='<tr><td>'+escape(symbol)+'</td><td>'+escape(name)+'</td><td>'+escape(meaning)+'</td></tr>'
         return text+'</table>'
@@ -245,7 +288,7 @@ class WorksheetWindow(QMainWindow):
         for assumption in self.case().get('assumptions',[]):text+='<p>'+escape(assumption)+'</p>'
         text+='<table border="1" cellspacing="0" cellpadding="6"><tr><th>Resultado</th><th>Valor</th><th>Fórmula / fuente</th></tr>'
         for d in r.get('derived',[]):text+='<tr><td>'+escape(d['variable'])+'</td><td>'+('Pendiente' if d['value'] is None else f'{d["value"]:.7g}')+' '+escape(d['unit'])+'</td><td>'+escape(d['formula'])+'<br>'+escape(d['source'])+'</td></tr>'
-        text+='</table><h3>Datos y unidades</h3>'
+        text+='</table>'+self.reference_html(r)+'<h3>Datos y unidades</h3>'
         for key,label,_ in EXCEL_FIELDS:
             p=self.case()['parameters'][key]; text+='<p><b>'+escape(label)+':</b> '+escape(str(p.get('value')))+' '+escape(p['unit'])+' · '+escape(p.get('status',''))+'<br>'+escape(p.get('notes',''))+'</p>'
         text+='<h3>Resultados de ráfaga</h3>'
@@ -310,6 +353,17 @@ class WorksheetWindow(QMainWindow):
         self.timer.stop()
         try:self.snapshot(); event.accept()
         except (ValueError,OSError) as exc:self.message.setText('No se pudo conservar la recuperación: '+str(exc)); event.ignore()
+
+
+def configure_font(app):
+    # Qt offscreen en Windows puede no descubrir fuentes del sistema.
+    # La fuente ya acompaña a Matplotlib y se carga solo en este proceso.
+    from pathlib import Path
+    from matplotlib import get_data_path
+    if 'DejaVu Sans' not in QFontDatabase.families():
+        font_id=QFontDatabase.addApplicationFont(str(Path(get_data_path())/'fonts/ttf/DejaVuSans.ttf'))
+        if font_id<0:raise RuntimeError('No se pudo cargar la fuente incluida con la aplicación.')
+    app.setFont(QFont('DejaVu Sans',9))
 
 
 def launch(project,screenshot=None):

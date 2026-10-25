@@ -1,0 +1,1018 @@
+{
+  "schema_version": 1,
+  "kind": "worksheet",
+  "metadata": {
+    "title": "Ejemplo Cessna · tesis IPN y recálculo",
+    "student": "",
+    "subject": "",
+    "teacher": "",
+    "date": "2026-10-24"
+  },
+  "active_case": "cessna_revisado",
+  "cases": [
+    {
+      "id": "cessna_revisado",
+      "name": "Revisado · ficha 4000 lb",
+      "aircraft": "Ejemplo Cessna",
+      "method": "niu",
+      "category": "normal",
+      "requires_thesis": false,
+      "parameters": {
+        "W": {
+          "value": 4000,
+          "unit": "lbf",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12",
+          "status": "documentado",
+          "notes": "Peso máximo de la ficha; distinto de los pesos usados posteriormente.",
+          "original": {
+            "value": 4000,
+            "unit": "lbf",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Peso máximo de la ficha; distinto de los pesos usados posteriormente."
+          }
+        },
+        "S": {
+          "value": 181,
+          "unit": "ft²",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12,32",
+          "status": "documentado",
+          "notes": "Superficie de la ficha y del capítulo 1.9.",
+          "original": {
+            "value": 181,
+            "unit": "ft²",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Superficie de la ficha y del capítulo 1.9."
+          }
+        },
+        "n_pos": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31–32",
+          "status": "elección académica",
+          "notes": "Factor normal conservado del ejercicio histórico.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "elección académica",
+            "notes": "Factor normal conservado del ejercicio histórico."
+          }
+        },
+        "n_neg": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CN_pos": {
+          "value": 1.45816142,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "29,34",
+          "status": "idealización 2D",
+          "notes": "Máximo de la tabla del perfil; no coeficiente 3D validado.",
+          "original": {
+            "value": 1.45816142,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "idealización 2D",
+            "notes": "Máximo de la tabla del perfil; no coeficiente 3D validado."
+          }
+        },
+        "CN_neg": {
+          "value": -0.8381569,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "28",
+          "status": "idealización 2D",
+          "notes": "Mínimo tabulado; sustituye la simetría de la gráfica y la anterior aproximación -1.35.",
+          "original": {
+            "value": -0.8381569,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "idealización 2D",
+            "notes": "Mínimo tabulado; sustituye la simetría de la gráfica y la anterior aproximación -1.35."
+          }
+        },
+        "Vc": {
+          "value": 170,
+          "unit": "kt EAS",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "33",
+          "status": "selección publicada",
+          "notes": "Velocidad seleccionada, distinta del mínimo base.",
+          "original": {
+            "value": 170,
+            "unit": "kt EAS",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "selección publicada",
+            "notes": "Velocidad seleccionada, distinta del mínimo base."
+          }
+        },
+        "Vd": {
+          "value": 240,
+          "unit": "kt EAS",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "33",
+          "status": "selección publicada",
+          "notes": "Velocidad seleccionada, distinta del mínimo base.",
+          "original": {
+            "value": 240,
+            "unit": "kt EAS",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "selección publicada",
+            "notes": "Velocidad seleccionada, distinta del mínimo base."
+          }
+        },
+        "chord": {
+          "value": 4.551881188118812,
+          "unit": "ft",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12",
+          "status": "calculado",
+          "notes": "Cuerda geométrica S/b. La sustitución publicada usa 4.26 ft.",
+          "original": {
+            "value": 4.551881188118812,
+            "unit": "ft",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "calculado",
+            "notes": "Cuerda geométrica S/b. La sustitución publicada usa 4.26 ft."
+          }
+        },
+        "a": {
+          "value": 0.105,
+          "unit": "1/deg",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "37",
+          "status": "hipótesis",
+          "notes": "La tesis no declara unidad. Interpretación por grado, editable; se convierte a /rad.",
+          "original": {
+            "value": 0.105,
+            "unit": "1/deg",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "hipótesis",
+            "notes": "La tesis no declara unidad. Interpretación por grado, editable; se convierte a /rad."
+          }
+        },
+        "rho": {
+          "value": 0.0023769,
+          "unit": "slug/ft³",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "37",
+          "status": "unidad interpretada",
+          "notes": "Densidad usada en la sustitución de ráfagas, sin inferir altitud.",
+          "original": {
+            "value": 0.0023769,
+            "unit": "slug/ft³",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "unidad interpretada",
+            "notes": "Densidad usada en la sustitución de ráfagas, sin inferir altitud."
+          }
+        },
+        "rho0": {
+          "value": 0.002376892406675,
+          "unit": "slug/ft³",
+          "source": "Densidad estándar de referencia EAS",
+          "page": "",
+          "status": "constante",
+          "notes": "",
+          "original": {
+            "value": 0.002376892406675,
+            "unit": "slug/ft³",
+            "source": "Densidad estándar de referencia EAS",
+            "page": "",
+            "status": "constante",
+            "notes": ""
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "37",
+          "status": "documentado",
+          "notes": "Valor usado en la sustitución.",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Valor usado en la sustitución."
+          }
+        },
+        "Va": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "U_c": {
+          "value": 50,
+          "unit": "ft/s",
+          "source": "Hipótesis del recálculo",
+          "page": "",
+          "status": "hipótesis",
+          "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida.",
+          "original": {
+            "value": 50,
+            "unit": "ft/s",
+            "source": "Hipótesis del recálculo",
+            "page": "",
+            "status": "hipótesis",
+            "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida."
+          }
+        },
+        "U_d": {
+          "value": 25,
+          "unit": "ft/s",
+          "source": "Hipótesis del recálculo",
+          "page": "",
+          "status": "hipótesis",
+          "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida.",
+          "original": {
+            "value": 25,
+            "unit": "ft/s",
+            "source": "Hipótesis del recálculo",
+            "page": "",
+            "status": "hipótesis",
+            "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida."
+          }
+        },
+        "altitude": {
+          "value": null,
+          "unit": "ft",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "ft",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "nu_photo": {
+          "value": 4.4,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31",
+          "status": "referencia",
+          "notes": "Factor de utilidad, no asigna categoría a la aeronave.",
+          "original": {
+            "value": 4.4,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "referencia",
+            "notes": "Factor de utilidad, no asigna categoría a la aeronave."
+          }
+        },
+        "nn_photo": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31",
+          "status": "referencia",
+          "notes": "Factor normal de referencia.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "referencia",
+            "notes": "Factor normal de referencia."
+          }
+        },
+        "Wn_photo": {
+          "value": 4000,
+          "unit": "lbf",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12,31",
+          "status": "recalculado",
+          "notes": "Referencia normal coherente con la ficha.",
+          "original": {
+            "value": 4000,
+            "unit": "lbf",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "recalculado",
+            "notes": "Referencia normal coherente con la ficha."
+          }
+        },
+        "Wu_photo": {
+          "value": 3454.545454545454,
+          "unit": "lbf",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31",
+          "status": "recalculado",
+          "notes": "Wn nn/nu; corrige la pareja incompatible sin acreditar categoría utilidad.",
+          "original": {
+            "value": 3454.545454545454,
+            "unit": "lbf",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "recalculado",
+            "notes": "Wn nn/nu; corrige la pareja incompatible sin acreditar categoría utilidad."
+          }
+        },
+        "W_S_photo": {
+          "value": null,
+          "unit": "lbf/ft²",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "lbf/ft²",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CLalpha_photo": {
+          "value": null,
+          "unit": "1/deg",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1/deg",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "U_b": {
+          "value": 0,
+          "unit": "ft/s",
+          "source": "Hipótesis del recálculo",
+          "page": "",
+          "status": "elección académica",
+          "notes": "Omite VB en este ejercicio.",
+          "original": {
+            "value": 0,
+            "unit": "ft/s",
+            "source": "Hipótesis del recálculo",
+            "page": "",
+            "status": "elección académica",
+            "notes": "Omite VB en este ejercicio."
+          }
+        },
+        "Cse": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "span": {
+          "value": 12.12,
+          "unit": "m",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12",
+          "status": "documentado",
+          "notes": "Envergadura; AR y cuerda geométrica se calculan con esta magnitud.",
+          "original": {
+            "value": 12.12,
+            "unit": "m",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Envergadura; AR y cuerda geométrica se calculan con esta magnitud."
+          }
+        },
+        "Va_selected": {
+          "value": 150,
+          "unit": "kt EAS",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "33",
+          "status": "selección publicada",
+          "notes": "Conservada por separado de la intersección A y el mínimo base.",
+          "original": {
+            "value": 150,
+            "unit": "kt EAS",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "selección publicada",
+            "notes": "Conservada por separado de la intersección A y el mínimo base."
+          }
+        }
+      },
+      "assumptions": [
+        "Condición revisada basada en la ficha de la tesis IPN: W=4000 lbf. El capítulo 1.9 usa 4631 lbf; se conserva como otra condición seleccionable.",
+        "Velocidades seleccionadas de la tesis: Vc=170, Vd=240 y Va sel.=150 kt EAS. Los mínimos base de A3 se muestran como referencia académica independiente.",
+        "CN positivo y negativo de la polar 2D NACA 2412 a Mach 0.5 y Re=4e6; se idealizan constantes para el ejercicio. No validan el comportamiento del avión completo.",
+        "a=0.105 por grado es una interpretación explícita y editable. Uc/Ud=50/25 ft/s son hipótesis; no se deduce una altitud a partir de la densidad.",
+        "Se usa c=S/b de la ficha; la cuerda 4.26 ft de la sustitución de ráfagas queda registrada en el contraste. CLα no se rellena con el antiguo valor del Excel por carecer de confirmación en la tesis.",
+        "N=3.8 y n−=-1.9 conservan la elección académica del apéndice. AR>7 impide afirmar la aplicabilidad directa de A23.1. Ráfagas de Niu y lectura A1/A2 publicada se mantienen diferenciadas.",
+        "El contorno combinado usa pérdida estática; no es una envolvente operativa aprobada ni un análisis dinámico."
+      ],
+      "changes": [],
+      "applicability": [],
+      "worksheet": true,
+      "speed_mode": "manual",
+      "negative_rule": "excel",
+      "negative_end": "constant",
+      "aero_model": "constant",
+      "coefficient_basis": "CN",
+      "example": 1,
+      "reference_dataset": "ipn_2007",
+      "chord_mode": "geometric"
+    },
+    {
+      "id": "cessna_capitulo_19",
+      "name": "Comparación · cap. 1.9, 4631 lb",
+      "aircraft": "Ejemplo Cessna",
+      "method": "niu",
+      "category": "normal",
+      "requires_thesis": false,
+      "parameters": {
+        "W": {
+          "value": 4631,
+          "unit": "lbf",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "32",
+          "status": "transcrito",
+          "notes": "Peso del capítulo 1.9; supera las 4000 lb de la ficha y no se adopta como MTOW aprobado.",
+          "original": {
+            "value": 4631,
+            "unit": "lbf",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "transcrito",
+            "notes": "Peso del capítulo 1.9; supera las 4000 lb de la ficha y no se adopta como MTOW aprobado."
+          }
+        },
+        "S": {
+          "value": 181,
+          "unit": "ft²",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12,32",
+          "status": "documentado",
+          "notes": "Superficie de la ficha y del capítulo 1.9.",
+          "original": {
+            "value": 181,
+            "unit": "ft²",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Superficie de la ficha y del capítulo 1.9."
+          }
+        },
+        "n_pos": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31–32",
+          "status": "elección académica",
+          "notes": "Factor normal conservado del ejercicio histórico.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "elección académica",
+            "notes": "Factor normal conservado del ejercicio histórico."
+          }
+        },
+        "n_neg": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CN_pos": {
+          "value": 1.45816142,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "29,34",
+          "status": "idealización 2D",
+          "notes": "Máximo de la tabla del perfil; no coeficiente 3D validado.",
+          "original": {
+            "value": 1.45816142,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "idealización 2D",
+            "notes": "Máximo de la tabla del perfil; no coeficiente 3D validado."
+          }
+        },
+        "CN_neg": {
+          "value": -0.8381569,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "28",
+          "status": "idealización 2D",
+          "notes": "Mínimo tabulado; sustituye la simetría de la gráfica y la anterior aproximación -1.35.",
+          "original": {
+            "value": -0.8381569,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "idealización 2D",
+            "notes": "Mínimo tabulado; sustituye la simetría de la gráfica y la anterior aproximación -1.35."
+          }
+        },
+        "Vc": {
+          "value": 170,
+          "unit": "kt EAS",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "33",
+          "status": "selección publicada",
+          "notes": "Velocidad seleccionada, distinta del mínimo base.",
+          "original": {
+            "value": 170,
+            "unit": "kt EAS",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "selección publicada",
+            "notes": "Velocidad seleccionada, distinta del mínimo base."
+          }
+        },
+        "Vd": {
+          "value": 240,
+          "unit": "kt EAS",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "33",
+          "status": "selección publicada",
+          "notes": "Velocidad seleccionada, distinta del mínimo base.",
+          "original": {
+            "value": 240,
+            "unit": "kt EAS",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "selección publicada",
+            "notes": "Velocidad seleccionada, distinta del mínimo base."
+          }
+        },
+        "chord": {
+          "value": 4.551881188118812,
+          "unit": "ft",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12",
+          "status": "calculado",
+          "notes": "Cuerda geométrica S/b. La sustitución publicada usa 4.26 ft.",
+          "original": {
+            "value": 4.551881188118812,
+            "unit": "ft",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "calculado",
+            "notes": "Cuerda geométrica S/b. La sustitución publicada usa 4.26 ft."
+          }
+        },
+        "a": {
+          "value": 0.105,
+          "unit": "1/deg",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "37",
+          "status": "hipótesis",
+          "notes": "La tesis no declara unidad. Interpretación por grado, editable; se convierte a /rad.",
+          "original": {
+            "value": 0.105,
+            "unit": "1/deg",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "hipótesis",
+            "notes": "La tesis no declara unidad. Interpretación por grado, editable; se convierte a /rad."
+          }
+        },
+        "rho": {
+          "value": 0.0023769,
+          "unit": "slug/ft³",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "37",
+          "status": "unidad interpretada",
+          "notes": "Densidad usada en la sustitución de ráfagas, sin inferir altitud.",
+          "original": {
+            "value": 0.0023769,
+            "unit": "slug/ft³",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "unidad interpretada",
+            "notes": "Densidad usada en la sustitución de ráfagas, sin inferir altitud."
+          }
+        },
+        "rho0": {
+          "value": 0.002376892406675,
+          "unit": "slug/ft³",
+          "source": "Densidad estándar de referencia EAS",
+          "page": "",
+          "status": "constante",
+          "notes": "",
+          "original": {
+            "value": 0.002376892406675,
+            "unit": "slug/ft³",
+            "source": "Densidad estándar de referencia EAS",
+            "page": "",
+            "status": "constante",
+            "notes": ""
+          }
+        },
+        "g": {
+          "value": 32.2,
+          "unit": "ft/s²",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "37",
+          "status": "documentado",
+          "notes": "Valor usado en la sustitución.",
+          "original": {
+            "value": 32.2,
+            "unit": "ft/s²",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Valor usado en la sustitución."
+          }
+        },
+        "Va": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "U_c": {
+          "value": 50,
+          "unit": "ft/s",
+          "source": "Hipótesis del recálculo",
+          "page": "",
+          "status": "hipótesis",
+          "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida.",
+          "original": {
+            "value": 50,
+            "unit": "ft/s",
+            "source": "Hipótesis del recálculo",
+            "page": "",
+            "status": "hipótesis",
+            "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida."
+          }
+        },
+        "U_d": {
+          "value": 25,
+          "unit": "ft/s",
+          "source": "Hipótesis del recálculo",
+          "page": "",
+          "status": "hipótesis",
+          "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida.",
+          "original": {
+            "value": 25,
+            "unit": "ft/s",
+            "source": "Hipótesis del recálculo",
+            "page": "",
+            "status": "hipótesis",
+            "notes": "Intensidad de diseño elegida para el recálculo cuasiestático; no medida."
+          }
+        },
+        "altitude": {
+          "value": null,
+          "unit": "ft",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "ft",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n3": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "n4": {
+          "value": null,
+          "unit": "1",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "nu_photo": {
+          "value": 4.4,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31",
+          "status": "referencia",
+          "notes": "Factor de utilidad, no asigna categoría a la aeronave.",
+          "original": {
+            "value": 4.4,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "referencia",
+            "notes": "Factor de utilidad, no asigna categoría a la aeronave."
+          }
+        },
+        "nn_photo": {
+          "value": 3.8,
+          "unit": "1",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31",
+          "status": "referencia",
+          "notes": "Factor normal de referencia.",
+          "original": {
+            "value": 3.8,
+            "unit": "1",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "referencia",
+            "notes": "Factor normal de referencia."
+          }
+        },
+        "Wn_photo": {
+          "value": 4631,
+          "unit": "lbf",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12,31",
+          "status": "recalculado",
+          "notes": "Referencia reconstruida para W=4631; no es la pareja incompatible publicada.",
+          "original": {
+            "value": 4631,
+            "unit": "lbf",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "12,31",
+            "status": "recalculado",
+            "notes": "Referencia reconstruida para W=4631; no es la pareja incompatible publicada.",
+            "original": {
+              "value": 4000,
+              "unit": "lbf",
+              "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+              "page": "",
+              "status": "recalculado",
+              "notes": "Referencia normal coherente con la ficha."
+            }
+          }
+        },
+        "Wu_photo": {
+          "value": 3999.4999999999995,
+          "unit": "lbf",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "31",
+          "status": "recalculado",
+          "notes": "4631×3.8/4.4; pareja coherente para esta comparación.",
+          "original": {
+            "value": 3999.4999999999995,
+            "unit": "lbf",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "31",
+            "status": "recalculado",
+            "notes": "4631×3.8/4.4; pareja coherente para esta comparación.",
+            "original": {
+              "value": 3454.545454545454,
+              "unit": "lbf",
+              "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+              "page": "",
+              "status": "recalculado",
+              "notes": "Wn nn/nu; corrige la pareja incompatible sin acreditar categoría utilidad."
+            }
+          }
+        },
+        "W_S_photo": {
+          "value": null,
+          "unit": "lbf/ft²",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "lbf/ft²",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "CLalpha_photo": {
+          "value": null,
+          "unit": "1/deg",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "1/deg",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "U_b": {
+          "value": 0,
+          "unit": "ft/s",
+          "source": "Hipótesis del recálculo",
+          "page": "",
+          "status": "elección académica",
+          "notes": "Omite VB en este ejercicio.",
+          "original": {
+            "value": 0,
+            "unit": "ft/s",
+            "source": "Hipótesis del recálculo",
+            "page": "",
+            "status": "elección académica",
+            "notes": "Omite VB en este ejercicio."
+          }
+        },
+        "Cse": {
+          "value": null,
+          "unit": "kt EAS",
+          "source": "",
+          "page": "",
+          "status": "pendiente",
+          "notes": "",
+          "original": {
+            "value": null,
+            "unit": "kt EAS",
+            "source": "",
+            "page": "",
+            "status": "pendiente",
+            "notes": ""
+          }
+        },
+        "span": {
+          "value": 12.12,
+          "unit": "m",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "12",
+          "status": "documentado",
+          "notes": "Envergadura; AR y cuerda geométrica se calculan con esta magnitud.",
+          "original": {
+            "value": 12.12,
+            "unit": "m",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "documentado",
+            "notes": "Envergadura; AR y cuerda geométrica se calculan con esta magnitud."
+          }
+        },
+        "Va_selected": {
+          "value": 150,
+          "unit": "kt EAS",
+          "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+          "page": "33",
+          "status": "selección publicada",
+          "notes": "Conservada por separado de la intersección A y el mínimo base.",
+          "original": {
+            "value": 150,
+            "unit": "kt EAS",
+            "source": "Tesis IPN, Diseño de la caja de torsión del ala de una aeronave cuatriplaza (2007)",
+            "page": "",
+            "status": "selección publicada",
+            "notes": "Conservada por separado de la intersección A y el mínimo base."
+          }
+        }
+      },
+      "assumptions": [
+        "Comparación con W=4631 lbf de §1.9. Se mantienen las correcciones de unidades, polar, cuerda y velocidades seleccionadas; no reproduce errores aritméticos ni acredita un peso máximo real.",
+        "Velocidades seleccionadas de la tesis: Vc=170, Vd=240 y Va sel.=150 kt EAS. Los mínimos base de A3 se muestran como referencia académica independiente.",
+        "CN positivo y negativo de la polar 2D NACA 2412 a Mach 0.5 y Re=4e6; se idealizan constantes para el ejercicio. No validan el comportamiento del avión completo.",
+        "a=0.105 por grado es una interpretación explícita y editable. Uc/Ud=50/25 ft/s son hipótesis; no se deduce una altitud a partir de la densidad.",
+        "Se usa c=S/b de la ficha; la cuerda 4.26 ft de la sustitución de ráfagas queda registrada en el contraste. CLα no se rellena con el antiguo valor del Excel por carecer de confirmación en la tesis.",
+        "N=3.8 y n−=-1.9 conservan la elección académica del apéndice. AR>7 impide afirmar la aplicabilidad directa de A23.1. Ráfagas de Niu y lectura A1/A2 publicada se mantienen diferenciadas.",
+        "El contorno combinado usa pérdida estática; no es una envolvente operativa aprobada ni un análisis dinámico."
+      ],
+      "changes": [],
+      "applicability": [],
+      "worksheet": true,
+      "speed_mode": "manual",
+      "negative_rule": "excel",
+      "negative_end": "constant",
+      "aero_model": "constant",
+      "coefficient_basis": "CN",
+      "example": 1,
+      "reference_dataset": "ipn_2007",
+      "chord_mode": "geometric"
+    }
+  ]
+}

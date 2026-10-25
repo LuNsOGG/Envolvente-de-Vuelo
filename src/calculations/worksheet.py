@@ -39,7 +39,7 @@ def worksheet_case(name='Mi aeronave'):
     for key in FIELD_KEYS:
         case['parameters'][key] = parameter(None, DEFAULT_UNITS[key])
     case['parameters']['rho0'] = parameter(RHO0, 'slug/ft³', 'Densidad estándar de referencia EAS', 'constante')
-    for key,unit in [('U_b','ft/s'),('Cse','kt EAS')]:case['parameters'][key]=parameter(None,unit)
+    for key,unit in [('U_b','ft/s'),('Cse','kt EAS'),('span','ft'),('Va_selected','kt EAS')]:case['parameters'][key]=parameter(None,unit)
     return case
 
 
@@ -99,7 +99,7 @@ def adapt_case(case):
         # Los factores A1/A2 se conservan en el proyecto original; no sustituyen
         # las intensidades verticales requeridas por la ecuación de ráfaga.
         c.setdefault('assumptions',[]).append('Cálculo actualizado a ráfagas de Niu; las intensidades Uc y Ud deben estar especificadas.')
-    for key,unit in [('U_b','ft/s'),('Cse','kt EAS')]:c['parameters'].setdefault(key,parameter(None,unit))
+    for key,unit in [('U_b','ft/s'),('Cse','kt EAS'),('span','ft'),('Va_selected','kt EAS')]:c['parameters'].setdefault(key,parameter(None,unit))
     return c
 
 
@@ -116,6 +116,10 @@ def prepare_case(case):
         except (ValueError, TypeError): return None
     w, s, n = get('W', 'weight'), get('S', 'area'), get('n_pos', 'ratio')
     if c['method']=='niu':
+        if c.get('chord_mode')=='geometric':
+            span=get('span','length')
+            chord=s/span if s is not None and span is not None and s>0 and span>0 else None
+            automatic('chord',chord,'ft','c = S/b; pendiente si falta superficie o envergadura','Tesis IPN, tabla 1.1; cuerda geométrica calculada')
         mode=c.get('speed_mode','excel'); rule=c.get('negative_rule','excel')
         if mode!='manual':
             for key in ['Vc','Vd']:automatic(key,None,'kt EAS','Pendiente de W, S y N','')
@@ -175,6 +179,8 @@ def calculate_worksheet(case, samples=601):
     r = calculate(prepared, samples)
     r['derived'] = derived; r['worksheet'] = True; r['partial'] = {}
     if case['method']=='niu':
+        from .thesis import augment_review
+        augment_review(prepared,r)
         for row in r['parameters']:
             if row['símbolo'] in ['n3','n4']:
                 row.update(valor=r['values'].get(row['símbolo']),estado='calculado',fuente='Niu, ecuación de ráfaga en Vc',
@@ -182,7 +188,11 @@ def calculate_worksheet(case, samples=601):
             if case.get('coefficient_basis')=='CL' and row['símbolo'] in ['CN_pos','CN_neg']:
                 row['descripción']='Coeficiente de sustentación CL '+('máximo' if row['símbolo']=='CN_pos' else 'mínimo')
         for key,unit,formula in [('Vs','kt EAS','n_pérdida(Vs)=1'),('V_A_stall','kt EAS','n_pérdida(A)=N'),
-                ('Vb','kt EAS','n_pérdida(VB)=1+Δn(VB,Ub)'),('mu','1','2(W/S)/(ρ c a g), en Vc'),
+                ('Vb','kt EAS','n_pérdida(VB)=1+Δn(VB,Ub)'),
+                ('Vc_min_base','kt EAS','Mínimo base A3, no velocidad seleccionada'),
+                ('Vd_min_base','kt EAS','Mínimo base A3, no velocidad seleccionada'),
+                ('Va_min_base','kt EAS','15 sqrt(max(N,3.8) W/S); distinto de A'),
+                ('Va_selected','kt EAS','Velocidad seleccionada; independiente de A'),('mu','1','2(W/S)/(ρ c a g), en Vc'),
                 ('Kg','1','0.88 μ/(5.3+μ), en Vc'),('n3','1','1+Δn en Vc'),('n4','1','1-Δn en Vc'),
                 ('n_gust_d_pos','1','1+Δn en Vd'),('n_gust_d_neg','1','1-Δn en Vd')]:
             if key in r['values']:derived.append(dict(variable=key,value=r['values'][key],unit=unit,formula=formula,source='Niu, cap. 3'))
