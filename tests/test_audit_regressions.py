@@ -32,3 +32,23 @@ def test_03_non_object_project_is_rejected(value):
     from src.project import validate_project
     with pytest.raises(ValueError):validate_project(value)
 
+
+def test_04_invalid_draft_keeps_units_and_survives_condition_switch(qt_lifetime,monkeypatch):
+    from uuid import uuid4
+    from bootstrap import ROOT
+    import src.ui.worksheet as ui
+    from src.calculations.worksheet import FIELD_KEYS
+    from src.project import load_project
+    monkeypatch.setattr(ui,'ROOT',ROOT/'tests/artifacts'/uuid4().hex)
+    w=ui.WorksheetWindow(example_project(1))
+    try:
+        w.set_value('W','pendiente');w.table.cellWidget(FIELD_KEYS.index('S'),2).setCurrentText('m²');w.changed=True
+        saved=w.snapshot();p=load_project(saved)
+        assert p['draft_units']['S']=='m²'
+        w.replace_project(p)
+        assert w.table.cellWidget(FIELD_KEYS.index('S'),2).currentText()=='m²'
+        w.condition_selector.setCurrentIndex(1);w.condition_selector.setCurrentIndex(0)
+        assert w.table.item(FIELD_KEYS.index('W'),1).text()=='pendiente'
+        assert w.table.cellWidget(FIELD_KEYS.index('S'),2).currentText()=='m²'
+    finally:w.timer.stop();w.changed=False;w.close()
+

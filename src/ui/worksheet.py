@@ -97,7 +97,11 @@ class WorksheetWindow(QMainWindow):
             if key=='W_S_photo':
                 self.table.setItem(i,2,cell('lbf/ft²')); value.setBackground(QColor('#dddddd')); continue
             combo=QComboBox(); combo.addItems(list(UNITS[SPECS[key][1]])); combo.setCurrentText(p['unit']); combo.setEnabled(not(key=='chord' and self.case().get('chord_mode')=='geometric')); combo.currentTextChanged.connect(self.schedule); self.table.setCellWidget(i,2,combo)
-        draft=self.project.get('draft_cells',{}) if self.project.get('draft_case_id',self.current)==self.current else {}
+        state=self.project.get('case_drafts',{}).get(self.current,{})
+        draft=state.get('cells',self.project.get('draft_cells',{}) if self.project.get('draft_case_id',self.current)==self.current else {})
+        draft_units=state.get('units',self.project.get('draft_units',{}) if self.project.get('draft_case_id',self.current)==self.current else {})
+        for key,unit in draft_units.items():
+            if key in FIELD_KEYS and key!='W_S_photo' and unit in UNITS[SPECS[key][1]]:self.table.cellWidget(FIELD_KEYS.index(key),2).setCurrentText(unit)
         for key,raw in draft.items():
             if key in FIELD_KEYS and key!='W_S_photo':self.table.item(FIELD_KEYS.index(key),1).setText(raw)
         self.loading=False
@@ -121,7 +125,9 @@ class WorksheetWindow(QMainWindow):
                 q.update(value=value,unit=unit,status='usuario' if value is not None else 'pendiente',source='Introducido por el usuario')
         c['parameters']=p; c.setdefault('changes',[]).extend(changes)
         prepared,_=prepare_case(c); c['parameters']=prepared['parameters']; self.project['active_case']=self.current
-        self.project.pop('draft_cells',None); self.project.pop('draft_case_id',None)
+        self.project.get('case_drafts',{}).pop(self.current,None)
+        if self.project.get('draft_case_id',self.current)==self.current:
+            for key in ['draft_cells','draft_units','draft_case_id']:self.project.pop(key,None)
 
     def set_value(self,key,value,unit=None):
         i=FIELD_KEYS.index(key); self.table.item(i,1).setText('' if value is None else str(value))
@@ -309,6 +315,8 @@ class WorksheetWindow(QMainWindow):
         except ValueError:
             self.project['draft_cells']={key:self.table.item(i,1).text() for i,key in enumerate(FIELD_KEYS)}
             self.project['draft_case_id']=self.current
+            self.project['draft_units']={key:self.table.cellWidget(i,2).currentText() for i,key in enumerate(FIELD_KEYS) if key!='W_S_photo'}
+            self.project.setdefault('case_drafts',{})[self.current]=dict(cells=deepcopy(self.project['draft_cells']),units=deepcopy(self.project['draft_units']))
         folder=ROOT/'data/recuperaciones'; folder.mkdir(parents=True,exist_ok=True)
         saved=save_project(self.project,folder/('hoja_'+datetime.now().strftime('%Y%m%d_%H%M%S')+'.json')); self.changed=False; return saved
 
