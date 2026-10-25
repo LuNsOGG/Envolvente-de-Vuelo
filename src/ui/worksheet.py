@@ -151,12 +151,17 @@ class WorksheetWindow(QMainWindow):
         if self.case().get('chord_mode')=='geometric':
             q=self.case()['parameters']['chord'];self.table.item(FIELD_KEYS.index('chord'),1).setText('' if q.get('value') is None else f'{q["value"]:.10g}')
         self.loading=False
-        for key,old in list(self.canvases.items()):
-            compact=key.startswith('overview_'); kind=key.removeprefix('overview_'); new=FigureCanvasQTAgg(envelope_figure(r,kind,compact,show_reference=self.reference_toggle.isChecked())); page_layout=old.parentWidget().layout()
-            page_layout.replaceWidget(old,new); old.hide(); old.deleteLater(); self.canvases[key]=new; new.show()
-            if not compact:
-                previous=self.toolbars[kind]; toolbar=NavigationToolbar2QT(new,self); page_layout.replaceWidget(previous,toolbar); previous.hide(); previous.deleteLater(); self.toolbars[kind]=toolbar; toolbar.show()
-            new.draw_idle()
+        for key,canvas in self.canvases.items():
+            compact=key.startswith('overview_');kind=key.removeprefix('overview_')
+            ax=canvas.figure.axes[0];view=(ax.get_xlim(),ax.get_ylim())
+            previous=getattr(canvas,'default_view',view)
+            zoomed=view!=previous and getattr(canvas,'view_case',self.current)==self.current
+            envelope_figure(r,kind,compact,show_reference=self.reference_toggle.isChecked(),figure=canvas.figure)
+            ax=canvas.figure.axes[0];canvas.default_view=(ax.get_xlim(),ax.get_ylim());canvas.view_case=self.current
+            if zoomed and r.get('curves'):
+                ax.set_xlim(*view[0]);ax.set_ylim(*view[1])
+            if not compact:self.toolbars[kind].update()
+            canvas.draw_idle()
         def v(key):return f'{r["values"][key]:.3f}' if key in r['values'] else '—'
         self.summary.setText(f'{self.case()["aircraft"]}     W/S  {v("W_S")} lbf/ft²     Vs  {v("Vs")} kt EAS     Vc  {v("Vc")}     Vd  {v("Vd")}     Kg  {v("Kg")}')
         missing=[]; p=self.case()['parameters']

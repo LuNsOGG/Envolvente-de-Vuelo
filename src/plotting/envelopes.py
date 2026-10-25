@@ -2,8 +2,9 @@ from matplotlib.figure import Figure
 
 COLORS=dict(man='#111111',gust='#333333',combined='#000000')
 
-def envelope_figure(result,kind,compact=False,show_reference=False):
-    fig=Figure(figsize=(10,6.3),dpi=110,layout='constrained')
+def envelope_figure(result,kind,compact=False,show_reference=False,figure=None):
+    fig=figure if figure is not None else Figure(figsize=(10,6.3),dpi=110,layout='constrained')
+    if figure is not None:fig.clear()
     fig.get_layout_engine().set(rect=(0,.045,1,.955))
     ax=fig.add_subplot(111)
     ax.set_facecolor('#ffffff');ax.grid(True,color='#dddddd',linewidth=.6)

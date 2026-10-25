@@ -172,3 +172,17 @@ def test_14_missing_gust_input_keeps_full_maneuver():
     assert r['blocked'] and 'man_pos' in r['curves'] and 'gust_pos' not in r['curves']
     assert max(r['curves']['man_pos'])==max(complete['curves']['man_pos'])
 
+
+def test_15_recalculation_reuses_canvases_and_preserves_user_zoom(qt_lifetime):
+    from src.ui.worksheet import WorksheetWindow
+    w=WorksheetWindow(example_project(1))
+    try:
+        canvases=dict(w.canvases);toolbars=dict(w.toolbars)
+        ax=w.canvases['man'].figure.axes[0];ax.set_xlim(100,160);ax.set_ylim(-1,3)
+        w.set_value('W',3900);w.recalculate()
+        assert all(w.canvases[k] is v for k,v in canvases.items())
+        assert all(w.toolbars[k] is v for k,v in toolbars.items())
+        assert w.canvases['man'].figure.axes[0].get_xlim()==(100,160)
+        assert w.canvases['man'].figure.axes[0].get_ylim()==(-1,3)
+    finally:w.timer.stop();w.changed=False;w.close()
+
