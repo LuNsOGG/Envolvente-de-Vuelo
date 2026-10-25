@@ -4,8 +4,12 @@ from src.plotting.envelopes import envelope_figure
 import json
 
 def export_appendix(project,cases,out,checkpoint,write_csv,allow_partial=False):
-    pages=[dict(title='Procedimiento académico del Apéndice A',cover=True,footer='Apéndice A · comparación académica',paragraphs=[
+    pages=[dict(title='Procedimiento académico del Apéndice A',cover=True,author=project['metadata'].get('student',''),footer='Apéndice A · comparación académica',paragraphs=[
         'Nombre: '+(project['metadata'].get('student') or '[Nombre editable]'),
+        'Proyecto: '+project['metadata'].get('title',''),
+        'Materia: '+project['metadata'].get('subject',''),
+        'Docente: '+project['metadata'].get('teacher',''),
+        'Fecha: '+project['metadata'].get('date',''),
         'Método independiente de las ráfagas Niu. Incluye entradas, mínimos A3, lecturas documentadas y construcción A4. Las limitaciones de aplicabilidad se conservan.'])]
     root=out/'apendice_a';root.mkdir()
     for case in cases:

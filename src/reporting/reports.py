@@ -141,7 +141,7 @@ def analysis_pages(project,case,result,plots,directory):
 
 def niu_pages(project,images):
     meta=project['metadata']
-    pages=[dict(title='Análisis de figuras de cargas de aeronaves',subtitle='Airframe Structural Design capítulo 3',cover=True,paragraphs=[
+    pages=[dict(title='Análisis de figuras de cargas de aeronaves',subtitle='Airframe Structural Design capítulo 3',cover=True,author=meta.get('student',''),paragraphs=[
         f'Nombre: {meta.get("student") or "[Nombre editable]"}',f'Materia: {meta.get("subject") or "[Materia editable]"}',
         f'Docente: {meta.get("teacher") or "[Docente editable]"}',f'Fecha: {meta.get("date","")}',
         'Se analizan y redibujan las figuras 3.1.3 a y b, 3.3.1 a 3.3.4, 3.4.8, 3.4.9, 3.4.11, 3.4.16 y 3.5.6. El objetivo es relacionar fuerzas, momentos y condiciones críticas con el diseño estructural.',
@@ -186,7 +186,7 @@ def render_pdf(pages,path):
             story.append(KeepTogether(elements))
     def footer(canvas,doc):
         canvas.setFont('App',8);canvas.setFillColor(colors.HexColor('#666666'));canvas.drawString(54,27,pages[0].get('footer','Tarea 04 · Análisis académico'));canvas.drawRightString(letter[0]-54,27,str(doc.page))
-    doc=SimpleDocTemplate(str(path),pagesize=letter,leftMargin=61.2,rightMargin=61.2,topMargin=48,bottomMargin=47,title=pages[0]['title'],author='')
+    doc=SimpleDocTemplate(str(path),pagesize=letter,leftMargin=61.2,rightMargin=61.2,topMargin=48,bottomMargin=47,title=pages[0]['title'],author=pages[0].get('author',''))
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
 
 def render_docx(pages,path):
@@ -196,7 +196,7 @@ def render_docx(pages,path):
     normal.paragraph_format.space_after=Pt(8);normal.paragraph_format.line_spacing=1.08
     for s in ['Title','Heading 1','Heading 2']:
         doc.styles[s].font.name='Calibri';doc.styles[s].font.color.rgb=RGBColor.from_string('000000')
-    doc.core_properties.author='';doc.core_properties.title=pages[0]['title']
+    doc.core_properties.author=pages[0].get('author','');doc.core_properties.title=pages[0]['title']
     def add_table(data,widths=None):
         tab=doc.add_table(rows=0,cols=len(data[0]));tab.autofit=False
         if widths:

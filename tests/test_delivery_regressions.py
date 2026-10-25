@@ -50,6 +50,28 @@ def test_19_preview_cancel_preserves_main_method(qt_lifetime):
     assert c['method']=='niu' and c['appendix_review']['n3']==5
 
 
+def test_20_cover_save_cancel_and_date_validation(qt_lifetime):
+    from src.ui.cover_dialog import CoverDialog
+    meta=example_project(1)['metadata'];before=deepcopy(meta);d=CoverDialog(meta)
+    d.edits['student'].setText('Prueba de portada');d.reject();assert meta==before
+    d=CoverDialog(meta);d.edits['date'].setText('2026-02-30');d.save();assert d.result()==0 and d.error.text()
+    d.edits['date'].setText('2026-10-24');d.edits['student'].setText('Prueba de portada');d.save()
+    assert d.result()==1 and d.metadata['student']=='Prueba de portada' and meta==before
+
+def test_20_metadata_roundtrip_and_report_cover(qt_lifetime):
+    from pathlib import Path
+    from uuid import uuid4
+    from bootstrap import ROOT
+    from src.project import save_project,load_project
+    from src.reporting.general_report import general_analysis_pages
+    p=example_project(1);p['metadata'].update(student='Prueba QA',subject='Cargas',teacher='Docente de prueba')
+    folder=ROOT/'tests/artifacts'/uuid4().hex;folder.mkdir(parents=True)
+    loaded=load_project(save_project(p,folder/'portada.json'));assert loaded['metadata']==p['metadata']
+    c=p['cases'][0];r=calculate(c);pages=general_analysis_pages(p,c,r,dict(man_png=Path('man.png'),gust_png=Path('gust.png'),combined_png=Path('combined.png')),folder)
+    assert pages[0]['author']=='Prueba QA'
+    assert all(any(text in x for x in pages[0]['paragraphs']) for text in ['Prueba QA','Cargas','Docente de prueba'])
+
+
 def test_19_appendix_configuration_roundtrip_and_export(monkeypatch):
     import json,zipfile
     from uuid import uuid4
@@ -66,4 +88,18 @@ def test_19_appendix_configuration_roundtrip_and_export(monkeypatch):
     assert (out/'reporte_apendice_a.pdf').read_bytes().startswith(b'%PDF')
     with zipfile.ZipFile(out/'reporte_apendice_a.docx') as doc:
         assert 'Lectura QA A1/A2' in doc.read('word/document.xml').decode('utf-8')
+
+
+def test_20_cover_button_updates_metadata_without_changing_calculation(qt_lifetime):
+    from PySide6.QtCore import QTimer
+    from PySide6.QtWidgets import QApplication
+    from src.ui.worksheet import WorksheetWindow
+    w=WorksheetWindow(example_project(1));before=deepcopy(w.result['values'])
+    try:
+        def edit():
+            d=QApplication.activeModalWidget();d.edits['student'].setText('Portada QA');d.save()
+        QTimer.singleShot(30,edit);w.edit_cover()
+        assert w.project['metadata']['student']=='Portada QA' and w.changed
+        assert w.result['values']==before
+    finally:w.changed=False;w.timer.stop();w.close()
 

@@ -50,7 +50,7 @@ class WorksheetWindow(QMainWindow):
         for number,label in [(1,'Ejemplo Cessna'),(2,'Ejemplo libro')]:
             action=menu.addAction(label); action.triggered.connect(lambda checked=False,n=number:self.load_example(n))
         self.examples_button.setMenu(menu); top.addWidget(self.examples_button)
-        for label,fn in [('Nuevo',self.new_project),('Abrir',self.open_project),('Guardar',self.save),('Exportar',self.export)]:
+        for label,fn in [('Nuevo',self.new_project),('Abrir',self.open_project),('Guardar',self.save),('Portada',self.edit_cover),('Exportar',self.export)]:
             b=QPushButton(label); b.clicked.connect(fn); top.addWidget(b)
             if label=='Exportar':self.export_button=b
         layout.addLayout(top)
@@ -93,6 +93,13 @@ class WorksheetWindow(QMainWindow):
         self.fill(); self.loading=False; self.recalculate(); self.changed=False
 
     def case(self):return next(c for c in self.project['cases'] if c['id']==self.current)
+
+    def edit_cover(self):
+        from src.ui.cover_dialog import CoverDialog
+        dialog=CoverDialog(self.project['metadata'],self)
+        if dialog.exec()==QDialog.DialogCode.Accepted and dialog.metadata!=self.project['metadata']:
+            before=deepcopy(self.project['metadata']);self.project['metadata']=dialog.metadata;self.changed=True
+            self.project.setdefault('metadata_changes',[]).append(dict(before=before,after=deepcopy(dialog.metadata),time=datetime.now().isoformat()))
 
     def show_appendix(self):
         if not self.try_commit():return

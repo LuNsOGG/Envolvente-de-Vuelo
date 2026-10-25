@@ -41,7 +41,10 @@ def export_project(project,case_id,all_cases=False,niu_only=False,include_niu=No
         results={} if niu_only else {c['id']:calculate(c) for c in cases}
         pending={c['id']:results[c['id']]['blocked'] for c in cases if c['id'] in results and results[c['id']]['blocked']}
         if pending and not allow_partial:raise ValueError('Exportación incompleta: corrija los datos pendientes. '+str(pending))
-        out=fresh(ROOT/'outputs'/('entrega_'+datetime.now().strftime('%Y%m%d_%H%M%S')));out.mkdir(parents=True)
+        import re,unicodedata
+        student=unicodedata.normalize('NFKD',project['metadata'].get('student','')).encode('ascii','ignore').decode('ascii')
+        student=re.sub('[^a-zA-Z0-9]+','_',student).strip('_').lower()[:60]
+        out=fresh(ROOT/'outputs'/('entrega_'+(student+'_' if student else '')+datetime.now().strftime('%Y%m%d_%H%M%S')));out.mkdir(parents=True)
         checkpoint(3,'Guardando proyecto')
         save_project(project,out/'proyecto.json')
         state=dict(estado='PARCIAL' if pending else 'COMPLETO',pendientes=pending,advertencias={k:[c for c in r['checks'] if c['estado'] in ['ADVERTENCIA','NO APLICA','ERROR']] for k,r in results.items()})

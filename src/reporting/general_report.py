@@ -4,7 +4,7 @@ from src.calculations import calculate
 
 def general_analysis_pages(project,case,result,plots,directory):
     meta=project['metadata'];aircraft=case.get('aircraft','Aeronave');v=result['values'];label=result['name']
-    pages=[dict(title='Envolventes de vuelo para '+aircraft,subtitle=label,cover=True,footer='Calculadora de envolventes de vuelo',paragraphs=[
+    pages=[dict(title='Envolventes de vuelo para '+aircraft,subtitle=label,cover=True,author=meta.get('student',''),footer='Calculadora de envolventes de vuelo',paragraphs=[
         'Proyecto: '+meta.get('title','Proyecto de envolventes'),
         'Nombre: '+(meta.get('student') or '[Nombre editable]'),'Materia: '+(meta.get('subject') or '[Materia editable]'),
         'Docente: '+(meta.get('teacher') or '[Docente editable]'),'Fecha: '+meta.get('date',''),
